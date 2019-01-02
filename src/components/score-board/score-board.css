@@ -1,0 +1,61 @@
+@import url("https://fonts.googleapis.com/css?family=Ubuntu");
+
+body {
+  margin: 0px;
+  font-family: "Open Sans", sans-serif;
+}
+
+
+
+.scoreboard-outer {
+    margin-left: auto;
+    margin-right: auto;
+  position: relative;
+  display: flex;
+  width: 300px;
+  height: 40px;
+  top:50px;
+  left: 15%;
+  background-color: #53e2d4;
+}
+
+.team-name,
+.score {
+  font-family: "Ubuntu", sans-serif;
+  font-size: 1.2em;
+  line-height: 40px; /*same as scoreboard-outers height*/
+  text-align: center;
+}
+
+.team-name {
+  flex: 1;
+  padding: 0px 8px;
+  color: white;
+  letter-spacing: 0.5px;
+  background-color: #311149;
+}
+
+.score-panel {
+  flex: 1.2;
+  font-weight: 900;
+  /* color: #44444; */
+  text-align: center;
+}
+
+.team1::after {
+  content: " - ";
+}
+
+.scoreboard-outer::before {
+  width: 8px;
+  height: 40px; /*same as scoreboard-outers height*/
+  content: " ";
+  background-color: #da291c;
+}
+
+.scoreboard-outer::after {
+  width: 8px;
+  height: 40px; /*same as scoreboard-outers height*/
+  content: " ";
+  background-color: #6cabdd;
+}

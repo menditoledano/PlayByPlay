@@ -1,6 +1,7 @@
 import { Component, Prop, State } from '@stencil/core';
 import { hubConnection } from 'signalr-no-jquery';
-import { Incident, Element, Frame, Incidents, States, Elements } from './interfaces';
+import { Incident, Element, Frame, Incidents, States, Elements} from './interfaces';
+
 
 @Component({
   tag: 'play-by-play',
@@ -26,11 +27,13 @@ export class PlayByPlay {
     type?: 'ERROR' | 'INFO'
   }
   @State() previousBalls: Element[];
+  
+  
 
   componentWillLoad() {
     this.view = 'camera';
     this.previousBalls = [];
-    const url: string = 'http://iltestpoc:8100';
+    const url: string = 'http://ICnat.lsports.eu:8100';
     this.connection = hubConnection(url);
     this.hubProxy = this.connection.createHubProxy('playByPlayHub');
     const that = this;
@@ -41,12 +44,16 @@ export class PlayByPlay {
     });
 
     this.hubProxy.on('updateFixtureStatistics', function(frame: Frame) {
-      console.log('updateFixtureStatistics');
-      console.log(frame);
+      console.log('updateFixtureStatistics'+  JSON.stringify(frame));
+      // that.showStatistics = true;
+      // console.log(frame);
     });
 
     this.hubProxy.on('stateMessageReceived', function(frame: Frame) {
       that.updateStateMessage(frame);
+      console.log('get frame from server : ' +  JSON.stringify(frame));
+      // alert(JSON.stringify(frame));
+      
     });
 
     this.start();
@@ -123,7 +130,7 @@ export class PlayByPlay {
     const previousBall = this.elements && this.elements.find(el => el.Type === Elements.Ball)
     if (!!previousBall) {
       this.previousBalls.push(previousBall);
-      if (this.previousBalls.length > 2) {
+      if (this.previousBalls.length > 20) {
         this.previousBalls.shift();
       }
     }
@@ -135,8 +142,20 @@ export class PlayByPlay {
   }
 
   render() {
-    return <div class="wrapper">
-      <pbp-angle-control view={this.view} onViewChange={this.onViewChange} />
+    return<div class="embed-responsive embed-responsive-4by3 container">
+    <div class="row justify-content-center">
+        <div class="col align-self-center">
+
+   <div class="wrapper ">
+      {/* <div class="container">
+            <div class="row">
+            <div class="col-xs-10 col-sm-10  col-md-10 col-lg-20">  */}
+      <pbp-angle-control class={'realative-top'} view={this.view} onViewChange={this.onViewChange} />
+      <br></br>
+      <br></br>
+      <br></br>
+      <pbp-score-board class={'align-text-top text-center'}></pbp-score-board>
+      <br></br>
       <pbp-field jsonOpen={this.jsonViewerOpen} view={this.view}>
         {this.elements && this.elements.map(element => {
           return element.Type === Elements.Player
@@ -150,16 +169,21 @@ export class PlayByPlay {
           this.previousBalls.map((ball, i) => <pbp-ball opacity={i === 0 ? .1 : .3} position={{ top: ball.Location.X, left: ball.Location.Y }} />)
         }
       </pbp-field>
-      <pbp-json-viewer onToggle={this.onToggleJsonViewer} open={this.jsonViewerOpen} items={this.elements} />
-      <pbp-message jsonOpen={this.jsonViewerOpen} message={this.message} />
+      <pbp-json-viewer onToggle={this.onToggleJsonViewer} open={this.jsonViewerOpen} items={this.elements} class="textStyle" />
+      <pbp-message jsonOpen={this.jsonViewerOpen} message={this.message} class="textStyle"/>
       {this.showStatistics && <pbp-statistics open={this.jsonViewerOpen} />}
       {
         this.error && <span class={`error-overlay ${this.jsonViewerOpen && 'open'}`}>
+       
+        
           <svg width="59" height="50" viewBox="0 0 59 50" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M58.336 42.97C60.2266 46.0944 57.8534 50 54.0772 50H4.92223C1.13875 50 -1.2235 46.0884 0.663472 42.97L25.2413 2.34229C27.1329 -0.783593 31.8706 -0.777929 33.7588 2.34229L58.336 42.97V42.97ZM29.5 34.5703C26.8978 34.5703 24.7882 36.5815 24.7882 39.0625C24.7882 41.5435 26.8978 43.5547 29.5 43.5547C32.1023 43.5547 34.2118 41.5435 34.2118 39.0625C34.2118 36.5815 32.1023 34.5703 29.5 34.5703ZM25.0266 18.4232L25.7864 31.7045C25.8219 32.326 26.3609 32.8125 27.0137 32.8125H31.9863C32.6391 32.8125 33.1781 32.326 33.2136 31.7045L33.9735 18.4232C34.0119 17.752 33.4513 17.1875 32.7461 17.1875H26.2538C25.5487 17.1875 24.9882 17.752 25.0266 18.4232V18.4232Z" fill="#3F3F3F"/>
           </svg>
         </span>
       }
-    </div>;
+      </div>
+       </div>
+       </div>
+     </div>;
   }
 }

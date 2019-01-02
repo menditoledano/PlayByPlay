@@ -11,7 +11,7 @@
   ],
   "scripts": {
     "build": "stencil build",
-    "start": "stencil build --dev --watch --serve",
+    "start": "stencil build --dev --watch --serve --port 3001",
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll"
   },
@@ -20,6 +20,11 @@
   },
   "devDependencies": {
     "@stencil/core": "^0.15.0",
+    "@types/jest": "23.3.10",
+    "@types/puppeteer": "1.11.1",
+    "jest": "23.6.0",
+    "jest-cli": "23.6.0",
+    "puppeteer": "1.8.0",
     "signalr-no-jquery": "^0.1.8"
   },
   "repository": {

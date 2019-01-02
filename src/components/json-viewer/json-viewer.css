@@ -4,10 +4,11 @@
   top: 0;
   bottom: 0;
   background-color: #3F3F3F;
-  color: #fff;
+  color: #dedede;
   width: 170px;
   padding: 10px;
   font-size: 10px;
+
   z-index: 1;
   box-sizing: border-box;
   transition: right ease-in .2s;

@@ -38,6 +38,8 @@ export class Statistics {
 
   componentWillLoad() {
     this.statistics = mockStatistics;
+    //  console.log("!!!!!"+this.statistics +'MENDI!!!!!');
+    
   }
 
   render() {

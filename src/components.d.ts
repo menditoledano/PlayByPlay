@@ -107,6 +107,13 @@ export namespace Components {
     'view'?: 'bird' | 'camera' | 'side';
   }
 
+  interface PbpScoreBoard {
+    'open': boolean;
+  }
+  interface PbpScoreBoardAttributes extends StencilHTMLAttributes {
+    'open'?: boolean;
+  }
+
   interface PbpProgress {
     'data': statistic;
   }
@@ -132,6 +139,7 @@ declare global {
     'PbpNet': Components.PbpNet;
     'PlayByPlay': Components.PlayByPlay;
     'PbpPlayer': Components.PbpPlayer;
+    'PbpScoreBoard': Components.PbpScoreBoard;
     'PbpProgress': Components.PbpProgress;
     'PbpStatistics': Components.PbpStatistics;
   }
@@ -145,6 +153,7 @@ declare global {
     'pbp-net': Components.PbpNetAttributes;
     'play-by-play': Components.PlayByPlayAttributes;
     'pbp-player': Components.PbpPlayerAttributes;
+    'pbp-score-board': Components.PbpScoreBoardAttributes;
     'pbp-progress': Components.PbpProgressAttributes;
     'pbp-statistics': Components.PbpStatisticsAttributes;
   }
@@ -198,6 +207,12 @@ declare global {
     new (): HTMLPbpPlayerElement;
   };
 
+  interface HTMLPbpScoreBoardElement extends Components.PbpScoreBoard, HTMLStencilElement {}
+  var HTMLPbpScoreBoardElement: {
+    prototype: HTMLPbpScoreBoardElement;
+    new (): HTMLPbpScoreBoardElement;
+  };
+
   interface HTMLPbpProgressElement extends Components.PbpProgress, HTMLStencilElement {}
   var HTMLPbpProgressElement: {
     prototype: HTMLPbpProgressElement;
@@ -219,6 +234,7 @@ declare global {
     'pbp-net': HTMLPbpNetElement
     'play-by-play': HTMLPlayByPlayElement
     'pbp-player': HTMLPbpPlayerElement
+    'pbp-score-board': HTMLPbpScoreBoardElement
     'pbp-progress': HTMLPbpProgressElement
     'pbp-statistics': HTMLPbpStatisticsElement
   }
@@ -232,6 +248,7 @@ declare global {
     'pbp-net': HTMLPbpNetElement;
     'play-by-play': HTMLPlayByPlayElement;
     'pbp-player': HTMLPbpPlayerElement;
+    'pbp-score-board': HTMLPbpScoreBoardElement;
     'pbp-progress': HTMLPbpProgressElement;
     'pbp-statistics': HTMLPbpStatisticsElement;
   }

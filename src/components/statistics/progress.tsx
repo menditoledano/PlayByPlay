@@ -11,6 +11,8 @@ export class Progress {
 
   calcFillWidth = (homeValue, awayValue) => {
     const total = homeValue + awayValue;
+    console.log(total);
+    
     const percentage = homeValue >= awayValue ? (homeValue/total)*100 : (awayValue/total)*100;
     return percentage;
   }

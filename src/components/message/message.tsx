@@ -20,6 +20,10 @@ export class Message {
     const { message = { date: new Date() } } = this;
     const { date = new Date() } = message;
     return (
+      // <div class="container">
+      // <div class="row">
+      //   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"> 
+
       <div class={`message ${this.jsonOpen && 'open'} ${this.message && this.message.type}`}>
         {this.message && <p class="message-text">
           {this.message.type === 'ERROR' && this.renderError()}
@@ -28,6 +32,9 @@ export class Message {
         </p>}
         {this.message && <span class="message-date">{`${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}  ${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()}`}</span>}
       </div>
+      // </div>
+      // </div>
+      // </div>
     );
   }
 }
