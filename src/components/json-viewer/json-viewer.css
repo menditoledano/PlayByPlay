@@ -1,0 +1,38 @@
+.json-viewer {
+  position: absolute;
+  right: -170px;
+  top: 0;
+  bottom: 0;
+  background-color: #3F3F3F;
+  color: #fff;
+  width: 170px;
+  padding: 10px;
+  font-size: 10px;
+  z-index: 1;
+  box-sizing: border-box;
+  transition: right ease-in .2s;
+}
+
+.json-viewer.open {
+  right: 0;
+}
+
+.toggler {
+  position: absolute;
+  top: 20px;
+  left: -28px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.toggler .x {
+  transition: all ease .2s;
+}
+
+.toggler.open .x {
+  transform: rotateZ(45deg) translateY(-20px) translateX(14px);
+}

@@ -1,0 +1,55 @@
+.field-wrapper {
+  padding: 20px 90px 120px;
+  background-color: #CECECE;
+  transition: padding ease-in .2s;
+}
+
+.field-wrapper.json-open {
+  padding: 20px 180px 120px 0;
+}
+
+.field-wrapper.json-open.camera .field {
+  transform: perspective(680px) rotateX(65deg) rotateZ(-90deg);
+}
+
+.field-wrapper.camera .field {
+  transform: perspective(600px) rotateX(65deg) rotateZ(-90deg);
+}
+
+.field-wrapper.side .field {
+  transform: perspective(1000px) rotateX(35deg) rotateZ(0deg) rotateY(0);
+  transform-origin: bottom;
+}
+
+.field {
+  position: relative;
+  transform-style: preserve-3d;
+  transition: all ease-in-out .2s;
+  box-shadow: inset 0 0 0 35px #557E38, 0 0 0 20px #557E38;
+}
+
+.field-wrapper.json-open .field:after {
+  width: 610px;
+  transform: rotateX(90deg) rotateY(90deg) translateX(132px) translateY(-276px);
+  height: 9px;
+}
+
+.field-wrapper .field:after {
+  transition: .2s all ease-in;
+  position: absolute;
+  content: "";
+  background-color: #253A17;
+  height: 20px;
+  transform-style: preserve-3d;
+  transform: rotateX(90deg) rotateY(90deg) translateX(126px) translateY(-404px);
+  width: 800px;
+  left: 0;
+}
+
+.elements-holder {
+  position: absolute;
+  top: 17px;
+  bottom: 21px;
+  left: 0;
+  right: 0;
+}

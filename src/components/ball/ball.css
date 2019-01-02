@@ -1,0 +1,10 @@
+.ball {
+  width: 9px;
+  height: 9px;
+  position: absolute;
+  margin: -8px 0 0 -8px;
+  transform: rotateY(-60deg);
+  z-index: 2;
+  border-radius: 50%;
+  background-color: #C1FF5C;
+}

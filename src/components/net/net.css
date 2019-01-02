@@ -1,0 +1,9 @@
+.net {
+  background-size: .2em .2em;
+  width: 265px;
+  height: 20px;
+  transform: rotateX(90deg) rotateY(90deg) translateY(11px) translate3d(125px, 0px, 120px);
+  position: absolute;
+  background-image: linear-gradient(rgba(0,0,0,.3) 1px, transparent 0.1em), linear-gradient(90deg, rgba(0,0,0,.3) 1px, transparent 0.1em);
+  border-bottom: 2px solid #FFF;
+}

@@ -1,0 +1,35 @@
+{
+  "name": "play-by-play",
+  "version": "0.0.8",
+  "description": "Play by Play component",
+  "module": "dist/esm/index.js",
+  "main": "dist/play-by-play.js",
+  "types": "dist/types/components.d.ts",
+  "collection": "dist/collection/collection-manifest.json",
+  "files": [
+    "dist/"
+  ],
+  "scripts": {
+    "build": "stencil build",
+    "start": "stencil build --dev --watch --serve",
+    "test": "stencil test --spec --e2e",
+    "test.watch": "stencil test --spec --e2e --watchAll"
+  },
+  "dependencies": {
+    "@aspnet/signalr": "^1.0.4"
+  },
+  "devDependencies": {
+    "@stencil/core": "^0.15.0",
+    "signalr-no-jquery": "^0.1.8"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ionic-team/stencil-component-starter.git"
+  },
+  "author": "Ionic Team",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ionic-team/stencil"
+  },
+  "homepage": "https://github.com/ionic-team/stencil"
+}

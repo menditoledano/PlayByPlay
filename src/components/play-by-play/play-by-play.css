@@ -1,0 +1,25 @@
+.wrapper {
+  width: 687px;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+.error-overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 80px;
+  background: rgba(206, 206, 206, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all ease-in .2s;
+}
+
+.error-overlay.open {
+  right: 170px;
+}

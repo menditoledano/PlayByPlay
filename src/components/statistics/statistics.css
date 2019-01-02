@@ -1,0 +1,25 @@
+.statistics-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 80px;
+  background: rgba(63, 63, 63, 0.93);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: all ease-in .2s;
+  overflow: auto;
+}
+
+.statistics-overlay .title {
+  color: #FFF;
+  font-size: 24px;
+  margin: 0 0 10px;
+  font-weight: normal;
+}
+
+.statistics-overlay.open {
+  right: 170px;
+}
