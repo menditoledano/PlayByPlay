@@ -16,10 +16,12 @@ import {
 export namespace Components {
 
   interface PbpAngleControl {
+    'jsonOpen': boolean;
     'onViewChange': (e: any) => void;
     'view': string;
   }
   interface PbpAngleControlAttributes extends StencilHTMLAttributes {
+    'jsonOpen'?: boolean;
     'onViewChange'?: (e: any) => void;
     'view'?: string;
   }
@@ -108,9 +110,11 @@ export namespace Components {
   }
 
   interface PbpScoreBoard {
+    'jsonOpen': boolean;
     'open': boolean;
   }
   interface PbpScoreBoardAttributes extends StencilHTMLAttributes {
+    'jsonOpen'?: boolean;
     'open'?: boolean;
   }
 

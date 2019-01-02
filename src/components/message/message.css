@@ -19,7 +19,7 @@
 }
 
 .message.open {
-  width: calc(100% - 170px);
+  width: calc(100% - 150px);
 }
 
 h3 {

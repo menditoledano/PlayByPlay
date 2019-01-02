@@ -111,7 +111,7 @@ export class PlayByPlay {
   updateStateMessage = (frame) => {
     if (frame.State === States.StreamStopped) {
       this.error = true;
-      this.showStatistics = false;
+      this.showStatistics = true;
     } else if (frame.State === States.StreamStarted) {
       this.error = false;
       this.showStatistics = false;
@@ -150,11 +150,11 @@ export class PlayByPlay {
       {/* <div class="container">
             <div class="row">
             <div class="col-xs-10 col-sm-10  col-md-10 col-lg-20">  */}
-      <pbp-angle-control class={'realative-top'} view={this.view} onViewChange={this.onViewChange} />
+      <pbp-angle-control jsonOpen={this.jsonViewerOpen}  view={this.view} onViewChange={this.onViewChange} />
       <br></br>
       <br></br>
       <br></br>
-      <pbp-score-board class={'align-text-top text-center'}></pbp-score-board>
+      <pbp-score-board jsonOpen={this.jsonViewerOpen} class={'align-text-top text-center'}></pbp-score-board>
       <br></br>
       <pbp-field jsonOpen={this.jsonViewerOpen} view={this.view}>
         {this.elements && this.elements.map(element => {
@@ -169,7 +169,7 @@ export class PlayByPlay {
           this.previousBalls.map((ball, i) => <pbp-ball opacity={i === 0 ? .1 : .3} position={{ top: ball.Location.X, left: ball.Location.Y }} />)
         }
       </pbp-field>
-      <pbp-json-viewer onToggle={this.onToggleJsonViewer} open={this.jsonViewerOpen} items={this.elements} class="textStyle" />
+      <pbp-json-viewer onToggle={this.onToggleJsonViewer} open={this.jsonViewerOpen} items={this.elements} class="text-light" />
       <pbp-message jsonOpen={this.jsonViewerOpen} message={this.message} class="textStyle"/>
       {this.showStatistics && <pbp-statistics open={this.jsonViewerOpen} />}
       {

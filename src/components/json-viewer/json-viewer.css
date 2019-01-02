@@ -1,11 +1,11 @@
 .json-viewer {
   position: absolute;
-  right: -170px;
+  right: -150px;
   top: 0;
   bottom: 0;
   background-color: #3F3F3F;
   color: #dedede;
-  width: 170px;
+  width: 150px;
   padding: 10px;
   font-size: 10px;
 

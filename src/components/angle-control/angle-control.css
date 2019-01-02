@@ -26,3 +26,7 @@ button.active {
 button:focus {
   outline: none;
 }
+
+.buttons.open{
+  width: calc(100% - 150px);
+}

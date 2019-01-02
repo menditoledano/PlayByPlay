@@ -19,6 +19,10 @@ body {
   background-color: #53e2d4;
 }
 
+.scoreboard-outer.open {
+  left:20px;
+}
+
 .team-name,
 .score {
   font-family: "Ubuntu", sans-serif;

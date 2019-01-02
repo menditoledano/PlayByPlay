@@ -1,5 +1,5 @@
 .field-wrapper {
-  padding: 20px 90px 120px;
+  padding: 30px 90px 130px;
   background-color: #CECECE;
   transition: padding ease-in .2s;
 }
@@ -16,6 +16,13 @@
   transform: perspective(600px) rotateX(65deg) rotateZ(-90deg);
 }
 
+.field-wrapper.bird .field {
+  top: 50px
+}
+
+.field-wrapper.json-open.bird .field {
+
+}
 
 
 .field-wrapper.side .field {
