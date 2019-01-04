@@ -1,6 +1,6 @@
 .field-wrapper {
-  padding: 30px 90px 130px;
-  background-color: #CECECE;
+  padding: 200px 90px 130px;
+  /* background-color: rgb(232, 232, 232); */
   transition: padding ease-in .2s;
 }
 
@@ -13,7 +13,7 @@
 }
 
 .field-wrapper.camera .field {
-  transform: perspective(600px) rotateX(65deg) rotateZ(-90deg);
+  transform: perspective(800px) rotateX(65deg)  rotateZ(-90deg);
 }
 
 .field-wrapper.bird .field {
@@ -34,7 +34,7 @@
   position: relative;
   transform-style: preserve-3d;
   transition: all ease-in-out .2s;
-  box-shadow: inset 0 0 0 35px #557E38, 0 0 0 20px #557E38;
+  /* box-shadow: inset 0 0 0 35px #557E38, 0 0 0 20px #557E38; */
 }
 
 .field-wrapper.json-open .field:after {

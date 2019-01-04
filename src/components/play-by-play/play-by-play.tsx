@@ -110,8 +110,8 @@ export class PlayByPlay {
 
   updateStateMessage = (frame) => {
     if (frame.State === States.StreamStopped) {
-      this.error = true;
-      this.showStatistics = true;
+      this.error = false;
+      this.showStatistics = false;
     } else if (frame.State === States.StreamStarted) {
       this.error = false;
       this.showStatistics = false;
@@ -143,8 +143,7 @@ export class PlayByPlay {
 
   render() {
     return<div class="embed-responsive embed-responsive-4by3 container">
-    <div class="row justify-content-center">
-        <div class="col align-self-center">
+   
 
    <div class="wrapper ">
       {/* <div class="container">
@@ -170,7 +169,7 @@ export class PlayByPlay {
         }
       </pbp-field>
       <pbp-json-viewer onToggle={this.onToggleJsonViewer} open={this.jsonViewerOpen} items={this.elements} class="text-light" />
-      <pbp-message jsonOpen={this.jsonViewerOpen} message={this.message} class="textStyle"/>
+      {/* <pbp-message jsonOpen={this.jsonViewerOpen} message={this.message} class="textStyle"/> */}
       {this.showStatistics && <pbp-statistics open={this.jsonViewerOpen} />}
       {
         this.error && <span class={`error-overlay ${this.jsonViewerOpen && 'open'}`}>
@@ -182,8 +181,6 @@ export class PlayByPlay {
         </span>
       }
       </div>
-       </div>
-       </div>
      </div>;
   }
 }
