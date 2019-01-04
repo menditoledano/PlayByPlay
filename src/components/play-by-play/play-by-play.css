@@ -1,15 +1,22 @@
 .wrapper {
-  width: 1037px;
+  width: 1036px;
   height: 1037px;
   object-fit: contain;
-  display: flex;
+  display: flow-root;
   flex-direction: column;
   font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
   position: relative;
   overflow: hidden;
-  background-image:url("https://res.cloudinary.com/dezalma3v/image/upload/v1546586146/camera-view-hard-court.png"); 
+  
   /* background-size: contain; */
   background-repeat: no-repeat;
+}
+.wrapper.clay {
+  background-image:url("https://res.cloudinary.com/dezalma3v/image/upload/v1546606572/camera-view-clay.png"); 
+}
+
+.wrapper.hard {
+  background-image:url("https://res.cloudinary.com/dezalma3v/image/upload/v1546586146/camera-view-hard-court.png"); 
 }
 
 .error-overlay {

@@ -13,6 +13,7 @@ export class PlayByPlay {
   @Prop() ondisconnected: () => void;
   @Prop() onconnected: () => void;
   @State() view: 'bird' | 'camera' | 'side';
+  @State() fieldView: 'clay' | 'hard' | 'grass' = 'hard';
   @State() connection;
   @State() hubProxy;
   @State() elements: Element[];
@@ -145,7 +146,7 @@ export class PlayByPlay {
     return<div class="embed-responsive embed-responsive-4by3 container">
    
 
-   <div class="wrapper ">
+   <div class={`wrapper ${this.fieldView}`} >
       {/* <div class="container">
             <div class="row">
             <div class="col-xs-10 col-sm-10  col-md-10 col-lg-20">  */}

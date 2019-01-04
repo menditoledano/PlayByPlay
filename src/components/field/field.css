@@ -1,5 +1,6 @@
 .field-wrapper {
-  padding: 200px 90px 130px;
+  padding: 190px 5px 23px;
+
   /* background-color: rgb(232, 232, 232); */
   transition: padding ease-in .2s;
 }
@@ -17,7 +18,7 @@
 }
 
 .field-wrapper.bird .field {
-  top: 50px
+  /* top: 50px */
 }
 
 .field-wrapper.json-open.bird .field {
@@ -44,6 +45,7 @@
 }
 
 .field-wrapper .field:after {
+  /* background-color: black  */
   transition: .2s all ease-in;
   position: absolute;
   content: "";
@@ -59,6 +61,6 @@
   position: absolute;
   top: 17px;
   bottom: 21px;
-  left: 0;
-  right: 0;
+  left: 20px;
+  right: 0px;
 }
