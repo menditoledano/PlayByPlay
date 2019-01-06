@@ -1,5 +1,5 @@
 .wrapper {
-  width: 1025px;
+  width: 1024px;
   height: 786px;
   object-fit: contain;
   display: flow-root;
@@ -8,8 +8,9 @@
   position: relative;
   overflow: hidden;
   
-  background-size: contain;
-  background-repeat: no-repeat;
+  background-repeat:no-repeat;
+  /* background-size:contain; */
+  background-position:center;
 }
 .wrapper.clay {
   background-image:url("https://res.cloudinary.com/dezalma3v/image/upload/v1546764631/camera-view-clay-1024-x-768.png"); 

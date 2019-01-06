@@ -143,13 +143,10 @@ export class PlayByPlay {
   }
 
   render() {
-    return<div class="embed-responsive embed-responsive-4by3 container">
-   
-
-   <div class={`wrapper ${this.fieldView}`} >
-      {/* <div class="container">
-            <div class="row">
-            <div class="col-xs-10 col-sm-10  col-md-10 col-lg-20">  */}
+    return <div class="container">
+    <div class="row">
+      <div class="col-md-auto">
+    <div class={`wrapper ${this.fieldView}`} >
       <pbp-angle-control jsonOpen={this.jsonViewerOpen}  view={this.view} onViewChange={this.onViewChange} />
       <br></br>
       <br></br>
@@ -169,8 +166,7 @@ export class PlayByPlay {
           this.previousBalls.map((ball, i) => <pbp-ball opacity={i === 0 ? .1 : .3} position={{ top: ball.Location.X, left: ball.Location.Y }} />)
         }
       </pbp-field>
-      {/* <pbp-json-viewer onToggle={this.onToggleJsonViewer} open={this.jsonViewerOpen} items={this.elements} class="text-light" /> */}
-      {/* <pbp-message jsonOpen={this.jsonViewerOpen} message={this.message} class="textStyle"/> */}
+      {/* <pbp-message jsonOpen={this.jsonViewerOpen} message={this.message} class="textStyle align-bottom"/> */}
       {this.showStatistics && <pbp-statistics open={this.jsonViewerOpen} />}
       {
         this.error && <span class={`error-overlay ${this.jsonViewerOpen && 'open'}`}>
@@ -182,6 +178,9 @@ export class PlayByPlay {
         </span>
       }
       </div>
-     </div>;
+      </div>
+      </div>
+      </div>
+    
   }
 }

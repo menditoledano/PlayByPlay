@@ -1,5 +1,5 @@
 .field-wrapper {
-  padding: -50px 5px 53px;
+  /* padding: -50px 5px 53px; */
 
   /* background-color: rgb(232, 232, 232); */
   transition: padding ease-in .2s;
@@ -14,7 +14,7 @@
 }
 
 .field-wrapper.camera .field {
-  transform: perspective(850px) rotateX(65deg)  rotateZ(-90deg);
+  transform: perspective(1024px) rotateX(65deg)  rotateZ(-90deg);
 }
 
 .field-wrapper.bird .field {
@@ -61,7 +61,7 @@
   position: absolute;
   top: 17px;
   bottom: 21px;
-  left: 100px;
-  right: 100px;
+  left: 10%;
+  right: 20%;
 
 }

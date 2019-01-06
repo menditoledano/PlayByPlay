@@ -17,7 +17,7 @@ export class Field {
           </div>
           {/* <pbp-net /> */}
 
-          <svg  width="820px" height="400px" viewBox="0 0 368 207" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg  width="800px" height="400px" viewBox="0 0 368 207" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="1" y="14" width="388" height="179" fill="transparent" stroke="#FFF" stroke-width="2"/>
             <rect x="301" y="14" width="88" height="179" fill="transparent" stroke="#FFF" stroke-width="2"/>
             <rect x="1" y="14" width="88" height="179" fill="transparent" stroke="#FFF" stroke-width="2"/>
