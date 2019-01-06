@@ -1,6 +1,6 @@
 .wrapper {
-  width: 1036px;
-  height: 1037px;
+  width: 1025px;
+  height: 786px;
   object-fit: contain;
   display: flow-root;
   flex-direction: column;
@@ -12,12 +12,16 @@
   background-repeat: no-repeat;
 }
 .wrapper.clay {
-  background-image:url("https://res.cloudinary.com/dezalma3v/image/upload/v1546606572/camera-view-clay.png"); 
+  background-image:url("https://res.cloudinary.com/dezalma3v/image/upload/v1546764631/camera-view-clay-1024-x-768.png"); 
 }
 
 .wrapper.hard {
   background-image:url("https://res.cloudinary.com/dezalma3v/image/upload/v1546765281/camera-view-hard-court-1024-x-768.png"); 
 }
+.wrapper.grass {
+  background-image:url("https://res.cloudinary.com/dezalma3v/image/upload/v1546764672/camera-view-grass-1024-x-768.png"); 
+}
+
 
 .error-overlay {
   position: absolute;

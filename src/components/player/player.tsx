@@ -15,7 +15,9 @@ export class Player {
     const transform = 'player' + (this.view === 'camera' ? ' rotate' : '');
     return (
       <div class={transform} style={{ top: `${this.position.top*100}%`, left: `${this.position.left*100}%` }}>
-        <svg width="56" height="130" viewBox="0 0 31 68" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <img src=" https://res.cloudinary.com/dezalma3v/image/upload/v1546788800/palyer-3-d.png" class="palyer3D"></img>
+     
+        {/* <svg width="56" height="130" viewBox="0 0 31 68" fill="none" xmlns="http://www.w3.org/2000/svg">
           <g style="mix-blend-mode:multiply">
           <ellipse cx="15" cy="60" rx="12" ry="5" fill="url(#paint0_radial)" fill-opacity="0.5"/>
           </g>
@@ -27,7 +29,7 @@ export class Player {
           <stop offset="1" stop-color="#5F5F5F" stop-opacity="0"/>
           </radialGradient>
           </defs>
-          </svg>
+          </svg> */}
       </div>
     );
   }

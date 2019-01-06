@@ -13,3 +13,11 @@
   width: 27px;
   height: 62px;
 }
+
+.palyer3D {
+  width: 27px;
+  height: 62px;
+  object-fit: contain;
+  /* background-blend-mode: hue; */
+  /* background-image: linear-gradient(to bottom, #edb97c, #edb97c); */
+}

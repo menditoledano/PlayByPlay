@@ -1,4 +1,5 @@
 .ball {
+  background-image: url("https://res.cloudinary.com/dezalma3v/image/upload/v1546789118/tennis-ball-copy-4.png");
   width: 23px;
   height: 23px;
   position: absolute;
@@ -8,7 +9,14 @@
   border-radius: 50%;
   object-fit: contain;
   background-blend-mode: soft-light;
-  background-image: linear-gradient(to bottom, #000000, #000000);
+  /* background-image: linear-gradient(to bottom, #000000, #000000); */
 
   background-color: #C1FF5C;
+}
+.tennisBall-copy-4 {
+  width: 23px;
+  height: 23px;
+  object-fit: contain;
+  background-blend-mode: soft-light;
+  /* background-image: linear-gradient(to bottom, #000000, #000000); */
 }

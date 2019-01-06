@@ -131,7 +131,7 @@ export class PlayByPlay {
     const previousBall = this.elements && this.elements.find(el => el.Type === Elements.Ball)
     if (!!previousBall) {
       this.previousBalls.push(previousBall);
-      if (this.previousBalls.length > 20) {
+      if (this.previousBalls.length > 5) {
         this.previousBalls.shift();
       }
     }

@@ -1,5 +1,5 @@
 .field-wrapper {
-  /* padding: 190px 5px 23px; */
+  padding: -50px 5px 53px;
 
   /* background-color: rgb(232, 232, 232); */
   transition: padding ease-in .2s;
@@ -14,7 +14,7 @@
 }
 
 .field-wrapper.camera .field {
-  transform: perspective(1024px) rotateX(65deg)  rotateZ(-90deg);
+  transform: perspective(850px) rotateX(65deg)  rotateZ(-90deg);
 }
 
 .field-wrapper.bird .field {
@@ -27,7 +27,7 @@
 
 
 .field-wrapper.side .field {
-  transform: perspective(1000px) rotateX(35deg) rotateZ(0deg) rotateY(0);
+  transform: perspective(1024px) rotateX(35deg) rotateZ(0deg) rotateY(0);
   transform-origin: bottom;
 }
 
@@ -61,7 +61,7 @@
   position: absolute;
   top: 17px;
   bottom: 21px;
-  left: 66px;
-  right: 206px;
+  left: 100px;
+  right: 100px;
 
 }
