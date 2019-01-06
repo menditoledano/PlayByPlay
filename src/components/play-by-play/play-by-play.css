@@ -8,7 +8,7 @@
   position: relative;
   overflow: hidden;
   
-  /* background-size: contain; */
+  background-size: contain;
   background-repeat: no-repeat;
 }
 .wrapper.clay {
@@ -16,7 +16,7 @@
 }
 
 .wrapper.hard {
-  background-image:url("https://res.cloudinary.com/dezalma3v/image/upload/v1546586146/camera-view-hard-court.png"); 
+  background-image:url("https://res.cloudinary.com/dezalma3v/image/upload/v1546765281/camera-view-hard-court-1024-x-768.png"); 
 }
 
 .error-overlay {

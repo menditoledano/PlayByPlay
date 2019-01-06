@@ -19,7 +19,7 @@ export class PlayByPlay {
   @State() elements: Element[];
   @State() reconnectAttemp: number = 0;
   @State() reconnectTimeout: number = 10;
-  @State() jsonViewerOpen: boolean = true;
+  @State() jsonViewerOpen: boolean = false;
   @State() error: boolean = false;
   @State() showStatistics: boolean = false;
   @State() message: {
@@ -169,7 +169,7 @@ export class PlayByPlay {
           this.previousBalls.map((ball, i) => <pbp-ball opacity={i === 0 ? .1 : .3} position={{ top: ball.Location.X, left: ball.Location.Y }} />)
         }
       </pbp-field>
-      <pbp-json-viewer onToggle={this.onToggleJsonViewer} open={this.jsonViewerOpen} items={this.elements} class="text-light" />
+      {/* <pbp-json-viewer onToggle={this.onToggleJsonViewer} open={this.jsonViewerOpen} items={this.elements} class="text-light" /> */}
       {/* <pbp-message jsonOpen={this.jsonViewerOpen} message={this.message} class="textStyle"/> */}
       {this.showStatistics && <pbp-statistics open={this.jsonViewerOpen} />}
       {

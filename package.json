@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@aspnet/signalr": "^1.0.4",
+    "bootstrap": "^4.2.1",
     "stencil": "0.0.5"
   },
   "devDependencies": {
