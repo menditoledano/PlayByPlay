@@ -120,7 +120,7 @@ export class PlayByPlay {
       this.error = false;
       this.showStatistics = false;
     } else if (frame.State === States.Fade) {
-      this.showStatistics = true;
+      this.showStatistics = false;
       this.error = false;
     }
     this.message = {
@@ -143,7 +143,7 @@ export class PlayByPlay {
 
     if (!!playerSingelTrack) {
       this.playerTrack.push(playerSingelTrack);
-      if (this.playerTrack.length > 5) {
+      if (this.playerTrack.length > 25) {
         this.playerTrack.shift();
       }
     }
@@ -180,12 +180,12 @@ export class PlayByPlay {
           this.previousBalls &&
           this.previousBalls.map((ball, i) => <pbp-track-ball opacity={i === 0 ? .1 : .3 } position={{ top: ball.Location.X, left: ball.Location.Y }} />)
         }
-          {/* {
+          {
           this.elements &&
           !!this.elements.filter(el => el.Type === Elements.Player).length &&
           this.playerTrack &&
-          this.playerTrack.map((player) => <pbp-track-ball  position={{ top: player.Location.X, left: player.Location.Y }} />)
-        } */}
+          this.playerTrack.map((player,i) => <pbp-track-player view={this.view} opacity={i === 0 ? .1 : .3 } position={{ top: player.Location.X, left: player.Location.Y }} />)
+        }
       </pbp-field>
       {/* <pbp-message jsonOpen={this.jsonViewerOpen} message={this.message} class="textStyle align-bottom"/> */}
       {this.showStatistics && <pbp-statistics open={this.jsonViewerOpen} />}

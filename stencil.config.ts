@@ -10,5 +10,7 @@ export const config: Config = {
       type: 'www',
       serviceWorker: null
     }
-  ]
+  ],
+  globalStyle: 'src/globals/bootstrap.min.css',
+ 
 };

@@ -1,0 +1,8 @@
+.trackPlayer {
+  width: 1px;
+  height: 1px;
+  position: absolute;
+  transform: rotateY(-60deg);
+  z-index: 3;
+  /* background-color:white; */
+}
