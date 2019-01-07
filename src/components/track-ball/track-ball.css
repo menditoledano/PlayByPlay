@@ -1,0 +1,6 @@
+.ball {
+  position: absolute;
+  transform: rotateY(-60deg);
+  z-index: 2;
+  background-color:rgb(182, 213, 119);
+}

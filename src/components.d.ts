@@ -131,6 +131,21 @@ export namespace Components {
   interface PbpStatisticsAttributes extends StencilHTMLAttributes {
     'open'?: boolean;
   }
+
+  interface PbpTrackBall {
+    'opacity': number;
+    'position': {
+      top: number
+      left: number
+    };
+  }
+  interface PbpTrackBallAttributes extends StencilHTMLAttributes {
+    'opacity'?: number;
+    'position'?: {
+      top: number
+      left: number
+    };
+  }
 }
 
 declare global {
@@ -146,6 +161,7 @@ declare global {
     'PbpScoreBoard': Components.PbpScoreBoard;
     'PbpProgress': Components.PbpProgress;
     'PbpStatistics': Components.PbpStatistics;
+    'PbpTrackBall': Components.PbpTrackBall;
   }
 
   interface StencilIntrinsicElements {
@@ -160,6 +176,7 @@ declare global {
     'pbp-score-board': Components.PbpScoreBoardAttributes;
     'pbp-progress': Components.PbpProgressAttributes;
     'pbp-statistics': Components.PbpStatisticsAttributes;
+    'pbp-track-ball': Components.PbpTrackBallAttributes;
   }
 
 
@@ -229,6 +246,12 @@ declare global {
     new (): HTMLPbpStatisticsElement;
   };
 
+  interface HTMLPbpTrackBallElement extends Components.PbpTrackBall, HTMLStencilElement {}
+  var HTMLPbpTrackBallElement: {
+    prototype: HTMLPbpTrackBallElement;
+    new (): HTMLPbpTrackBallElement;
+  };
+
   interface HTMLElementTagNameMap {
     'pbp-angle-control': HTMLPbpAngleControlElement
     'pbp-ball': HTMLPbpBallElement
@@ -241,6 +264,7 @@ declare global {
     'pbp-score-board': HTMLPbpScoreBoardElement
     'pbp-progress': HTMLPbpProgressElement
     'pbp-statistics': HTMLPbpStatisticsElement
+    'pbp-track-ball': HTMLPbpTrackBallElement
   }
 
   interface ElementTagNameMap {
@@ -255,6 +279,7 @@ declare global {
     'pbp-score-board': HTMLPbpScoreBoardElement;
     'pbp-progress': HTMLPbpProgressElement;
     'pbp-statistics': HTMLPbpStatisticsElement;
+    'pbp-track-ball': HTMLPbpTrackBallElement;
   }
 
 
