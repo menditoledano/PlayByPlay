@@ -6,18 +6,16 @@
   flex-direction: column;
   font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
   position: relative;
-  overflow: hidden;
-  
+  overflow: hidden; 
   background-repeat:no-repeat;
-  /* background-size:contain; */
+   background-size:contain; 
   background-position:center;
 }
 .wrapper.clay {
   background-image:url("https://res.cloudinary.com/dezalma3v/image/upload/v1546764631/camera-view-clay-1024-x-768.png"); 
 }
-
 .wrapper.hard {
-  background-image:url("https://res.cloudinary.com/dezalma3v/image/upload/v1546765281/camera-view-hard-court-1024-x-768.png"); 
+  background-image:url("https://res.cloudinary.com/dezalma3v/image/upload/v1546853039/camera-view-hard-court-1024-x-768_3x.png"); 
 }
 .wrapper.grass {
   background-image:url("https://res.cloudinary.com/dezalma3v/image/upload/v1546764672/camera-view-grass-1024-x-768.png"); 

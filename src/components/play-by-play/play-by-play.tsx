@@ -28,12 +28,15 @@ export class PlayByPlay {
     type?: 'ERROR' | 'INFO'
   }
   @State() previousBalls: Element[];
+  @State() playerTrack: Element[];
   
   
 
   componentWillLoad() {
     this.view = 'camera';
     this.previousBalls = [];
+    this.playerTrack = [];
+    
     const url: string = 'http://ICnat.lsports.eu:8100';
     this.connection = hubConnection(url);
     this.hubProxy = this.connection.createHubProxy('playByPlayHub');
@@ -129,12 +132,22 @@ export class PlayByPlay {
 
   updateElements = (elements) => {
     const previousBall = this.elements && this.elements.find(el => el.Type === Elements.Ball)
+    const playerSingelTrack = this.elements && this.elements.find(el => el.Type === Elements.Player)
+    
     if (!!previousBall) {
       this.previousBalls.push(previousBall);
       if (this.previousBalls.length > 25) {
         this.previousBalls.shift();
       }
     }
+
+    if (!!playerSingelTrack) {
+      this.playerTrack.push(playerSingelTrack);
+      if (this.playerTrack.length > 5) {
+        this.playerTrack.shift();
+      }
+    }
+
     this.elements = elements;
   }
 
@@ -147,6 +160,8 @@ export class PlayByPlay {
     <div class="row">
       <div class="col-md-auto">
     <div class={`wrapper ${this.fieldView}`} >
+   
+    
       <pbp-angle-control jsonOpen={this.jsonViewerOpen}  view={this.view} onViewChange={this.onViewChange} />
       <br></br>
       <br></br>
@@ -165,6 +180,12 @@ export class PlayByPlay {
           this.previousBalls &&
           this.previousBalls.map((ball, i) => <pbp-track-ball opacity={i === 0 ? .1 : .3 } position={{ top: ball.Location.X, left: ball.Location.Y }} />)
         }
+          {/* {
+          this.elements &&
+          !!this.elements.filter(el => el.Type === Elements.Player).length &&
+          this.playerTrack &&
+          this.playerTrack.map((player) => <pbp-track-ball  position={{ top: player.Location.X, left: player.Location.Y }} />)
+        } */}
       </pbp-field>
       {/* <pbp-message jsonOpen={this.jsonViewerOpen} message={this.message} class="textStyle align-bottom"/> */}
       {this.showStatistics && <pbp-statistics open={this.jsonViewerOpen} />}
@@ -175,6 +196,7 @@ export class PlayByPlay {
           </svg>
         </span>
       }
+      
       </div>
       </div>
       </div>
