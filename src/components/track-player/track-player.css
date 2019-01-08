@@ -1,8 +1,25 @@
-.trackPlayer {
+/* .trackPlayer {
   width: 1px;
   height: 1px;
   position: absolute;
   transform: rotateY(-60deg);
   z-index: 3;
+  background-color:white;
+} */
+
+.trackPlayer {
+  width: 27px;
+  height: 62px;
+  object-fit: contain;
+  position: absolute;
+  margin: -42px 0 0 -12px;
+  z-index: 3;
+}
+
+.trackPlayer.rotate {
+  transform: rotate(90deg) rotateX(-60deg);
+  margin: -22px 0 0 7px;
+  width: 27px;
+  height: 62px;
   /* background-color:white; */
 }

@@ -44,6 +44,10 @@ export class PlayByPlay {
 
     this.hubProxy.on('updatePlayByPlay', function(frame: Frame) {
       that.updateElements(frame.Elements);
+      // console.log('time of get update:'+ new Date());
+      // console.log('timestemp from server:'+ new Date(frame.Timestamp));
+      
+      
       frame.Incidents.length && that.updateIncident(frame.Incidents[0], frame.Timestamp);
     });
 
@@ -55,7 +59,7 @@ export class PlayByPlay {
 
     this.hubProxy.on('stateMessageReceived', function(frame: Frame) {
       that.updateStateMessage(frame);
-      console.log('get frame from server : ' +  JSON.stringify(frame));
+      // console.log('get frame from server : ' +  JSON.stringify(frame));
       // alert(JSON.stringify(frame));
       
     });
