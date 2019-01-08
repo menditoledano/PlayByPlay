@@ -111,6 +111,11 @@ export namespace Components {
 
   interface PbpScoreBoard {
     'jsonOpen': boolean;
+    'message': {
+      date: Date
+      text: string
+      type?: 'ERROR' | 'INFO'
+    };
     'open': boolean;
     'playerA': string;
     'playerB': string;
@@ -118,6 +123,11 @@ export namespace Components {
   }
   interface PbpScoreBoardAttributes extends StencilHTMLAttributes {
     'jsonOpen'?: boolean;
+    'message'?: {
+      date: Date
+      text: string
+      type?: 'ERROR' | 'INFO'
+    };
     'open'?: boolean;
     'playerA'?: string;
     'playerB'?: string;

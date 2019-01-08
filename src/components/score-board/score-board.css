@@ -66,12 +66,12 @@ body {
  */
 
 
- @import url(https://fonts.googleapis.com/css?family=Montserrat);
+
 .scoreBoardBG {
   width: 658px;
-  height: 110px;
-  object-fit: contain;
-  align-self: left;
+  height: 118px;
+  object-fit: contain!important;
+  align-self: left!important;
 
 }
 
@@ -135,7 +135,6 @@ body {
 
 .setScore{
   position: absolute;
-  /* top: 40px; */
   left: 155px!important;
   width: 22px!important;
   height: 24px;
@@ -166,15 +165,47 @@ body {
   left: 229px!important;
 }
 
-
-
 .A{
-  top: 40px;
-  
-  
+  top: 40px;  
 }
 .B{
   top: 68px;
-  
+}
 
+.title{
+  position: absolute;
+  top: 27px;
+  width: 72px;
+  height: 8px;
+  object-fit: contain;
+  font-family: Montserrat;
+  font-size: 10px;
+  font-weight: 300;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: 0.8px;
+  text-align: left;
+  color: #e5d9cf;
+}
+.sets{
+  left: 269px!important;
+}
+.game{
+  left: 309px!important;
+
+}
+.point{
+  left: 349px!important;
+}
+.line{
+  top:31px;
+  position: absolute;
+  left: 399px!important;
+  width: 1px;
+  height: 60px;
+  object-fit: contain;
+  opacity: 0.5;
+  background-color: #3ba2d9;
+  
 }

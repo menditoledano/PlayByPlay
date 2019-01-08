@@ -1,6 +1,7 @@
 import { Component, Prop, State } from '@stencil/core';
 import { hubConnection } from 'signalr-no-jquery';
 import { Incident, Element, Frame, Incidents, States, Elements} from './interfaces';
+// import { Message } from '../message/message';
 
 
 @Component({
@@ -165,7 +166,7 @@ export class PlayByPlay {
       <div class="col-md-auto">
     <div class={`wrapper ${this.fieldView}`} >
    
-    <pbp-score-board jsonOpen={this.jsonViewerOpen} class={'align-text-top '}></pbp-score-board>
+    <pbp-score-board message={this.message} class={'align-text-top '}></pbp-score-board>
       {/* <pbp-angle-control jsonOpen={this.jsonViewerOpen}  view={this.view} onViewChange={this.onViewChange} /> */}
       <br></br>
       <br></br>
