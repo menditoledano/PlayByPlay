@@ -165,12 +165,12 @@ export class PlayByPlay {
       <div class="col-md-auto">
     <div class={`wrapper ${this.fieldView}`} >
    
-    
-      <pbp-angle-control jsonOpen={this.jsonViewerOpen}  view={this.view} onViewChange={this.onViewChange} />
+    <pbp-score-board jsonOpen={this.jsonViewerOpen} class={'align-text-top '}></pbp-score-board>
+      {/* <pbp-angle-control jsonOpen={this.jsonViewerOpen}  view={this.view} onViewChange={this.onViewChange} /> */}
       <br></br>
       <br></br>
       <br></br>
-      <pbp-score-board jsonOpen={this.jsonViewerOpen} class={'align-text-top text-center'}></pbp-score-board>
+      
       <br></br>
       <pbp-field jsonOpen={this.jsonViewerOpen} view={this.view}>
         {this.elements && this.elements.map(element => {
