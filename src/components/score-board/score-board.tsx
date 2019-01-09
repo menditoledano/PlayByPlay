@@ -66,7 +66,7 @@ const mockPoints: points[] = [{
       return (
       <div class="container">
           <div class="row">
-            <img src="https://res.cloudinary.com/dezalma3v/image/upload/v1546962118/scoreBoardBg.png"class="scoreBoardBG img img-responsive">
+            <img src="https://res.cloudinary.com/dezalma3v/image/upload/v1546962118/scoreBoardBg.png"class="scoreBoardBG ">
             </img>
 
               <span class="playerText">Player</span>
@@ -89,8 +89,8 @@ const mockPoints: points[] = [{
 
            {this.points.map((point) => {
             return <div class="row">
-            <span class={`setScore sets ${point.label ==='home' ? 'A' : 'B'} text-center`}  >{point.sets > 0 ? point.sets : '-'}</span>
-            <span class={`setScore game  ${point.label ==='home' ? 'A' : 'B'} text-center`}>{point.game > 0 ? point.game : '-'}</span>
+            <span class={`setScore sets ${point.label ==='home' ? 'A' : 'B'} text-center align-middle`}  >{point.sets > 0 ? point.sets : '-'}</span>
+            <span class={`setScore game  ${point.label ==='home' ? 'A' : 'B'} text-center`}>{point.game >= 10 ?  point.game : point.game < 10 && point.game > 0 ? '0'+point.game : '-' }</span>
             <span class={`setScore point  ${point.label ==='home' ? 'A' : 'B'} text-center`}>{point.point > 0 ? point.point : '-'}</span>
             </div>;
           })}    

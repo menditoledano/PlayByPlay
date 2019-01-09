@@ -68,8 +68,11 @@ body {
 
 
 .scoreBoardBG {
+  position: absolute;
+  padding: 0px 0px 0px 0px;
   width: 658px;
   height: 118px;
+  left: -20px!important;
   object-fit: contain!important;
   align-self: left!important;
 
@@ -78,7 +81,7 @@ body {
 .playerText {
   position: absolute;
   top: 27px;
-  left: 35px!important;
+  left: 10px!important;
   width: 34px;
   height: 10px;
   object-fit: contain;
@@ -95,7 +98,7 @@ body {
 }
 .playerName{
   position: absolute;
-  left: 35px!important;
+  left: 10px!important;
   width: 90px;
   height: 11px;
   object-fit: contain;
@@ -110,9 +113,9 @@ body {
   color: #e8dc49;
 }
 
-.playerName.B{
+/* .playerName.B{
   top:74px
-}
+} */
 
 
 .previusSets{
@@ -142,12 +145,12 @@ body {
   opacity: 0.9;
   background-color: #cce2eb;
   font-family: Montserrat;
-  object-fit: contain;
+  object-fit: contain!important;
   font-size: 15px;
   font-weight: 300;
-  font-style: normal;
+  /* font-style: normal;
   font-stretch: normal;
-  line-height: normal;
+  line-height: normal; */
   letter-spacing: -0.6px;
   color: var(--light-navy);
 }
