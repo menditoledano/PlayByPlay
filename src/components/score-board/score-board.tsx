@@ -46,14 +46,6 @@ Away: '4'},
   
   Away: '15'
   
-  },
-  {
-  ScorePeriodValue: 100,
-  
-  Home: '40',
-  
-  Away: '15'
-  
   }
   
          ]
@@ -118,10 +110,10 @@ Away: '4'},
             return <div class="row">
            <span class={`setScore sets A } text-center `}  >{parseInt(this.score.CurrentScore.Home) > 0 ? this.score.CurrentScore.Home : '-'}</span>
            <span class={`setScore sets B } text-center `}  >{parseInt(this.score.CurrentScore.Away) > 0 ? this.score.CurrentScore.Away : '-'}</span>
-            {scorePeriod.ScorePeriodValue === ScorePeriodValue.GameScore ? <span class={`setScore game A text-center`}>{parseInt(scorePeriod.Home)  >= 10 ?  scorePeriod.Home : parseInt(scorePeriod.Home) < 10 && parseInt(scorePeriod.Home) > 0 ? '0'+ scorePeriod.Home : '-' }</span> : ''}
-            {scorePeriod.ScorePeriodValue === ScorePeriodValue.GameScore ? <span class={`setScore game B text-center`}>{parseInt(scorePeriod.Away)  >= 10 ?  scorePeriod.Away : parseInt(scorePeriod.Away) < 10 && parseInt(scorePeriod.Away) > 0 ? '0'+ scorePeriod.Away : '-' }</span> : ''}
-            {scorePeriod.ScorePeriodValue === ScorePeriodValue.FullTime ? <span class={`setScore point A text-center`}>{parseInt(scorePeriod.Home)  >= 10 ?  scorePeriod.Home : parseInt(scorePeriod.Home) < 10 && parseInt(scorePeriod.Home) > 0 ? '0'+ scorePeriod.Home : '-' }</span> : ''}
-            {scorePeriod.ScorePeriodValue === ScorePeriodValue.FullTime ? <span class={`setScore point B text-center`}>{parseInt(scorePeriod.Away)  >= 10 ?  scorePeriod.Away : parseInt(scorePeriod.Away) < 10 && parseInt(scorePeriod.Away) > 0 ? '0'+ scorePeriod.Away : '-' }</span> : ''}
+           <span class={`setScore game A text-center`}>{scorePeriod.ScorePeriodValue === ScorePeriodValue.GameScore ? parseInt(scorePeriod.Home)  >= 10 ?  scorePeriod.Home : parseInt(scorePeriod.Home) < 10 && parseInt(scorePeriod.Home) > 0 ? '0'+ scorePeriod.Home : '-' :'-'}</span> 
+           <span class={`setScore game B text-center`}>{scorePeriod.ScorePeriodValue === ScorePeriodValue.GameScore? parseInt(scorePeriod.Away)  >= 10 ?  scorePeriod.Away : parseInt(scorePeriod.Away) < 10 && parseInt(scorePeriod.Away) > 0 ? '0'+ scorePeriod.Away : '-' :'-'}</span> 
+           <span class={`setScore point A text-center`}>{scorePeriod.ScorePeriodValue === ScorePeriodValue.FullTime ? parseInt(scorePeriod.Home)  >= 10 ?  scorePeriod.Home : parseInt(scorePeriod.Home) < 10 && parseInt(scorePeriod.Home) > 0 ? '0'+ scorePeriod.Home : '-' :'-'}</span> 
+           <span class={`setScore point B text-center`}>{scorePeriod.ScorePeriodValue === ScorePeriodValue.FullTime ? parseInt(scorePeriod.Away)  >= 10 ?  scorePeriod.Away : parseInt(scorePeriod.Away) < 10 && parseInt(scorePeriod.Away) > 0 ? '0'+ scorePeriod.Away : '-' :'-'}</span> 
             </div>;
           })}     
             <div class="line">
