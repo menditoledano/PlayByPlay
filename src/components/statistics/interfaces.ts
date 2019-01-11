@@ -5,8 +5,31 @@ export interface statistic {
   awayValue: number
 }
 
+//interface
+export interface Statistics {
+  StatisticType : number
+  StatisticUnit : number
+  ParticipantStatsticMetadata: ParticipantStatsticMetadata[]
+  
+}
 
-//
+export interface ParticipantStatsticMetadata {
+  ParticipantStat : number
+  StatPerPeriod : StatPerPeriod[]
+  
+}
+
+export interface StatPerPeriod {
+  PeriodType : number
+  PeriodValue : number
+  StatValue : number
+  
+}
+//E
+
+
+//Enums
+
 
 export enum  StatisticType {
   DistanceCovered = 1, 	

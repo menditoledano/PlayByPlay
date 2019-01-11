@@ -44,11 +44,13 @@ export class Statistics {
 
   render() {
     return (
-      <div class={`statistics-overlay ${this.open && 'open'}`}>
-        <h4 class="title">Statistics</h4>
-        {this.statistics.map(statistic => statistic.type === 'progress' && <pbp-progress data={statistic} />
-        )}
-      </div>
+      <div>
+     <img src="https://res.cloudinary.com/dezalma3v/image/upload/v1547197062/board-bg.png"class="img-fluid stat-background"></img>
+     <span class="playersName text-center">R. Federer  -vs-  N. Djokovic</span>
+     <span class="stat-title text-center">Last point players tracking</span>
+     <img src="https://res.cloudinary.com/dezalma3v/image/upload/v1547204069/statField.png"class="img-fluid stat-field"></img>
+   
+     </div>
     );
   }
 }

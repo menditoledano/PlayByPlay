@@ -1,8 +1,6 @@
 import { Component, Prop, State } from '@stencil/core';
 import { hubConnection } from 'signalr-no-jquery';
 import { Incident, Element, Frame, Incidents, States, Elements,score} from './interfaces';
-// import { score } from '../score-board/interfaces';
-// import { Message } from '../message/message';
 
 
 @Component({
@@ -25,7 +23,7 @@ export class PlayByPlay {
   @State() reconnectTimeout: number = 10;
   @State() jsonViewerOpen: boolean = false;
   @State() error: boolean = false;
-  @State() showStatistics: boolean = false;
+  @State() showStatistics: boolean = true;
   @State() message: {
     date: Date
     text: string
@@ -57,7 +55,7 @@ export class PlayByPlay {
     });
 
     this.hubProxy.on('updateFixtureStatistics', function(frame: Frame) {
-      console.log('updateFixtureStatistics'+  JSON.stringify(frame));
+      console.log(frame);
       // that.showStatistics = true;
       // console.log(frame);
     });
@@ -124,10 +122,10 @@ export class PlayByPlay {
   updateStateMessage = (frame) => {
     if (frame.State === States.StreamStopped) {
       this.error = false;
-      this.showStatistics = false;
+      this.showStatistics = true;
     } else if (frame.State === States.StreamStarted) {
       this.error = false;
-      this.showStatistics = false;
+      this.showStatistics = true ;
     } else if (frame.State === States.Fade) {
       this.showStatistics = false;
       this.error = false;
