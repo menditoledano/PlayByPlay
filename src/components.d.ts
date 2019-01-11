@@ -119,7 +119,6 @@ export namespace Components {
     'open': boolean;
     'playerA': string;
     'playerB': string;
-    'score': string;
   }
   interface PbpScoreBoardAttributes extends StencilHTMLAttributes {
     'jsonOpen'?: boolean;
@@ -131,7 +130,6 @@ export namespace Components {
     'open'?: boolean;
     'playerA'?: string;
     'playerB'?: string;
-    'score'?: string;
   }
 
   interface PbpProgress {

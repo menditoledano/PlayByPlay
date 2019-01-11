@@ -1,40 +1,65 @@
 import { Component, Prop, State } from '@stencil/core';
-import {score,points} from './interfaces'
+import {score, ScorePeriodValue} from './interfaces'
+const mockScore :score = {
+CurrentScore:{
+Home: '2',
+Away: '4'},
+       
 
-const mockScore: score[] = [{
-   
-    label: 'Covered distance',
-    homeValue: 6,
-    awayValue: 2,
-  },{
-   
-    label: 'Covered distance',
-    homeValue: 0,
-    awayValue: 0,
-  },{
-   
-    label: 'Covered distance',
-    homeValue: 0,
-    awayValue: 0,
-  },{
+  ScorePeriod:[
+
+  {
   
-    label: 'Covered distance',
-    homeValue: 0,
-    awayValue: 0,
-  }];
+  ScorePeriodValue:1,
+  
+  Home: "6",
+  
+  Away: "3"
+  
+  },
+  
+  {
+  
+  ScorePeriodValue:2,
+  
+  Home: "4",
+  
+  Away: "6"
+  
+  },
+  
+  {
+  
+  ScorePeriodValue: 3,
+  
+  Home: "4",
+  
+  Away: "2"
+  
+  },
+  
+  {
+  
+  ScorePeriodValue: 60,
+  
+  Home: '30',
+  
+  Away: '15'
+  
+  },
+  {
+  ScorePeriodValue: 100,
+  
+  Home: '40',
+  
+  Away: '15'
+  
+  }
+  
+         ]
 
-const mockPoints: points[] = [{
+  } 
 
-    label:'home',
-    sets:3,
-    game:5,
-    point:40 },{
-
-     label:'out',
-     sets:2,
-     game:4,
-     point:15 
-   }]
 
 @Component({
     tag: 'pbp-score-board',
@@ -44,12 +69,12 @@ const mockPoints: points[] = [{
   export class ScoreBoard {
      @Prop() playerA: string = "R. Federe";
      @Prop() playerB: string = "N. Djokovic";
-     @Prop() score: string = '0';
+     @State() score: score;
      @Prop() open: boolean
      @Prop() jsonOpen: boolean;
     //  @Prop() message: boolean;
-     @State() scores: score[]
-     @State() points: points[]
+    //  @State() scores: score[]
+    //  @State() points: points[]
      @Prop() message: {
       date: Date
       text: string
@@ -57,8 +82,8 @@ const mockPoints: points[] = [{
     }
     
     componentWillLoad() {
-       this.scores = mockScore;
-       this.points = mockPoints;
+       this.score = mockScore;
+      //  this.points = mockPoints;
       //  console.log("!!!!!"+this.statistics +'MENDI!!!!!'); 
     }
   
@@ -73,27 +98,32 @@ const mockPoints: points[] = [{
                 <span class="playerName A">{this.playerA}</span>
                 <span class="playerName B">{this.playerB}</span>
            </div>
+           
 
-          
-                <span class="previusSets">Previus Sets</span>
+           <span class="previusSets">Previus Sets</span>
 
-                {this.scores.map((score,i) => {
+                {this.score.ScorePeriod.map((score) => {
             return <div class="row">
-            <span class={`setScore set${i+1} A text-center`}  >{score.homeValue > 0 ? score.homeValue : '-'}</span>
-            <span class={`setScore set${i+1} B text-center`}>{score.awayValue > 0 ? score.awayValue : '-'}</span>
+         {score.ScorePeriodValue <= 5 ?  <span class={`setScore ${score.ScorePeriodValue <= 5 ? `set${score.ScorePeriodValue}` : ''} A text-center`}  >{parseInt(score.Home) > 0 ? parseInt(score.Home): '-'}</span> : ''}  
+         {score.ScorePeriodValue <= 5 ?<span class={`setScore ${score.ScorePeriodValue <= 5 ? `set${score.ScorePeriodValue}` : ''} B text-center`}  >{parseInt(score.Away) > 0 ? parseInt(score.Away): '-'}</span> : ''} 
             </div>;
           })}        
-           <span class="title sets">Sets</span>
+
+
+           <span class="title sets">Sets</span>        
            <span class="title game">Game</span>
            <span class="title point">Point</span>
-
-           {this.points.map((point) => {
+        
+            {this.score.ScorePeriod.map((scorePeriod) => {
             return <div class="row">
-            <span class={`setScore sets ${point.label ==='home' ? 'A' : 'B'} text-center align-middle`}  >{point.sets > 0 ? point.sets : '-'}</span>
-            <span class={`setScore game  ${point.label ==='home' ? 'A' : 'B'} text-center`}>{point.game >= 10 ?  point.game : point.game < 10 && point.game > 0 ? '0'+point.game : '-' }</span>
-            <span class={`setScore point  ${point.label ==='home' ? 'A' : 'B'} text-center`}>{point.point > 0 ? point.point : '-'}</span>
+           <span class={`setScore sets A } text-center `}  >{parseInt(this.score.CurrentScore.Home) > 0 ? this.score.CurrentScore.Home : '-'}</span>
+           <span class={`setScore sets B } text-center `}  >{parseInt(this.score.CurrentScore.Away) > 0 ? this.score.CurrentScore.Away : '-'}</span>
+            {scorePeriod.ScorePeriodValue === ScorePeriodValue.GameScore ? <span class={`setScore game A text-center`}>{parseInt(scorePeriod.Home)  >= 10 ?  scorePeriod.Home : parseInt(scorePeriod.Home) < 10 && parseInt(scorePeriod.Home) > 0 ? '0'+ scorePeriod.Home : '-' }</span> : ''}
+            {scorePeriod.ScorePeriodValue === ScorePeriodValue.GameScore ? <span class={`setScore game B text-center`}>{parseInt(scorePeriod.Away)  >= 10 ?  scorePeriod.Away : parseInt(scorePeriod.Away) < 10 && parseInt(scorePeriod.Away) > 0 ? '0'+ scorePeriod.Away : '-' }</span> : ''}
+            {scorePeriod.ScorePeriodValue === ScorePeriodValue.FullTime ? <span class={`setScore point A text-center`}>{parseInt(scorePeriod.Home)  >= 10 ?  scorePeriod.Home : parseInt(scorePeriod.Home) < 10 && parseInt(scorePeriod.Home) > 0 ? '0'+ scorePeriod.Home : '-' }</span> : ''}
+            {scorePeriod.ScorePeriodValue === ScorePeriodValue.FullTime ? <span class={`setScore point B text-center`}>{parseInt(scorePeriod.Away)  >= 10 ?  scorePeriod.Away : parseInt(scorePeriod.Away) < 10 && parseInt(scorePeriod.Away) > 0 ? '0'+ scorePeriod.Away : '-' }</span> : ''}
             </div>;
-          })}    
+          })}     
             <div class="line">
              <svg xmlns="http://www.w3.org/2000/svg" width="1" height="60">
                 <path fill="#19455D" fill-rule="evenodd" d="M0 0h1v60H0V0z" opacity=".502"/>

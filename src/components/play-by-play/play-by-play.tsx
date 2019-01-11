@@ -1,6 +1,7 @@
 import { Component, Prop, State } from '@stencil/core';
 import { hubConnection } from 'signalr-no-jquery';
-import { Incident, Element, Frame, Incidents, States, Elements} from './interfaces';
+import { Incident, Element, Frame, Incidents, States, Elements,score} from './interfaces';
+// import { score } from '../score-board/interfaces';
 // import { Message } from '../message/message';
 
 
@@ -9,10 +10,12 @@ import { Incident, Element, Frame, Incidents, States, Elements} from './interfac
   styleUrl: 'play-by-play.css'
 })
 export class PlayByPlay {
+  
   @Prop() fixtureid: string;
   @Prop() onloaderror: () => void;
   @Prop() ondisconnected: () => void;
   @Prop() onconnected: () => void;
+  @State() score :score ;
   @State() view: 'bird' | 'camera' | 'side';
   @State() fieldView: 'clay' | 'hard' | 'grass' = 'hard';
   @State() connection;
@@ -45,7 +48,8 @@ export class PlayByPlay {
 
     this.hubProxy.on('updatePlayByPlay', function(frame: Frame) {
       that.updateElements(frame.Elements);
-      // console.log('time of get update:'+ new Date());
+      // that.updateScore(frame.Score)
+      // console.log('updatePlayByPlay from server ' + frame);
       // console.log('timestemp from server:'+ new Date(frame.Timestamp));
       
       
@@ -60,7 +64,7 @@ export class PlayByPlay {
 
     this.hubProxy.on('stateMessageReceived', function(frame: Frame) {
       that.updateStateMessage(frame);
-      // console.log('get frame from server : ' +  JSON.stringify(frame));
+      //  console.log('stat msg server : ' +  JSON.stringify(frame));
       // alert(JSON.stringify(frame));
       
     });
@@ -156,6 +160,15 @@ export class PlayByPlay {
     this.elements = elements;
   }
 
+  //
+
+  updateScore = (score) => {
+    console.log("SCORE" );
+    console.log(JSON.stringify(score));
+     this.score = score;
+    
+  }
+
   onToggleJsonViewer = () => {
     this.jsonViewerOpen = !this.jsonViewerOpen;
   }
@@ -166,7 +179,7 @@ export class PlayByPlay {
       <div class="col-md-auto">
     <div class={`wrapper ${this.fieldView}`} >
    
-    <pbp-score-board message={this.message} class={''}></pbp-score-board>
+    <pbp-score-board  message={this.message} class={''}></pbp-score-board>
       {/* <pbp-angle-control jsonOpen={this.jsonViewerOpen}  view={this.view} onViewChange={this.onViewChange} /> */}
       <br></br>
       <br></br>

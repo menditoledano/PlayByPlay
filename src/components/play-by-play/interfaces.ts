@@ -10,6 +10,7 @@ export interface Element {
 }
 
 export interface Frame {
+  Score : score
   Elements: Element[]
   Incidents: Incident[]
   CourtDetected: boolean
@@ -43,3 +44,62 @@ export enum Incidents {
   Shot = 4
 }
 
+
+//
+
+export enum MessageTypes {
+  FrameMessage = 1,
+  Statistics = 2,
+  State = 3
+}
+
+export enum ElementsType {
+  Person = 1,
+  Ball = 2
+}
+
+export enum  ElementsLabel {
+  HomePlayer = 1,
+  AwayPlayer = 2,
+  TennisBall = 3
+}
+
+export enum  IncidentLabel {
+  Forehand = 1,
+  Serve = 2,
+  Backhand = 3,
+  Hit = 4
+}
+
+export enum State {
+  StreamStarted = 1,
+  StreamStopped = 2,
+  Fade = 3,
+  Fallback = 4
+}
+
+
+
+
+
+
+
+//
+
+export interface score {
+   ScorePeriod: ScorePeriod[];
+   CurrentScore : CurrentScore
+  }
+
+
+  export interface ScorePeriod{
+    ScorePeriodValue : number;
+    Home : string
+    Away : string
+  }
+
+  export interface CurrentScore{
+    Home : string
+    Away : string
+
+  }
