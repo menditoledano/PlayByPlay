@@ -47,7 +47,6 @@ Away: '4'},
   Away: '15'
   
   }
-  
          ]
 
   } 
@@ -64,9 +63,6 @@ Away: '4'},
      @State() score: score;
      @Prop() open: boolean
      @Prop() jsonOpen: boolean;
-    //  @Prop() message: boolean;
-    //  @State() scores: score[]
-    //  @State() points: points[]
      @Prop() message: {
       date: Date
       text: string
@@ -75,8 +71,6 @@ Away: '4'},
     
     componentWillLoad() {
        this.score = mockScore;
-      //  this.points = mockPoints;
-      //  console.log("!!!!!"+this.statistics +'MENDI!!!!!'); 
     }
   
     render() {
