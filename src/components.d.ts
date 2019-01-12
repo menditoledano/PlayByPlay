@@ -132,6 +132,21 @@ export namespace Components {
     'playerB'?: string;
   }
 
+  interface PbpLastPointsStat {
+    'open': boolean;
+    'position': {
+      top: number
+      left: number
+    };
+  }
+  interface PbpLastPointsStatAttributes extends StencilHTMLAttributes {
+    'open'?: boolean;
+    'position'?: {
+      top: number
+      left: number
+    };
+  }
+
   interface PbpProgress {
     'data': statistic;
   }
@@ -139,11 +154,34 @@ export namespace Components {
     'data'?: statistic;
   }
 
+  interface PbpShotPlacementStat {
+    'open': boolean;
+    'position': {
+      top: number
+      left: number
+    };
+  }
+  interface PbpShotPlacementStatAttributes extends StencilHTMLAttributes {
+    'open'?: boolean;
+    'position'?: {
+      top: number
+      left: number
+    };
+  }
+
   interface PbpStatistics {
     'open': boolean;
+    'position': {
+      top: number
+      left: number
+    };
   }
   interface PbpStatisticsAttributes extends StencilHTMLAttributes {
     'open'?: boolean;
+    'position'?: {
+      top: number
+      left: number
+    };
   }
 
   interface PbpTrackBall {
@@ -190,7 +228,9 @@ declare global {
     'PlayByPlay': Components.PlayByPlay;
     'PbpPlayer': Components.PbpPlayer;
     'PbpScoreBoard': Components.PbpScoreBoard;
+    'PbpLastPointsStat': Components.PbpLastPointsStat;
     'PbpProgress': Components.PbpProgress;
+    'PbpShotPlacementStat': Components.PbpShotPlacementStat;
     'PbpStatistics': Components.PbpStatistics;
     'PbpTrackBall': Components.PbpTrackBall;
     'PbpTrackPlayer': Components.PbpTrackPlayer;
@@ -206,7 +246,9 @@ declare global {
     'play-by-play': Components.PlayByPlayAttributes;
     'pbp-player': Components.PbpPlayerAttributes;
     'pbp-score-board': Components.PbpScoreBoardAttributes;
+    'pbp-last-points-stat': Components.PbpLastPointsStatAttributes;
     'pbp-progress': Components.PbpProgressAttributes;
+    'pbp-shot-placement-stat': Components.PbpShotPlacementStatAttributes;
     'pbp-statistics': Components.PbpStatisticsAttributes;
     'pbp-track-ball': Components.PbpTrackBallAttributes;
     'pbp-track-player': Components.PbpTrackPlayerAttributes;
@@ -267,10 +309,22 @@ declare global {
     new (): HTMLPbpScoreBoardElement;
   };
 
+  interface HTMLPbpLastPointsStatElement extends Components.PbpLastPointsStat, HTMLStencilElement {}
+  var HTMLPbpLastPointsStatElement: {
+    prototype: HTMLPbpLastPointsStatElement;
+    new (): HTMLPbpLastPointsStatElement;
+  };
+
   interface HTMLPbpProgressElement extends Components.PbpProgress, HTMLStencilElement {}
   var HTMLPbpProgressElement: {
     prototype: HTMLPbpProgressElement;
     new (): HTMLPbpProgressElement;
+  };
+
+  interface HTMLPbpShotPlacementStatElement extends Components.PbpShotPlacementStat, HTMLStencilElement {}
+  var HTMLPbpShotPlacementStatElement: {
+    prototype: HTMLPbpShotPlacementStatElement;
+    new (): HTMLPbpShotPlacementStatElement;
   };
 
   interface HTMLPbpStatisticsElement extends Components.PbpStatistics, HTMLStencilElement {}
@@ -301,7 +355,9 @@ declare global {
     'play-by-play': HTMLPlayByPlayElement
     'pbp-player': HTMLPbpPlayerElement
     'pbp-score-board': HTMLPbpScoreBoardElement
+    'pbp-last-points-stat': HTMLPbpLastPointsStatElement
     'pbp-progress': HTMLPbpProgressElement
+    'pbp-shot-placement-stat': HTMLPbpShotPlacementStatElement
     'pbp-statistics': HTMLPbpStatisticsElement
     'pbp-track-ball': HTMLPbpTrackBallElement
     'pbp-track-player': HTMLPbpTrackPlayerElement
@@ -317,7 +373,9 @@ declare global {
     'play-by-play': HTMLPlayByPlayElement;
     'pbp-player': HTMLPbpPlayerElement;
     'pbp-score-board': HTMLPbpScoreBoardElement;
+    'pbp-last-points-stat': HTMLPbpLastPointsStatElement;
     'pbp-progress': HTMLPbpProgressElement;
+    'pbp-shot-placement-stat': HTMLPbpShotPlacementStatElement;
     'pbp-statistics': HTMLPbpStatisticsElement;
     'pbp-track-ball': HTMLPbpTrackBallElement;
     'pbp-track-player': HTMLPbpTrackPlayerElement;

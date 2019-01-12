@@ -47,7 +47,7 @@ export class PlayByPlay {
     this.hubProxy.on('updatePlayByPlay', function(frame: Frame) {
       that.updateElements(frame.Elements);
       // that.updateScore(frame.Score)
-      // console.log('updatePlayByPlay from server ' + frame);
+      console.log('updatePlayByPlay from server ' +  JSON.stringify(frame));
       // console.log('timestemp from server:'+ new Date(frame.Timestamp));
       
       

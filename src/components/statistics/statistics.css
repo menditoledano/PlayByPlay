@@ -1,41 +1,7 @@
-.statistics-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 80px;
-  background: rgba(63, 63, 63, 0.93);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  transition: all ease-in .2s;
-  overflow: auto;
-}
-
-.statistics-overlay .title {
-  color: #FFF;
-  font-size: 24px;
-  margin: 0 0 10px;
-  font-weight: normal;
-}
-
-.statistics-overlay.open {
-  right: 170px;
-}
-
 .stat-background{
   top: 9px;
   position: absolute;
 }
-
-.stat-field{
-  left: 100px;
-  width: 830px;
-  top: 190px;
-  position: absolute;
-}
-
 .playersName {
   position: absolute;
   top: 60px;
@@ -46,36 +12,65 @@
   font-style: normal;
   letter-spacing: 0.8px;
   text-align: center;
-  color: #e5d9cf;
   font-size: 20px;
-  /* font-weight: bold; */
-  font-style: normal;
   font-stretch: normal;
   line-height: normal;
-  letter-spacing: normal;
-  text-align: center;
   color: #e8dc49;
 }
 
 .stat-title{
   position: absolute;
-  top: 100px;
+  top: 114px;
   left: 370px!important;
-  object-fit: contain;
-  letter-spacing: 0.8px;
-  text-align: center;
-  font-size: 20px;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  text-align: center;
-  font-family: Montserrat;
-  font-weight: 300;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  text-align: center;
+  object-fit: contain!important;
+  letter-spacing: 0.8px!important;
+  text-align: center!important;
+  font-size: 20px!important;
+  font-style: normal!important;
+  font-stretch: normal!important;
+  line-height: normal!important;
+  font-family: Montserrat!important;
+  font-weight: 300!important;
   color: #ffffff;
+}
+
+.stat-rectangle{
+  width: 980px;
+  top: 107px;
+  left: 20px;
+  position: absolute;
+  mix-blend-mode: screen!important;
+
+}
+
+.stat-homeName{
+  position: absolute;
+  top: 170px;
+  left: 88px;
+  object-fit: contain;
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: 100;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: -0.1px;
+  text-align: center;
+  color: #e8dc49;
+
+}
+.stat-awayName{
+    position: absolute;
+    top: 170px;
+    left: 845px;
+    object-fit: contain;
+    font-family: Montserrat;
+    font-size: 16px;
+    font-weight: 100;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: -0.1px;
+    text-align: center;
+    color: #e8dc49;
 }
