@@ -27,7 +27,8 @@ export class Statistics {
          <img src="https://res.cloudinary.com/dezalma3v/image/upload/v1547314994/rectangle.png"class="img-fluid stat-rectangle "></img>
          <span class="stat-homeName text-center">R. Federer </span>
          <span class="stat-awayName text-center">N. Djokovic</span>
-          <pbp-last-points-stat></pbp-last-points-stat>
+          {/* <pbp-last-points-stat></pbp-last-points-stat> */}
+          <pbp-shot-placement-stat></pbp-shot-placement-stat>
         </div>   
     );
   }

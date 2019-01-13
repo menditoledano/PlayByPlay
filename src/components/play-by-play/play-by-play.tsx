@@ -127,7 +127,7 @@ export class PlayByPlay {
       this.error = false;
       this.showStatistics = true ;
     } else if (frame.State === States.Fade) {
-      this.showStatistics = false;
+      this.showStatistics = true;
       this.error = false;
     }
     this.message = {
@@ -143,14 +143,14 @@ export class PlayByPlay {
     
     if (!!previousBall) {
       this.previousBalls.push(previousBall);
-      if (this.previousBalls.length > 25) {
+      if (this.previousBalls.length > 15) {
         this.previousBalls.shift();
       }
     }
 
     if (!!playerSingelTrack) {
       this.playerTrack.push(playerSingelTrack);
-      if (this.playerTrack.length > 25) {
+      if (this.playerTrack.length > 15) {
         this.playerTrack.shift();
       }
     }

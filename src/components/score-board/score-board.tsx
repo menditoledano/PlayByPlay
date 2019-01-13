@@ -4,51 +4,28 @@ const mockScore :score = {
 CurrentScore:{
 Home: '2',
 Away: '4'},
-       
-
   ScorePeriod:[
-
   {
-  
   ScorePeriodValue:1,
-  
   Home: "6",
-  
   Away: "3"
-  
   },
-  
   {
-  
   ScorePeriodValue:2,
-  
   Home: "4",
-  
   Away: "6"
-  
   },
-  
   {
-  
   ScorePeriodValue: 3,
-  
   Home: "4",
-  
   Away: "2"
-  
   },
-  
   {
-  
   ScorePeriodValue: 60,
-  
   Home: '30',
-  
   Away: '15'
-  
   }
          ]
-
   } 
 
 
