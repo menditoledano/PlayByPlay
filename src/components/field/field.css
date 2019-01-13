@@ -59,9 +59,10 @@
 
 .elements-holder {
   position: absolute;
+  width: 790px;
   top: 17px;
   bottom: 21px;
-  left: 9%;
+  left: 5%;
   right: 0%;
 
 }

@@ -23,7 +23,7 @@ export class PlayByPlay {
   @State() reconnectTimeout: number = 10;
   @State() jsonViewerOpen: boolean = false;
   @State() error: boolean = false;
-  @State() showStatistics: boolean = true;
+  @State() showStatistics: boolean = false;
   @State() message: {
     date: Date
     text: string
@@ -122,12 +122,12 @@ export class PlayByPlay {
   updateStateMessage = (frame) => {
     if (frame.State === States.StreamStopped) {
       this.error = false;
-      this.showStatistics = true;
+      this.showStatistics = false;
     } else if (frame.State === States.StreamStarted) {
       this.error = false;
-      this.showStatistics = true ;
+      this.showStatistics = false ;
     } else if (frame.State === States.Fade) {
-      this.showStatistics = true;
+      this.showStatistics = false;
       this.error = false;
     }
     this.message = {
@@ -143,7 +143,7 @@ export class PlayByPlay {
     
     if (!!previousBall) {
       this.previousBalls.push(previousBall);
-      if (this.previousBalls.length > 15) {
+      if (this.previousBalls.length > 10) {
         this.previousBalls.shift();
       }
     }
@@ -196,12 +196,12 @@ export class PlayByPlay {
           this.previousBalls &&
           this.previousBalls.map((ball, i) => <pbp-track-ball opacity={i === 0 ? .1 : .3 } position={{ top: ball.Location.X, left: ball.Location.Y }} />)
         }
-          {
+          {/* {
           this.elements &&
           !!this.elements.filter(el => el.Type === Elements.Player).length &&
           this.playerTrack &&
           this.playerTrack.map((player,i) => <pbp-track-player view={this.view} opacity={i === 0 ? .1 : .3 } position={{ top: player.Location.X, left: player.Location.Y }} />)
-        }
+        } */}
       </pbp-field>
       {/* <pbp-message jsonOpen={this.jsonViewerOpen} message={this.message} class="textStyle align-bottom"/> */}
       {this.showStatistics && <pbp-statistics open={this.jsonViewerOpen} />}
