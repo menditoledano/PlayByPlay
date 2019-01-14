@@ -22,8 +22,8 @@ export interface Incident {
   Label: Incidents,
   Metadata: {
     Performer: string
-    Speed: number
     Target: string
+    Speed: number
   }
 }
 

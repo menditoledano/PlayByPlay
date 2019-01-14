@@ -26,7 +26,6 @@ export class Message {
         {this.message && <p class="message-text">
           {this.message.type === 'ERROR' && this.renderError()}
           {this.message.text}
-          {this.message.type === 'ERROR' && this.renderError()}
         </p>}
         {/* {this.message && <span class="message-date">{`${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}  ${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()}`}</span>} */}
       </div>

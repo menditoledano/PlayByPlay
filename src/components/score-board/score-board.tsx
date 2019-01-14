@@ -1,32 +1,32 @@
-import { Component, Prop, State } from '@stencil/core';
+import { Component, Prop } from '@stencil/core';
 import {score, ScorePeriodValue} from './interfaces'
-const mockScore :score = {
-CurrentScore:{
-Home: '2',
-Away: '4'},
-  ScorePeriod:[
-  {
-  ScorePeriodValue:1,
-  Home: "6",
-  Away: "3"
-  },
-  {
-  ScorePeriodValue:2,
-  Home: "4",
-  Away: "6"
-  },
-  {
-  ScorePeriodValue: 3,
-  Home: "4",
-  Away: "2"
-  },
-  {
-  ScorePeriodValue: 60,
-  Home: '30',
-  Away: '15'
-  }
-         ]
-  } 
+// const mockScore :score = {
+// CurrentScore:{
+// Home: '2',
+// Away: '4'},
+//   ScorePeriod:[
+//   {
+//   ScorePeriodValue:1,
+//   Home: "6",
+//   Away: "3"
+//   },
+//   {
+//   ScorePeriodValue:2,
+//   Home: "4",
+//   Away: "6"
+//   },
+//   {
+//   ScorePeriodValue: 3,
+//   Home: "4",
+//   Away: "2"
+//   },
+//   {
+//   ScorePeriodValue: 60,
+//   Home: '30',
+//   Away: '15'
+//   }
+//          ]
+//   } 
 
 
 @Component({
@@ -37,7 +37,7 @@ Away: '4'},
   export class ScoreBoard {
      @Prop() playerA: string = "R. Federe";
      @Prop() playerB: string = "N. Djokovic";
-     @State() score: score;
+     @Prop() score: score;
      @Prop() open: boolean
      @Prop() jsonOpen: boolean;
      @Prop() message: {
@@ -46,9 +46,9 @@ Away: '4'},
       type?: 'ERROR' | 'INFO'
     }
     
-    componentWillLoad() {
-       this.score = mockScore;
-    }
+    // componentWillLoad() {
+    //    this.score = mockScore;
+    // }
   
     render() {
       return (
@@ -65,24 +65,30 @@ Away: '4'},
 
            <span class="previusSets">Previus Sets</span>
 
-                {this.score.ScorePeriod.map((score) => {
-            return <div class="row">
-         {score.ScorePeriodValue <= 5 ?  <span class={`setScore ${score.ScorePeriodValue <= 5 ? `set${score.ScorePeriodValue}` : ''} A text-center`}  >{parseInt(score.Home) > 0 ? parseInt(score.Home): '-'}</span> : ''}  
-         {score.ScorePeriodValue <= 5 ?<span class={`setScore ${score.ScorePeriodValue <= 5 ? `set${score.ScorePeriodValue}` : ''} B text-center`}  >{parseInt(score.Away) > 0 ? parseInt(score.Away): '-'}</span> : ''} 
-            </div>;
-          })}        
-
-
            <span class="title sets">Sets</span>        
            <span class="title game">Game</span>
            <span class="title point">Point</span>
         
             {this.score.ScorePeriod.map((scorePeriod) => {
             return <div class="row">
+           <span class={`setScore set1 A text-center`}  >{scorePeriod.ScorePeriodValue <= 5 && scorePeriod.ScorePeriodValue > 0  ? parseInt(scorePeriod.Home): '-'}</span> 
+           <span class={`setScore set1  B text-center`}  >{scorePeriod.ScorePeriodValue <= 5 && scorePeriod.ScorePeriodValue > 0  ? parseInt(scorePeriod.Away): '-'}</span>
+
+            <span class={`setScore set2 A text-center`}  >{scorePeriod.ScorePeriodValue <= 5 && scorePeriod.ScorePeriodValue > 0  ? parseInt(scorePeriod.Home): '-'}</span> 
+           <span class={`setScore set2  B text-center`}  >{scorePeriod.ScorePeriodValue <= 5 && scorePeriod.ScorePeriodValue > 0  ? parseInt(scorePeriod.Away): '-'}</span>
+
+            <span class={`setScore set3 A text-center`}  >{scorePeriod.ScorePeriodValue <= 5 && scorePeriod.ScorePeriodValue > 0  ? parseInt(scorePeriod.Home): '-'}</span> 
+           <span class={`setScore set3  B text-center`}  >{scorePeriod.ScorePeriodValue <= 5 && scorePeriod.ScorePeriodValue > 0  ? parseInt(scorePeriod.Away): '-'}</span>
+
+            <span class={`setScore set4 A text-center`}  >{scorePeriod.ScorePeriodValue <= 5 && scorePeriod.ScorePeriodValue > 0  ? parseInt(scorePeriod.Home): '-'}</span> 
+           <span class={`setScore set4  B text-center`}  >{scorePeriod.ScorePeriodValue <= 5 && scorePeriod.ScorePeriodValue > 0  ? parseInt(scorePeriod.Away): '-'}</span>
+
            <span class={`setScore sets A } text-center `}  >{parseInt(this.score.CurrentScore.Home) > 0 ? this.score.CurrentScore.Home : '-'}</span>
            <span class={`setScore sets B } text-center `}  >{parseInt(this.score.CurrentScore.Away) > 0 ? this.score.CurrentScore.Away : '-'}</span>
+
            <span class={`setScore game A text-center`}>{scorePeriod.ScorePeriodValue === ScorePeriodValue.GameScore ? parseInt(scorePeriod.Home)  >= 10 ?  scorePeriod.Home : parseInt(scorePeriod.Home) < 10 && parseInt(scorePeriod.Home) > 0 ? '0'+ scorePeriod.Home : '-' :'-'}</span> 
            <span class={`setScore game B text-center`}>{scorePeriod.ScorePeriodValue === ScorePeriodValue.GameScore? parseInt(scorePeriod.Away)  >= 10 ?  scorePeriod.Away : parseInt(scorePeriod.Away) < 10 && parseInt(scorePeriod.Away) > 0 ? '0'+ scorePeriod.Away : '-' :'-'}</span> 
+
            <span class={`setScore point A text-center`}>{scorePeriod.ScorePeriodValue === ScorePeriodValue.FullTime ? parseInt(scorePeriod.Home)  >= 10 ?  scorePeriod.Home : parseInt(scorePeriod.Home) < 10 && parseInt(scorePeriod.Home) > 0 ? '0'+ scorePeriod.Home : '-' :'-'}</span> 
            <span class={`setScore point B text-center`}>{scorePeriod.ScorePeriodValue === ScorePeriodValue.FullTime ? parseInt(scorePeriod.Away)  >= 10 ?  scorePeriod.Away : parseInt(scorePeriod.Away) < 10 && parseInt(scorePeriod.Away) > 0 ? '0'+ scorePeriod.Away : '-' :'-'}</span> 
             </div>;

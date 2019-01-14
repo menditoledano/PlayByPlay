@@ -1,10 +1,11 @@
 import { Component, Prop, State } from '@stencil/core';
 import { hubConnection } from 'signalr-no-jquery';
-import { Incident, Element, Frame, Incidents, States, Elements,score} from './interfaces';
+import { Incident, Element, Frame, Incidents, States, Elements, score} from './interfaces';
+// import { score } from '../../../dist/types/components/score-board/interfaces.d';
 
 
 @Component({
-  tag: 'play-by-play',
+  tag: 'play-by-play-widget',
   styleUrl: 'play-by-play.css'
 })
 export class PlayByPlay {
@@ -46,10 +47,12 @@ export class PlayByPlay {
 
     this.hubProxy.on('updatePlayByPlay', function(frame: Frame) {
       that.updateElements(frame.Elements);
-      // that.updateScore(frame.Score)
-      console.log('updatePlayByPlay from server ' +  JSON.stringify(frame));
+      that.updateScore(frame.Score)
+      // console.log('updatePlayByPlay from server ' +  JSON.stringify(frame));
       // console.log('timestemp from server:'+ new Date(frame.Timestamp));
       
+      console.log('frame.Incidents');
+      console.log(frame.Incidents);
       
       frame.Incidents.length && that.updateIncident(frame.Incidents[0], frame.Timestamp);
     });
@@ -115,7 +118,7 @@ export class PlayByPlay {
     if (this.error) { return }
     this.message = {
       date: new Date(timestamp),
-      text: `${Incidents[incident.Label]} by ${incident.Metadata.Performer}`
+      text: `${Incidents[incident.Label]} \n by ${incident.Metadata.Performer}`
     }
   }
 
@@ -161,8 +164,8 @@ export class PlayByPlay {
   //
 
   updateScore = (score) => {
-    console.log("SCORE" );
-    console.log(JSON.stringify(score));
+    // console.log("SCORE" );
+    // console.log(JSON.stringify(score));
      this.score = score;
     
   }
@@ -176,8 +179,8 @@ export class PlayByPlay {
     <div class="row">
       <div class="col-md-auto">
     <div class={`wrapper ${this.fieldView}`} >
-   
-    <pbp-score-board  message={this.message} class={''}></pbp-score-board>
+   {this.score && <pbp-score-board score={this.score} message={this.message} class={''}></pbp-score-board>}  
+      
       {/* <pbp-angle-control jsonOpen={this.jsonViewerOpen}  view={this.view} onViewChange={this.onViewChange} /> */}
       <br></br>
       <br></br>

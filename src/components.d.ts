@@ -9,6 +9,9 @@ import '@stencil/core';
 
 
 import {
+  score,
+} from './components/score-board/interfaces';
+import {
   statistic,
 } from './components/statistics/interfaces';
 
@@ -81,13 +84,13 @@ export namespace Components {
   interface PbpNet {}
   interface PbpNetAttributes extends StencilHTMLAttributes {}
 
-  interface PlayByPlay {
+  interface PlayByPlayWidget {
     'fixtureid': string;
     'onconnected': () => void;
     'ondisconnected': () => void;
     'onloaderror': () => void;
   }
-  interface PlayByPlayAttributes extends StencilHTMLAttributes {
+  interface PlayByPlayWidgetAttributes extends StencilHTMLAttributes {
     'fixtureid'?: string;
     'onconnected'?: () => void;
     'ondisconnected'?: () => void;
@@ -119,6 +122,7 @@ export namespace Components {
     'open': boolean;
     'playerA': string;
     'playerB': string;
+    'score': score;
   }
   interface PbpScoreBoardAttributes extends StencilHTMLAttributes {
     'jsonOpen'?: boolean;
@@ -130,6 +134,7 @@ export namespace Components {
     'open'?: boolean;
     'playerA'?: string;
     'playerB'?: string;
+    'score'?: score;
   }
 
   interface PbpLastPointsStat {
@@ -225,7 +230,7 @@ declare global {
     'PbpJsonViewer': Components.PbpJsonViewer;
     'PbpMessage': Components.PbpMessage;
     'PbpNet': Components.PbpNet;
-    'PlayByPlay': Components.PlayByPlay;
+    'PlayByPlayWidget': Components.PlayByPlayWidget;
     'PbpPlayer': Components.PbpPlayer;
     'PbpScoreBoard': Components.PbpScoreBoard;
     'PbpLastPointsStat': Components.PbpLastPointsStat;
@@ -243,7 +248,7 @@ declare global {
     'pbp-json-viewer': Components.PbpJsonViewerAttributes;
     'pbp-message': Components.PbpMessageAttributes;
     'pbp-net': Components.PbpNetAttributes;
-    'play-by-play': Components.PlayByPlayAttributes;
+    'play-by-play-widget': Components.PlayByPlayWidgetAttributes;
     'pbp-player': Components.PbpPlayerAttributes;
     'pbp-score-board': Components.PbpScoreBoardAttributes;
     'pbp-last-points-stat': Components.PbpLastPointsStatAttributes;
@@ -291,10 +296,10 @@ declare global {
     new (): HTMLPbpNetElement;
   };
 
-  interface HTMLPlayByPlayElement extends Components.PlayByPlay, HTMLStencilElement {}
-  var HTMLPlayByPlayElement: {
-    prototype: HTMLPlayByPlayElement;
-    new (): HTMLPlayByPlayElement;
+  interface HTMLPlayByPlayWidgetElement extends Components.PlayByPlayWidget, HTMLStencilElement {}
+  var HTMLPlayByPlayWidgetElement: {
+    prototype: HTMLPlayByPlayWidgetElement;
+    new (): HTMLPlayByPlayWidgetElement;
   };
 
   interface HTMLPbpPlayerElement extends Components.PbpPlayer, HTMLStencilElement {}
@@ -352,7 +357,7 @@ declare global {
     'pbp-json-viewer': HTMLPbpJsonViewerElement
     'pbp-message': HTMLPbpMessageElement
     'pbp-net': HTMLPbpNetElement
-    'play-by-play': HTMLPlayByPlayElement
+    'play-by-play-widget': HTMLPlayByPlayWidgetElement
     'pbp-player': HTMLPbpPlayerElement
     'pbp-score-board': HTMLPbpScoreBoardElement
     'pbp-last-points-stat': HTMLPbpLastPointsStatElement
@@ -370,7 +375,7 @@ declare global {
     'pbp-json-viewer': HTMLPbpJsonViewerElement;
     'pbp-message': HTMLPbpMessageElement;
     'pbp-net': HTMLPbpNetElement;
-    'play-by-play': HTMLPlayByPlayElement;
+    'play-by-play-widget': HTMLPlayByPlayWidgetElement;
     'pbp-player': HTMLPbpPlayerElement;
     'pbp-score-board': HTMLPbpScoreBoardElement;
     'pbp-last-points-stat': HTMLPbpLastPointsStatElement;

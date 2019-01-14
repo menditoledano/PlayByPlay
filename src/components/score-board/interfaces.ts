@@ -3,12 +3,6 @@ export interface score {
    ScorePeriod: ScorePeriod[]
    
   }
-// export interface score {
-//   label: string
-//   homeValue: number
-//   awayValue: number
-// }
-
   export interface ScorePeriod{
     ScorePeriodValue : ScorePeriodValue;
     Home : string
