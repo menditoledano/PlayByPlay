@@ -1,5 +1,6 @@
 import { Component, Prop } from "@stencil/core";
 import { score, ScorePeriodValue } from "./interfaces";
+
 // const mockScore :score = {
 // CurrentScore:{
 // Home: '2',
@@ -72,53 +73,47 @@ export class ScoreBoard {
           return (
             <div class="row">
               <span class={`setScore set1 A text-center`}>
-                {scorePeriod.ScorePeriodValue <= 5 &&
-                scorePeriod.ScorePeriodValue > 0
+                {scorePeriod.ScorePeriodValue === ScorePeriodValue.FirstSetscore
                   ? parseInt(scorePeriod.Home)
                   : "-"}
               </span>
               <span class={`setScore set1  B text-center`}>
-                {scorePeriod.ScorePeriodValue <= 5 &&
-                scorePeriod.ScorePeriodValue > 0
+                {scorePeriod.ScorePeriodValue === ScorePeriodValue.FirstSetscore
                   ? parseInt(scorePeriod.Away)
                   : "-"}
               </span>
 
               <span class={`setScore set2 A text-center`}>
-                {scorePeriod.ScorePeriodValue <= 5 &&
-                scorePeriod.ScorePeriodValue > 0
+                {scorePeriod.ScorePeriodValue ===
+                ScorePeriodValue.SecondSetScore
                   ? parseInt(scorePeriod.Home)
                   : "-"}
               </span>
               <span class={`setScore set2  B text-center`}>
-                {scorePeriod.ScorePeriodValue <= 5 &&
-                scorePeriod.ScorePeriodValue > 0
+                {scorePeriod.ScorePeriodValue ===
+                ScorePeriodValue.SecondSetScore
                   ? parseInt(scorePeriod.Away)
                   : "-"}
               </span>
 
               <span class={`setScore set3 A text-center`}>
-                {scorePeriod.ScorePeriodValue <= 5 &&
-                scorePeriod.ScorePeriodValue > 0
+                {scorePeriod.ScorePeriodValue === ScorePeriodValue.ThirdSetScore
                   ? parseInt(scorePeriod.Home)
                   : "-"}
               </span>
               <span class={`setScore set3  B text-center`}>
-                {scorePeriod.ScorePeriodValue <= 5 &&
-                scorePeriod.ScorePeriodValue > 0
+                {scorePeriod.ScorePeriodValue === ScorePeriodValue.ThirdSetScore
                   ? parseInt(scorePeriod.Away)
                   : "-"}
               </span>
 
               <span class={`setScore set4 A text-center`}>
-                {scorePeriod.ScorePeriodValue <= 5 &&
-                scorePeriod.ScorePeriodValue > 0
+                {scorePeriod.ScorePeriodValue  ===ScorePeriodValue.FourthSetScore
                   ? parseInt(scorePeriod.Home)
                   : "-"}
               </span>
               <span class={`setScore set4  B text-center`}>
-                {scorePeriod.ScorePeriodValue <= 5 &&
-                scorePeriod.ScorePeriodValue > 0
+                {scorePeriod.ScorePeriodValue  ===ScorePeriodValue.FourthSetScore
                   ? parseInt(scorePeriod.Away)
                   : "-"}
               </span>

@@ -1,22 +1,22 @@
 .player {
-  width: 27px;
-  height: 62px;
+  width: 1.688em;
+  height: 3.875em;
   object-fit: contain;
   position: absolute;
-  margin: -42px 0 0 -12px;
+  margin: -2.625em 0 0 -0.75em;
   z-index: 3;
 }
 
 .player.rotate {
   transform: rotate(90deg) rotateX(-60deg);
-  margin: -22px 0 0 7px;
-  width: 27px;
-  height: 62px;
+  margin: -1.375em 0 0 0.438em;
+  width: 1.688em;
+  height: 3.875em;
 }
 
 .palyer3D {
-  width: 27px;
-  height: 62px;
+  width: 1.688em;
+  height: 3.875em;
   object-fit: contain;
   /* background-blend-mode: hue; */
   /* background-image: linear-gradient(to bottom, #edb97c, #edb97c); */

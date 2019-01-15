@@ -1,9 +1,9 @@
 .ball {
-  background-image: url("https://res.cloudinary.com/dezalma3v/image/upload/v1546789118/tennis-ball-copy-4.png");
-  width: 1.4375em;
-  height: 1.4375em;
+  background-image: url("https://res.cloudinary.com/dezalma3v/image/upload/c_scale,h_17,w_17/v1546789118/tennis-ball-copy-4.png");
+  width: 0.6em;
+  height: 0.6em;
   position: absolute;
-  margin: -8px 0 0 -8px;
+  margin: -0.5em 0 0 -0.5em;
   transform: rotateY(-60deg);
   z-index: 2;
   border-radius: 50%;
@@ -13,9 +13,11 @@
 
   /* background-color: #C1FF5C; */
 }
+
 .tennisBall-copy-4 {
-  width: 1.4375em;
-  height: 1.4375em;
+  position: absolute;
+  width: 0.6em;
+  height: 0.6em;
   object-fit: contain;
   background-blend-mode: soft-light;
   /* background-image: linear-gradient(to bottom, #000000, #000000); */
