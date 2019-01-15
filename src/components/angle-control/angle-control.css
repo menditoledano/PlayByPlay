@@ -1,6 +1,6 @@
 .buttons {
   position: absolute;
-  top: 10px;
+  top: 0.625em;
   left: 0;
   right: 0;
   width: 100%;
@@ -9,11 +9,11 @@
 }
 
 .buttons button {
-  width: 150px;
+  width: 9.375em;
   border: none;
   background-color: #EEEEEE;
   color: #3F3F3F;
-  height: 40px;
+  height: 2.5em;
   cursor: pointer;
 }
 
@@ -27,6 +27,6 @@ button:focus {
   outline: none;
 }
 
-.buttons.open{
-  width: calc(100% - 150px);
+.buttons.open {
+  width: calc(100% - 9.375em);
 }
