@@ -1,7 +1,7 @@
 .ball {
   background-image: url("https://res.cloudinary.com/dezalma3v/image/upload/v1546789118/tennis-ball-copy-4.png");
-  width: 23px;
-  height: 23px;
+  width: 1.4375em;
+  height: 1.4375em;
   position: absolute;
   margin: -8px 0 0 -8px;
   transform: rotateY(-60deg);
@@ -14,8 +14,8 @@
   /* background-color: #C1FF5C; */
 }
 .tennisBall-copy-4 {
-  width: 23px;
-  height: 23px;
+  width: 1.4375em;
+  height: 1.4375em;
   object-fit: contain;
   background-blend-mode: soft-light;
   /* background-image: linear-gradient(to bottom, #000000, #000000); */

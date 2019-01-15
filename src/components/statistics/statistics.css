@@ -1,6 +1,8 @@
 .stat-background{
-  top: 9px;
+  top: 2em;
+  left: 1.5em;
   position: absolute;
+  max-width: 94%;
 }
 .playersName {
   position: absolute;
@@ -35,11 +37,12 @@
 }
 
 .stat-rectangle{
-  width: 980px;
-  top: 107px;
-  left: 20px;
+  max-width: 89%;
+  width: 60em;
+  top: 8em;
+  left: 3em;
   position: absolute;
-  mix-blend-mode: screen!important;
+  mix-blend-mode: screen!important
 
 }
 

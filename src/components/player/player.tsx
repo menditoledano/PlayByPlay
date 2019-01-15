@@ -1,22 +1,30 @@
-import { Component, Prop } from '@stencil/core';
-
+import { Component, Prop } from "@stencil/core";
 
 @Component({
-  tag: 'pbp-player',
-  styleUrl: 'player.css'
+  tag: "pbp-player",
+  styleUrl: "player.css"
 })
 export class Player {
   @Prop() position: {
-    top: number
-    left: number
-  }
-  @Prop() view: 'bird' | 'camera' | 'side';
+    top: number;
+    left: number;
+  };
+  @Prop() view: "bird" | "camera" | "side";
   render() {
-    const transform = 'player' + (this.view === 'camera' ? ' rotate' : '');
+    const transform = "player" + (this.view === "camera" ? " rotate" : "");
     return (
-      <div class={transform} style={{ top: `${this.position.top*100}%`, left: `${this.position.left*100}%` }}>
-      <img src=" https://res.cloudinary.com/dezalma3v/image/upload/v1546788800/palyer-3-d.png" class="palyer3D"></img>
-     
+      <div
+        class={transform}
+        style={{
+          top: `${this.position.top * 100}%`,
+          left: `${this.position.left * 100}%`
+        }}
+      >
+        <img
+          src=" https://res.cloudinary.com/dezalma3v/image/upload/v1546788800/palyer-3-d.png"
+          class="palyer3D"
+        />
+
         {/* <svg width="56" height="130" viewBox="0 0 31 68" fill="none" xmlns="http://www.w3.org/2000/svg">
           <g style="mix-blend-mode:multiply">
           <ellipse cx="15" cy="60" rx="12" ry="5" fill="url(#paint0_radial)" fill-opacity="0.5"/>

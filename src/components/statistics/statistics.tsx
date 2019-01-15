@@ -22,9 +22,9 @@ export class Statistics {
   render() {
     return (
         <div>  
-         <img src="https://res.cloudinary.com/dezalma3v/image/upload/v1547197062/board-bg.png"class="img-fluid stat-background"></img>
+         <img src="https://res.cloudinary.com/dezalma3v/image/upload/v1547197062/board-bg.png"class=" stat-background"></img>
          <span class="playersName text-center">R. Federer  -vs-  N. Djokovic</span>
-         <img src="https://res.cloudinary.com/dezalma3v/image/upload/v1547314994/rectangle.png"class="img-fluid stat-rectangle "></img>
+         <img src="https://res.cloudinary.com/dezalma3v/image/upload/v1547314994/rectangle.png"class=" stat-rectangle "></img>
          <span class="stat-homeName text-center">R. Federer </span>
          <span class="stat-awayName text-center">N. Djokovic</span>
           {/* <pbp-last-points-stat></pbp-last-points-stat> */}

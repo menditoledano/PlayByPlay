@@ -46,11 +46,11 @@ export namespace Components {
 
   interface PbpField {
     'jsonOpen': boolean;
-    'view': 'bird' | 'camera' | 'side';
+    'view': "bird" | "camera" | "side";
   }
   interface PbpFieldAttributes extends StencilHTMLAttributes {
     'jsonOpen'?: boolean;
-    'view'?: 'bird' | 'camera' | 'side';
+    'view'?: "bird" | "camera" | "side";
   }
 
   interface PbpJsonViewer {
@@ -67,17 +67,17 @@ export namespace Components {
   interface PbpMessage {
     'jsonOpen': boolean;
     'message': {
-      date: Date
-      text: string
-      type?: 'ERROR' | 'INFO'
+      date: Date;
+      text: string;
+      type?: "ERROR" | "INFO";
     };
   }
   interface PbpMessageAttributes extends StencilHTMLAttributes {
     'jsonOpen'?: boolean;
     'message'?: {
-      date: Date
-      text: string
-      type?: 'ERROR' | 'INFO'
+      date: Date;
+      text: string;
+      type?: "ERROR" | "INFO";
     };
   }
 
@@ -99,25 +99,25 @@ export namespace Components {
 
   interface PbpPlayer {
     'position': {
-      top: number
-      left: number
+      top: number;
+      left: number;
     };
-    'view': 'bird' | 'camera' | 'side';
+    'view': "bird" | "camera" | "side";
   }
   interface PbpPlayerAttributes extends StencilHTMLAttributes {
     'position'?: {
-      top: number
-      left: number
+      top: number;
+      left: number;
     };
-    'view'?: 'bird' | 'camera' | 'side';
+    'view'?: "bird" | "camera" | "side";
   }
 
   interface PbpScoreBoard {
     'jsonOpen': boolean;
     'message': {
-      date: Date
-      text: string
-      type?: 'ERROR' | 'INFO'
+      date: Date;
+      text: string;
+      type?: "ERROR" | "INFO";
     };
     'open': boolean;
     'playerA': string;
@@ -127,9 +127,9 @@ export namespace Components {
   interface PbpScoreBoardAttributes extends StencilHTMLAttributes {
     'jsonOpen'?: boolean;
     'message'?: {
-      date: Date
-      text: string
-      type?: 'ERROR' | 'INFO'
+      date: Date;
+      text: string;
+      type?: "ERROR" | "INFO";
     };
     'open'?: boolean;
     'playerA'?: string;

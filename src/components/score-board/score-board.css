@@ -72,16 +72,16 @@ body {
   padding: 0px 0px 0px 0px;
   width: 658px;
   height: 118px;
-  left: -20px!important;
-  object-fit: contain!important;
-  align-self: left!important;
+  left: -20px !important;
+  object-fit: contain !important;
+  align-self: left !important;
 
 }
 
 .playerText {
   position: absolute;
   top: 27px;
-  left: 10px!important;
+  left: 10px !important;
   width: 34px;
   height: 10px;
   object-fit: contain;
@@ -96,13 +96,14 @@ body {
   color: #e5d9cf;
 
 }
-.playerName{
+
+.playerName {
   position: absolute;
-  left: 10px!important;
+  left: 10px !important;
   width: 90px;
   height: 11px;
   object-fit: contain;
-  font-family: Montserrat!important;
+  font-family: Montserrat !important;
   font-size: 15px;
   font-weight: 300;
   font-style: normal;
@@ -118,10 +119,10 @@ body {
 } */
 
 
-.previusSets{
+.previusSets {
   position: absolute;
   top: 27px;
-  left: 150px!important;
+  left: 150px !important;
   width: 72px;
   height: 8px;
   object-fit: contain;
@@ -136,16 +137,16 @@ body {
   color: #e5d9cf;
 }
 
-.setScore{
+.setScore {
   position: absolute;
-  left: 155px!important;
-  width: 22px!important;
+  left: 155px !important;
+  width: 22px !important;
   height: 24px;
   object-fit: contain;
   opacity: 0.9;
   background-color: #cce2eb;
   font-family: Montserrat;
-  object-fit: contain!important;
+  object-fit: contain !important;
   font-size: 15px;
   font-weight: 300;
   /* font-style: normal;
@@ -155,27 +156,31 @@ body {
   color: var(--light-navy);
 }
 
-.setScore.set1{
-  left: 151px!important;
-}
-.setScore.set2{
-  left: 177px!important;
-}
-.setScore.set3{
-  left: 203px!important;
-}
-.setScore.set4{
-  left: 229px!important;
+.setScore.set1 {
+  left: 151px !important;
 }
 
-.A{
-  top: 40px;  
+.setScore.set2 {
+  left: 177px !important;
 }
-.B{
+
+.setScore.set3 {
+  left: 203px !important;
+}
+
+.setScore.set4 {
+  left: 229px !important;
+}
+
+.A {
+  top: 40px;
+}
+
+.B {
   top: 68px;
 }
 
-.title{
+.title {
   position: absolute;
   top: 27px;
   width: 72px;
@@ -191,24 +196,28 @@ body {
   text-align: left;
   color: #e5d9cf;
 }
-.sets{
-  left: 269px!important;
+
+.sets {
+  left: 269px !important;
 }
-.game{
-  left: 309px!important;
+
+.game {
+  left: 309px !important;
 
 }
-.point{
-  left: 349px!important;
+
+.point {
+  left: 349px !important;
 }
-.line{
-  top:31px;
+
+.line {
+  top: 31px;
   position: absolute;
-  left: 399px!important;
+  left: 399px !important;
   width: 1px;
   height: 60px;
   object-fit: contain;
   opacity: 0.5;
   background-color: #3ba2d9;
-  
+
 }
