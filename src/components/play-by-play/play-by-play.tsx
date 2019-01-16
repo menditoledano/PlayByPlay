@@ -22,7 +22,7 @@ export class PlayByPlay {
   @Prop() onconnected: () => void;
   @State() score: score;
   @State() view: "bird" | "camera" | "side";
-  @State() fieldView: "clay" | "hard" | "grass" = "hard";
+  @State() fieldView: "clay" | "hard" | "grass" = "grass";
   @State() connection;
   @State() hubProxy;
   @State() elements: Element[];
@@ -187,15 +187,15 @@ export class PlayByPlay {
 
   render() {
     return (
-      <div class="container">
-        <div class="row">
-          <div class="col-xs">
+      <div class="">
+        <div class="">
+          <div class="">
             <div class={`wrapper ${this.fieldView}`}>
               {this.score && (
                 <pbp-score-board
                   score={this.score}
                   message={this.message}
-                  class={""}
+                  class={"d-none d-lg-block d-xl-block"}
                 />
               )}
 

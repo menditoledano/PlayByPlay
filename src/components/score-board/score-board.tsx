@@ -108,12 +108,14 @@ export class ScoreBoard {
               </span>
 
               <span class={`setScore set4 A text-center`}>
-                {scorePeriod.ScorePeriodValue  ===ScorePeriodValue.FourthSetScore
+                {scorePeriod.ScorePeriodValue ===
+                ScorePeriodValue.FourthSetScore
                   ? parseInt(scorePeriod.Home)
                   : "-"}
               </span>
               <span class={`setScore set4  B text-center`}>
-                {scorePeriod.ScorePeriodValue  ===ScorePeriodValue.FourthSetScore
+                {scorePeriod.ScorePeriodValue ===
+                ScorePeriodValue.FourthSetScore
                   ? parseInt(scorePeriod.Away)
                   : "-"}
               </span>

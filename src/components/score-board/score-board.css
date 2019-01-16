@@ -1,11 +1,11 @@
 .scoreBoardBG {
   position: absolute;
-  padding: 0em 0em 0em 0em;
-  width: 41.125em;
-  height: 7.375em;
+  /* padding: 0em 0em 0em 0em; */
+  /* width: 41.125em;
+  height: 7.375em; */
   left: -1.25em !important;
-  object-fit: contain !important;
-  align-self: left !important;
+  /* object-fit: contain !important; */
+  /* align-self: left !important; */
 
 }
 

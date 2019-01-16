@@ -31,7 +31,7 @@ export class Field {
             <circle cx="195" cy="3" r="3" fill="transparent"/>
             <circle cx="195" cy="204" r="3" fill="transparent"/>
           </svg> */}
-          <svg xmlns="http://www.w3.org/2000/svg" width="950" height="477">
+          <svg xmlns="http://www.w3.org/2000/svg" class="svgField">
             <path
               fill="transparent"
               fill-rule="evenodd"
