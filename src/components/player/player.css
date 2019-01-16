@@ -21,3 +21,10 @@
   /* background-blend-mode: hue; */
   /* background-image: linear-gradient(to bottom, #edb97c, #edb97c); */
 }
+
+@media only screen and (max-width: 600px) {
+  .palyer3D {
+    width: 1em;
+    height: 2.8em;
+  }
+}

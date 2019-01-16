@@ -22,3 +22,15 @@
   background-blend-mode: soft-light;
   /* background-image: linear-gradient(to bottom, #000000, #000000); */
 }
+
+
+@media only screen and (max-width: 600px) {
+  .tennisBall-copy-4 {
+    position: absolute;
+    width: 0.4em;
+    height: 0.4em;
+    object-fit: contain;
+    background-blend-mode: soft-light;
+    /* background-image: linear-gradient(to bottom, #000000, #000000); */
+  }
+}

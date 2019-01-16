@@ -22,7 +22,7 @@ export class PlayByPlay {
   @Prop() onconnected: () => void;
   @State() score: score;
   @State() view: "bird" | "camera" | "side";
-  @State() fieldView: "clay" | "hard" | "grass" = "grass";
+  @State() fieldView: "clay" | "hard" | "grass" = "hard";
   @State() connection;
   @State() hubProxy;
   @State() elements: Element[];
