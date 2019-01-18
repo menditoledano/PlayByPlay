@@ -1,9 +1,17 @@
 .field-wrapper {
-  /* width: 100vw;
-  height: 100vh; */
+  /* width: 70vw;
+  height: 70vh; */
+  /* justify-content:  center; */
+  /* margin: auto; */
+  
+
+  /* display:flow-root; */
+
+  /* background-color: aliceblue; */
   /* padding: -3.125em 0.313em 3.313em; */
 
   /* background-color: rgb(232, 232, 232); */
+  /* position: relative;  */
   transition: padding ease-in .2s;
 }
 
@@ -16,7 +24,7 @@
 }
 
 .field-wrapper.camera .field {
-  transform: perspective(85vw) rotateX(65deg) rotateZ(-90deg);
+  transform: perspective(88vw) rotateX(65deg) rotateZ(-90deg);
 }
 
 .field-wrapper.bird .field {
@@ -32,6 +40,17 @@
 }
 
 .field {
+     /* display: flex; */
+  justify-content: center;
+  align-items: center;
+
+  
+  /* position: fixed;
+  top: 50%;
+  left: 50%; */
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  /* margin: center; */
   /* background-color: aliceblue; */
   /* position: relative; */
   /* -webkit-transform-style: preserve-3d; */
@@ -41,7 +60,7 @@
   /* -webkit-box-shadow: inset 0 0 0 2.188em transparent, 0 0 0 1.25em transparent; */
   /* box-shadow: inset 0 0 0 2.188em transparent, 0 0 0 1.25em transparent; */
   /* grid-column: 11; */
-  top: 7em;
+  /* top: 7em; */
 }
 
 .field-wrapper.json-open .field:after {
@@ -74,9 +93,9 @@
 }
 
 .svgField{
-  display: block ;
-   margin: auto;
-  width:79vw;
-  height:85vh;
+  /* display: block ;
+   margin: auto; */
+  width:80vw;
+  height:90vh;
   /* position: flex; */
 }

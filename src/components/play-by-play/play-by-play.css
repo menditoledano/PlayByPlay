@@ -16,24 +16,26 @@
   /* -o-object-fit: contain; */
   /* object-fit: contain; */
   display:flex;
+  
+  /* display:flow-root; */
   /* grid-template-rows: 2.5em 6.25em 2.5em; */
   /* -ms-flex-direction: column; */
   /* flex-direction: column; */
-  font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+  /* font-family: 'Open Sans', 'Helvetica Neue', sans-serif; */
   position: relative;
   overflow: hidden;
   background-repeat: no-repeat;
   background-size: contain;
-  /* background-position: center; */
+ 
 }
 .wrapper.clay {
-  background-image:url("https://res.cloudinary.com/dezalma3v/image/upload/v1546764631/camera-view-clay-1024-x-768_3x.png"); 
+  background-image:url("https://res.cloudinary.com/dezalma3v/image/upload/v1547764510/cameraView_clay_bigMargins_1024x768.jpg"); 
 }
 .wrapper.hard {
-  background-image:url("https://res.cloudinary.com/dezalma3v/image/upload/v1546866007/camera-view-hard-court-1024-x-768_3x.png"); 
+  background-image:url("https://res.cloudinary.com/dezalma3v/image/upload/v1547764509/cameraView_hardCourt_bigMargins_1024x768.jpg"); 
 }
 .wrapper.grass {
-  background-image:url("https://res.cloudinary.com/dezalma3v/image/upload/v1546764672/camera-view-grass-1024-x-768_3x.png"); 
+  background-image:url("https://res.cloudinary.com/dezalma3v/image/upload/v1547764513/cameraView_grass_bigMargins_1024x768.jpg"); 
 }
 
 

@@ -195,7 +195,7 @@ export class PlayByPlay {
                 <pbp-score-board
                   score={this.score}
                   message={this.message}
-                  class={"d-none d-lg-block d-xl-block"}
+                  class={""}
                 />
               )}
 
