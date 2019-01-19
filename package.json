@@ -19,11 +19,12 @@
     "@aspnet/signalr": "^1.0.4",
     "bootstrap": "^4.2.1",
     "browserify": "^16.2.3",
-    "reactstrap": "^7.0.2",
-    "stencil": "0.0.5"
+    "rollup": "^1.1.0",
+    "stencil": "0.0.5",
+    "watchify": "^3.11.0"
   },
   "devDependencies": {
-    "@stencil/core": "^0.16.1",
+    "@stencil/core": "^0.16.2",
     "@types/jest": "23.3.10",
     "@types/puppeteer": "1.11.1",
     "jest": "23.6.0",

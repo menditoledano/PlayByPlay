@@ -1,21 +1,18 @@
-.scoreBoardBG {
-  position: absolute;
-  /* padding: 0em 0em 0em 0em; */
-  /* width: 41.125em;
-  height: 7.375em; */
-  left: -1.25em !important;
-  /* object-fit: contain !important; */
-  /* align-self: left !important; */
-
+* {
+  margin: 0 auto;
 }
 
-
-.playerText {
+.scoreBoardBG {
+  width: 65vw;
+  height: 16vh;
   position: absolute;
-  top: 2.9em;
-  left: 0.625em !important;
-  width: 2.125em;
-  height: 0.625em;
+  left: -1.25em !important;
+}
+
+.title {
+  position: absolute;
+  top: 3%;
+  height: 0.5em;
   object-fit: contain;
   font-family: Montserrat;
   font-size: 0.625em;
@@ -24,14 +21,18 @@
   font-stretch: normal;
   line-height: normal;
   letter-spacing: 0.0.5em;
-  text-align: center;
+  /* text-align: left; */
   color: #e5d9cf;
+}
+.playerText {
+  position: absolute;
+  left: 1%;
+  font-family: Montserrat;
 
 }
 
 .playerName {
   position: absolute;
-  left: 0.625em !important;
   width: 6.625em;
   height: 0.688em;
   object-fit: contain;
@@ -47,27 +48,15 @@
 }
 
 .previusSets {
-  position: absolute;
-  top: 2.9em;
+  
+
   left: 14em !important;
-  width: 6.5em;
-  height: 0.5em;
-  -o-object-fit: contain;
-  object-fit: contain;
-  font-family: Montserrat;
-  font-size: 0.625em;
-  font-weight: 300;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: normal;
-  letter-spacing: 0.0.5em;
-  text-align: left;
-  color: #e5d9cf;
+  
 }
 
 .setScore {
   position: absolute;
-  left: 9.688em !important;
+  left: 2%;
   width: 1.4em !important;
   height: 1.5em;
   object-fit: contain;
@@ -83,6 +72,7 @@
   letter-spacing: -0.0.375em;
   color: var(--light-navy);
 }
+
 .setScore.set1 {
   left: 9.438em !important;
 }
@@ -100,29 +90,14 @@
 }
 
 .A {
-  top: 3em;
+  top: 5%;
 }
 
 .B {
-  top: 4.75em;
+  top: 9.5%;
 }
 
-.title {
-  position: absolute;
-  top: 2.9em;
-  width: 4.5em;
-  height: 0.5em;
-  object-fit: contain;
-  font-family: Montserrat;
-  font-size: 0.625em;
-  font-weight: 300;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: normal;
-  letter-spacing: 0.0.5em;
-  /* text-align: left; */
-  color: #e5d9cf;
-}
+
 
 .sets {
   left: 269px !important;
@@ -140,7 +115,7 @@
 .line {
   top: 31px;
   position: absolute;
-  left: 399px !important;
+  left: 400px;
   width: 1px;
   height: 60px;
   object-fit: contain;
@@ -148,3 +123,59 @@
   background-color: #3ba2d9;
 
 }
+
+
+/* @media only screen and (max-width: 700px) {
+
+} */
+@media (max-width: 575.98px) {  }
+
+/* // Small devices (landscape phones, less than 768px) */
+@media (max-width: 767.98px) {  
+  .scoreBoardBG {
+    
+    position: absolute;
+    
+
+    width: 95%;
+    height: 20% ;
+  }
+
+  .playerText {
+
+    top: 1.9em;
+  }
+
+  .title {
+    top: 1.9em;
+  }
+
+  .previusSets {
+
+    top: 1.9em;
+
+  }
+
+  .A {
+    top: 2.4em;
+  }
+
+  .B {
+    top: 4.1em;
+  }
+  .line {
+    position: absolute;
+    width: 1px;
+    height: 60px;
+    object-fit: contain;
+    opacity: 0.5;
+    background-color: #3ba2d9;
+  
+  }
+}
+
+/* // Medium devices (tablets, less than 992px) */
+@media (max-width: 991.98px) {  }
+
+/* // Large devices (desktops, less than 1200px) */
+@media (max-width: 1199.98px) {  }

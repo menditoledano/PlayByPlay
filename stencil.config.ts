@@ -11,6 +11,10 @@ export const config: Config = {
       serviceWorker: null
     }
   ],
+  devServer: {
+    openBrowser: false
+  },
+  
   globalStyle: 'src/globals/bootstrap.min.css',
  
 };

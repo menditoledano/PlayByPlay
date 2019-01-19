@@ -51,19 +51,19 @@ export class ScoreBoard {
 
   render() {
     return (
-      <div class="container">
-        <div class="row">
+      <div class="">
+        <div class="">
           <img
             src="https://res.cloudinary.com/dezalma3v/image/upload/v1546962118/scoreBoardBg.png"
             class="scoreBoardBG "
           />
 
-          <span class="playerText">Player</span>
-          <span class="playerName A">{this.playerA}</span>
-          <span class="playerName B">{this.playerB}</span>
+          <span class="title playerText">Player</span>
+          <span class="playerText playerName A">{this.playerA}</span>
+          <span class="playerText playerName B">{this.playerB}</span>
         </div>
 
-        <span class="previusSets">Previus Sets</span>
+        <span class="title previusSets">Previus Sets</span>
 
         <span class="title sets">Sets</span>
         <span class="title game">Game</span>
@@ -185,7 +185,7 @@ export class ScoreBoard {
             />
           </svg>
         </div>
-        <pbp-message message={this.message} class="textStyle " />
+        <pbp-message message={this.message} class="" />
       </div>
     );
   }
