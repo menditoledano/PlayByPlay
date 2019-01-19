@@ -65,8 +65,8 @@ export class ScoreBoard {
 
         <span class="title previusSets">Previus Sets</span>
 
-        <span class="title sets">Sets</span>
-        <span class="title game">Game</span>
+        <span class="title sets ">Sets</span>
+        <span class="title game ">Game</span>
         <span class="title point">Point</span>
 
         {this.score.ScorePeriod.map(scorePeriod => {
@@ -131,7 +131,7 @@ export class ScoreBoard {
                   : "-"}
               </span>
 
-              <span class={`setScore game A text-center`}>
+              <span class={`setScore game A `}>
                 {scorePeriod.ScorePeriodValue === ScorePeriodValue.GameScore
                   ? parseInt(scorePeriod.Home) >= 10
                     ? scorePeriod.Home

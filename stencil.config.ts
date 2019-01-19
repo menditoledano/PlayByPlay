@@ -14,6 +14,7 @@ export const config: Config = {
   devServer: {
     openBrowser: false
   },
+  enableCache: true,
   
   globalStyle: 'src/globals/bootstrap.min.css',
  

@@ -199,7 +199,7 @@ export class PlayByPlay {
                 />
               )}
 
-              {/* <pbp-angle-control jsonOpen={this.jsonViewerOpen}  view={this.view} onViewChange={this.onViewChange} /> */}
+              {/* <pbp-angle-control jsonOpen={this.jsonViewerOpen}  view={this.view} onViewChange={this.onViewChange} class="d-none"/> */}
               <br />
               <br />
               <br />

@@ -57,12 +57,29 @@ h3 {
 }
 
 
-@media (max-width: 575.98px) {  }
+@media (max-width: 575.98px) { 
+  .message{
+    width: 86px;
+    height: 29px;
+    left: 405px!important;
+    top:17px!important;
+    object-fit: contain;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-weight: 300;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.2;
+    letter-spacing: -0.6px;
+    text-align: center;
+    color: #e8dc49;
+  }
+ }
 
 /* // Small devices (landscape phones, less than 768px) */
 @media (max-width: 767.98px) {  
   .message {
-    left: 58%;
+    left: 57%;
     top: 6%;
   }
  

@@ -24,6 +24,7 @@
   /* text-align: left; */
   color: #e5d9cf;
 }
+
 .playerText {
   position: absolute;
   left: 1%;
@@ -48,10 +49,10 @@
 }
 
 .previusSets {
-  
+
 
   left: 14em !important;
-  
+
 }
 
 .setScore {
@@ -100,16 +101,17 @@
 
 
 .sets {
-  left: 269px !important;
+  left: 256px !important;
 }
 
 .game {
-  left: 309px !important;
+  text-align: center;
+  left: 290px !important;
 
 }
 
 .point {
-  left: 349px !important;
+  left: 325px !important;
 }
 
 .line {
@@ -128,17 +130,45 @@
 /* @media only screen and (max-width: 700px) {
 
 } */
-@media (max-width: 575.98px) {  }
+@media (max-width: 575.98px) {
+  .A {
+    top: 8% !important;
+  }
+
+  .B {
+    top: 12.8% !important;
+    ;
+  }
+
+  .setScore {
+
+    width: 1.3em !important;
+    height: 1.2em;
+
+  }
+
+  .playerName {
+    font-size: smaller !important;
+  }
+}
+
 
 /* // Small devices (landscape phones, less than 768px) */
-@media (max-width: 767.98px) {  
+@media (max-width: 767.98px) {
+  .setScore {
+
+    width: 1.3em !important;
+    height: 1.2em;
+
+  }
+
   .scoreBoardBG {
-    
+
     position: absolute;
-    
+
 
     width: 95%;
-    height: 20% ;
+    height: 20%;
   }
 
   .playerText {
@@ -157,25 +187,31 @@
   }
 
   .A {
-    top: 2.4em;
+    top: 8% !important;
   }
 
   .B {
-    top: 4.1em;
+    top: 12.8% !important;
+    ;
   }
-  .line {
-    position: absolute;
-    width: 1px;
-    height: 60px;
-    object-fit: contain;
-    opacity: 0.5;
-    background-color: #3ba2d9;
+
+
+    .line {
+      top: 18px;
+      position: absolute;
+      left: 378px;
+      width: 1px;
+     height: 51px;;
+      -o-object-fit: contain;
+      object-fit: contain;
+      opacity: 0.5;
+      background-color: #3ba2d9;
+  }
   
-  }
 }
 
 /* // Medium devices (tablets, less than 992px) */
-@media (max-width: 991.98px) {  }
+@media (max-width: 991.98px) {}
 
 /* // Large devices (desktops, less than 1200px) */
-@media (max-width: 1199.98px) {  }
+@media (max-width: 1199.98px) {}
