@@ -23,8 +23,22 @@
 }
 
 @media only screen and (max-width: 600px) {
-  .palyer3D {
-    width: 1em;
-    height: 2.8em;
-  }
+
 }
+
+@media (max-width: 575.98px) {  }
+
+/* // Small devices (landscape phones, less than 768px) */
+@media (max-width: 767.98px) {  
+  .palyer3D {
+    width: 70%;
+    height: 65%;
+  }
+ 
+}
+
+/* // Medium devices (tablets, less than 992px) */
+@media (max-width: 991.98px) {  }
+
+/* // Large devices (desktops, less than 1200px) */
+@media (max-width: 1199.98px) {  }
