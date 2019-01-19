@@ -158,7 +158,7 @@ export class PlayByPlay {
 
     if (!!previousBall) {
       this.previousBalls.push(previousBall);
-      if (this.previousBalls.length > 10) {
+      if (this.previousBalls.length > 8) {
         this.previousBalls.shift();
       }
     }
