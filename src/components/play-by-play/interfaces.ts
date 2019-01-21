@@ -78,17 +78,12 @@ export enum State {
   Fallback = 4
 }
 
-
-
-
-
-
-
 //
 
 export interface score {
+  CurrentScore : CurrentScore
    ScorePeriod: ScorePeriod[];
-   CurrentScore : CurrentScore
+   
   }
 
 
@@ -103,3 +98,84 @@ export interface score {
     Away : string
 
   }
+
+
+
+
+  //liveScore interface
+
+  export interface LiveScore{
+    Scoreboard : lsScoreboard;
+    Periods : Period[];
+    Statistics : lsStatistic[];
+    ExtraData : lsData[];
+
+  }
+  export interface lsScoreboard{
+    Status : number;
+    // Description : number;
+    CurrentPeriod : number;
+    Time : number;
+    Score : lsScore[];
+  }
+
+  export interface lsScore{
+    Score: string;
+    Position : number;
+  }
+
+  export interface Period{
+    Type: number;
+    IsFinished : boolean;
+    IsConfirmed: boolean;
+    score : lsScore[];
+  } 
+
+  //TODO: lsIncidents model(?)
+
+  export interface lsData{
+    Turn: number;
+    ServeNumber: number;
+    Challenge : boolean;
+  } 
+  export interface lsStatistic {
+    Type: number;
+    Value: lsValue[];
+  }
+  
+  export interface lsValue {
+    Value: string;
+    position: string;
+  }
+
+    //liveScore Enum
+
+    export enum lsScoreboardStatus {  	
+      NotStartedYet = 1,
+      InProgress = 2,
+      Finished = 3,
+      Cancelled = 4,
+      Postponed = 5,
+      Interrupted = 6,
+      Abandoned = 7,
+      CoverageLost = 8, 	
+      AboutToStart = 9
+    }
+
+    export enum lsPosition {  	
+      homePlayer = 1,
+      awayPlayer = 2,
+
+    }
+
+    // export enum lsStatusDescription {  	
+    //   Halftime = 1,
+    //   OvertimeHalftime = 2,
+    //   HomeParticipantHasRetired = 3,
+    //   AwayParticipantHasRetired = 4,
+    //   Postponed = 5,
+    //   Interrupted = 6,
+    //   Abandoned = 7,
+    //   CoverageLost = 8, 	
+    //   AboutToStart = 9
+    // }

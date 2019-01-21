@@ -1,0 +1,101 @@
+{
+  "Livescore": {
+    "Scoreboard": {
+      "Status": "2",
+      "CurrentPeriod": "2",
+      "Time": "-1",
+      "Score": [{
+          "Position": "1",
+          "Score": "0"
+        },
+        {
+          "Position": "2",
+          "Score": "1"
+        }
+      ]
+    },
+    "Periods": {
+      "Period": [{
+          "Type": "1",
+          "IsFinished": "true",
+          "IsConfirmed": "true",
+          "Score": [{
+              "Position": "1",
+              "Score": "1"
+            },
+            {
+              "Position": "2",
+              "Score": "6"
+            }
+          ]
+        },
+        {
+          "Type": "2",
+          "IsFinished": "false",
+          "IsConfirmed": "false",
+          "Score": [{
+              "Position": "1",
+              "Score": "3"
+            },
+            {
+              "Position": "2",
+              "Score": "3"
+            }
+          ]
+        },
+        {
+          "Type": "60",
+          "IsFinished": "false",
+          "IsConfirmed": "false",
+          "Score": [{
+              "Position": "1",
+              "Score": "40"
+            },
+            {
+              "Position": "2",
+              "Score": "30"
+            }
+          ]
+        }
+      ]
+    },
+    "Statistics": {
+      "Statistic": [{
+          "Type": "20",
+          "Value": [{
+              "Position": "1",
+              "Value": "3"
+            },
+            {
+              "Position": "2",
+              "Value": "6"
+            }
+          ]
+        },
+        {
+          "Type": "21",
+          "Value": [{
+              "Position": "1",
+              "Value": "2"
+            },
+            {
+              "Position": "2",
+              "Data": "2"
+            }
+          ]
+        }
+      ]
+    },
+    "ExtraData": {
+      "Data": [{
+          "Name": "Turn",
+          "Data": "1"
+        },
+        {
+          "Name": "Serve Number",
+          "Data": "1"
+        }
+      ]
+    }
+  }
+}

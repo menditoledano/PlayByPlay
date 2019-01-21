@@ -1,34 +1,6 @@
 import { Component, Prop } from "@stencil/core";
 import { score, ScorePeriodValue } from "./interfaces";
 
-// const mockScore :score = {
-// CurrentScore:{
-// Home: '2',
-// Away: '4'},
-//   ScorePeriod:[
-//   {
-//   ScorePeriodValue:1,
-//   Home: "6",
-//   Away: "3"
-//   },
-//   {
-//   ScorePeriodValue:2,
-//   Home: "4",
-//   Away: "6"
-//   },
-//   {
-//   ScorePeriodValue: 3,
-//   Home: "4",
-//   Away: "2"
-//   },
-//   {
-//   ScorePeriodValue: 60,
-//   Home: '30',
-//   Away: '15'
-//   }
-//          ]
-//   }
-
 @Component({
   tag: "pbp-score-board",
   styleUrl: "score-board.css"
@@ -37,6 +9,7 @@ export class ScoreBoard {
   @Prop() playerA: string = "R. Federe";
   @Prop() playerB: string = "N. Djokovic";
   @Prop() score: score;
+  @Prop() liveScore: score;
   @Prop() open: boolean;
   @Prop() jsonOpen: boolean;
   @Prop() message: {
@@ -44,11 +17,6 @@ export class ScoreBoard {
     text: string;
     type?: "ERROR" | "INFO";
   };
-
-  // componentWillLoad() {
-  //    this.score = mockScore;
-  // }
-
   render() {
     return (
       <div class="">
@@ -131,7 +99,7 @@ export class ScoreBoard {
                   : "-"}
               </span>
 
-              <span class={`setScore game A `}>
+              <span class={`setScore game A text-center`}>
                 {scorePeriod.ScorePeriodValue === ScorePeriodValue.GameScore
                   ? parseInt(scorePeriod.Home) >= 10
                     ? scorePeriod.Home

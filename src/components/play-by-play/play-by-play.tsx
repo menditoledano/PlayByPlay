@@ -7,10 +7,125 @@ import {
   Incidents,
   States,
   Elements,
-  score
+  score,
+  LiveScore,
+  lsPosition
 } from "./interfaces";
+const livScoreMock : LiveScore= {
+	
+		"Scoreboard": {
+			"Score": [
+				{
+					"Position": 1,
+					"Score": "6"
+				},
+				{
+					"Position": 2,
+					"Score": "2"
+				}
+			],
+			"Status": 2,
+			"CurrentPeriod": 2,
+			"Time": -1
+    },
+    "Periods": null,
+    "Statistics":null,
+    "ExtraData":null
 
 
+		// "Periods": {
+		// [
+		// 		{
+		// 			"Score": [
+		// 				{
+		// 					"Position": 1,
+		// 			      "Score": "0"
+		// 				},
+		// 				{
+		// 					"Position": 2,
+		// 			    "Score": "0"
+		// 				}
+		// 			],
+		// 			"Type": 1,
+		// 			"IsFinished": true,
+		// 			"IsConfirmed": true
+		// 		},
+		// 		{
+		// 			"Score": [
+		// 				{
+    //           "Position": 2,
+		// 			    "Score": "0"
+		// 				},
+		// 				{
+		// 					"Position": 2,
+		// 			    "Score": "0"
+		// 				}
+		// 			],
+		// 			"Type": 2,
+		// 			"IsFinished": false,
+		// 			"IsConfirmed": false
+		// 		},
+		// 		{
+		// 			"Score": [
+		// 				{
+    //           "Position": 2,
+		// 			    "Score": "40"
+		// 				},
+		// 				{
+		// 					"Position": 2,
+		// 			    "Score": "0"
+		// 				}
+		// 			],
+		// 			"Type": 60,
+		// 			"IsFinished": false,
+		// 			"IsConfirmed": false
+		// 		}
+    //   ]
+		// },
+		// "Statistics": {
+		// 	"Statistic": [
+		// 		{
+		// 			"Value": [
+		// 				{
+		// 					"Position": "1",
+		// 					"text": "3"
+		// 				},
+		// 				{
+		// 					"Position": "2",
+		// 					"text": "6"
+		// 				}
+		// 			],
+		// 			"Type": "20"
+		// 		},
+		// 		{
+		// 			"Value": [
+		// 				{
+		// 					"Position": "1",
+		// 					"text": "2"
+		// 				},
+		// 				{
+		// 					"Position": "2",
+		// 					"text": "2"
+		// 				}
+		// 			],
+		// 			"Type": "21"
+		// 		}
+		// 	]
+		// },
+		// "ExtraData": {
+		// 	"Data": [
+		// 		{
+		// 			"Name": "Turn",
+		// 			"text": "1"
+		// 		},
+		// 		{
+		// 			"Name": "Serve Number",
+		// 			"text": "1"
+		// 		}
+		// 	]
+		// }
+	
+}
 @Component({
   tag: "play-by-play-widget",
   styleUrl: "play-by-play.css"
@@ -22,7 +137,7 @@ export class PlayByPlay {
   @Prop() onconnected: () => void;
   @State() score: score;
   @State() view: "bird" | "camera" | "side";
-  @State() fieldView: "clay" | "hard" | "grass" = "hard";
+  @State() fieldView: "clay" | "hard" | "grass" = "clay";
   @State() connection;
   @State() hubProxy;
   @State() elements: Element[];
@@ -39,7 +154,12 @@ export class PlayByPlay {
   @State() previousBalls: Element[];
   @State() playerTrack: Element[];
 
+  @State() lVisionMode: boolean = true;
+  @State() liveScoreMode: boolean = false;
+  @State() liveScoreData: LiveScore;
+
   componentWillLoad() {
+    this.liveScoreData= livScoreMock;
     this.view = "camera";
     this.previousBalls = [];
     this.playerTrack = [];
@@ -52,26 +172,29 @@ export class PlayByPlay {
     this.hubProxy.on("updatePlayByPlay", function(frame: Frame) {
       that.updateElements(frame.Elements);
       that.updateScore(frame.Score);
-      // console.log('updatePlayByPlay from server ' +  JSON.stringify(frame));
-      // console.log('timestemp from server:'+ new Date(frame.Timestamp));
-
-      console.log("frame.Incidents");
-      console.log(frame.Incidents);
+      // console.log("frame.Incidents");
+      // console.log(frame.Incidents);
 
       frame.Incidents.length &&
         that.updateIncident(frame.Incidents[0], frame.Timestamp);
     });
 
+    this.hubProxy.on("liveScoreUpdate", function(liveScoreData : LiveScore) {
+      console.log(liveScoreData);
+      that.updateLiveScoreData(liveScoreData);
+
+      //TODO frame
+    });
+
     this.hubProxy.on("updateFixtureStatistics", function(frame: Frame) {
-      console.log(frame);
+      // console.log(frame);
       // that.showStatistics = true;
       // console.log(frame);
+      frame = frame;
     });
 
     this.hubProxy.on("stateMessageReceived", function(frame: Frame) {
       that.updateStateMessage(frame);
-      //  console.log('stat msg server : ' +  JSON.stringify(frame));
-      // alert(JSON.stringify(frame));
     });
 
     this.start();
@@ -151,6 +274,10 @@ export class PlayByPlay {
   };
 
   updateElements = elements => {
+    // this.liveScoreMode = true;
+    // this.lVisionMode = false;
+    console.log(elements);
+    
     const previousBall =
       this.elements && this.elements.find(el => el.Type === Elements.Ball);
     const playerSingelTrack =
@@ -178,93 +305,162 @@ export class PlayByPlay {
   updateScore = score => {
     // console.log("SCORE" );
     // console.log(JSON.stringify(score));
+   
     this.score = score;
   };
 
-  onToggleJsonViewer = () => {
-    this.jsonViewerOpen = !this.jsonViewerOpen;
+  updateLiveScoreData = liveScoreData => {
+    //update setsScore
+    liveScoreData.Scoreboard.Score.map(currPoint => {
+      currPoint.Position == lsPosition.homePlayer
+        ? (this.score.CurrentScore.Home = currPoint.Score)
+        : (this.score.CurrentScore.Away = currPoint.Score);
+    });
   };
-
   render() {
     return (
       <div class="">
-        <div class="">
-          <div class="">
-            <div class={`wrapper ${this.fieldView}`}>
-              {this.score && (
-                <pbp-score-board
-                  score={this.score}
-                  message={this.message}
-                  class={""}
-                />
-              )}
+        {this.lVisionMode ? (
+          <div class={`wrapper ${this.fieldView}`}>
+            {this.score && (
+              <pbp-score-board
+                score={this.score}
+                message={this.message}
+                class={""}
+              />
+            )}
 
-              {/* <pbp-angle-control jsonOpen={this.jsonViewerOpen}  view={this.view} onViewChange={this.onViewChange} class="d-none"/> */}
-              <br />
-              <br />
-              <br />
+            {/* <pbp-angle-control jsonOpen={this.jsonViewerOpen}  view={this.view} onViewChange={this.onViewChange} class="d-none"/> */}
+            <br />
+            <br />
+            <br />
 
-              <br />
-              <pbp-field jsonOpen={this.jsonViewerOpen} view={this.view}>
-                {this.elements &&
-                  this.elements.map(element => {
-                    return element.Type === Elements.Player ? (
-                      <pbp-player
-                        view={this.view}
-                        position={{
-                          top: element.Location.X,
-                          left: element.Location.Y
-                        }}
-                      />
-                    ) : (
-                      <pbp-ball
-                        position={{
-                          top: element.Location.X,
-                          left: element.Location.Y
-                        }}
-                      />
-                    );
-                  })}
-                {this.elements &&
-                  !!this.elements.filter(el => el.Type === Elements.Ball)
-                    .length &&
-                  this.previousBalls &&
-                  this.previousBalls.map((ball, i) => (
-                    <pbp-track-ball
-                      opacity={i === 0 ? 0.1 : 0.3}
-                      position={{ top: ball.Location.X, left: ball.Location.Y }}
+            <br />
+            <pbp-field jsonOpen={this.jsonViewerOpen} view={this.view}>
+              {this.elements &&
+                this.elements.map(element => {
+                  return element.Type === Elements.Player ? (
+                    <pbp-player
+                      view={this.view}
+                      position={{
+                        top: element.Location.X,
+                        left: element.Location.Y
+                      }}
                     />
-                  ))}
-                {/* {
-          this.elements &&
-          !!this.elements.filter(el => el.Type === Elements.Player).length &&
-          this.playerTrack &&
-          this.playerTrack.map((player,i) => <pbp-track-player view={this.view} opacity={i === 0 ? .1 : .3 } position={{ top: player.Location.X, left: player.Location.Y }} />)
-        } */}
-              </pbp-field>
-              {/* <pbp-message jsonOpen={this.jsonViewerOpen} message={this.message} class="textStyle align-bottom"/> */}
-              {this.showStatistics && (
-                <pbp-statistics open={this.jsonViewerOpen} />
-              )}
-              {this.error && (
-                <span class={`error-overlay ${this.jsonViewerOpen && "open"}`}>
-                  <svg
-                    width="59"
-                    height="50"
-                    viewBox="0 0 59 50"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M58.336 42.97C60.2266 46.0944 57.8534 50 54.0772 50H4.92223C1.13875 50 -1.2235 46.0884 0.663472 42.97L25.2413 2.34229C27.1329 -0.783593 31.8706 -0.777929 33.7588 2.34229L58.336 42.97V42.97ZM29.5 34.5703C26.8978 34.5703 24.7882 36.5815 24.7882 39.0625C24.7882 41.5435 26.8978 43.5547 29.5 43.5547C32.1023 43.5547 34.2118 41.5435 34.2118 39.0625C34.2118 36.5815 32.1023 34.5703 29.5 34.5703ZM25.0266 18.4232L25.7864 31.7045C25.8219 32.326 26.3609 32.8125 27.0137 32.8125H31.9863C32.6391 32.8125 33.1781 32.326 33.2136 31.7045L33.9735 18.4232C34.0119 17.752 33.4513 17.1875 32.7461 17.1875H26.2538C25.5487 17.1875 24.9882 17.752 25.0266 18.4232V18.4232Z"
-                      fill="#3F3F3F"
+                  ) : (
+                    <pbp-ball
+                      position={{
+                        top: element.Location.X,
+                        left: element.Location.Y
+                      }}
                     />
-                  </svg>
-                </span>
-              )}
-            </div>
+                  );
+                })}
+              {this.elements &&
+                !!this.elements.filter(el => el.Type === Elements.Ball)
+                  .length &&
+                this.previousBalls &&
+                this.previousBalls.map((ball, i) => (
+                  <pbp-track-ball
+                    opacity={i === 0 ? 0.1 : 0.3}
+                    position={{
+                      top: ball.Location.X,
+                      left: ball.Location.Y
+                    }}
+                  />
+                ))}
+              {/* {
+                              this.elements &&
+                              !!this.elements.filter(el => el.Type === Elements.Player).length &&
+                              this.playerTrack &&
+                              this.playerTrack.map((player,i) => <pbp-track-player view={this.view} opacity={i === 0 ? .1 : .3 } position={{ top: player.Location.X, left: player.Location.Y }} />)
+                            } */}
+            </pbp-field>
+            {/* <pbp-message jsonOpen={this.jsonViewerOpen} message={this.message} class="textStyle align-bottom"/> */}
+            {this.showStatistics && (
+              <pbp-statistics open={this.jsonViewerOpen} />
+            )}
+            {this.error && (
+              <span class={`error-overlay ${this.jsonViewerOpen && "open"}`}>
+                <svg
+                  width="59"
+                  height="50"
+                  viewBox="0 0 59 50"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M58.336 42.97C60.2266 46.0944 57.8534 50 54.0772 50H4.92223C1.13875 50 -1.2235 46.0884 0.663472 42.97L25.2413 2.34229C27.1329 -0.783593 31.8706 -0.777929 33.7588 2.34229L58.336 42.97V42.97ZM29.5 34.5703C26.8978 34.5703 24.7882 36.5815 24.7882 39.0625C24.7882 41.5435 26.8978 43.5547 29.5 43.5547C32.1023 43.5547 34.2118 41.5435 34.2118 39.0625C34.2118 36.5815 32.1023 34.5703 29.5 34.5703ZM25.0266 18.4232L25.7864 31.7045C25.8219 32.326 26.3609 32.8125 27.0137 32.8125H31.9863C32.6391 32.8125 33.1781 32.326 33.2136 31.7045L33.9735 18.4232C34.0119 17.752 33.4513 17.1875 32.7461 17.1875H26.2538C25.5487 17.1875 24.9882 17.752 25.0266 18.4232V18.4232Z"
+                    fill="#3F3F3F"
+                  />
+                </svg>
+              </span>
+            )}
           </div>
-        </div>
+        ) : //show in livscoreMode
+        this.liveScoreMode ? (
+          <div class={`wrapper ${this.fieldView}`}>
+            {this.score && (
+              <pbp-score-board
+                score={this.score}
+                message={this.message}
+                class={""}
+              />
+            )}
+
+            {/* <pbp-angle-control jsonOpen={this.jsonViewerOpen}  view={this.view} onViewChange={this.onViewChange} class="d-none"/> */}
+            <br />
+            <br />
+            <br />
+
+            <br />
+            <pbp-field jsonOpen={this.jsonViewerOpen} view={this.view}>
+              <pbp-player
+                view={this.view}
+                position={{
+                  top: 0.82,
+                  left: 0.25
+                }}
+              />
+              <pbp-player
+                view={this.view}
+                position={{
+                  top: 0.3,
+                  left: 0.85
+                }}
+              />
+
+              <pbp-ball
+                position={{
+                  top: 0.86,
+                  left: -0.085
+                }}
+              />
+            </pbp-field>
+
+            {this.showStatistics && (
+              <pbp-statistics open={this.jsonViewerOpen} />
+            )}
+            {this.error && (
+              <span class={`error-overlay ${this.jsonViewerOpen && "open"}`}>
+                <svg
+                  width="59"
+                  height="50"
+                  viewBox="0 0 59 50"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M58.336 42.97C60.2266 46.0944 57.8534 50 54.0772 50H4.92223C1.13875 50 -1.2235 46.0884 0.663472 42.97L25.2413 2.34229C27.1329 -0.783593 31.8706 -0.777929 33.7588 2.34229L58.336 42.97V42.97ZM29.5 34.5703C26.8978 34.5703 24.7882 36.5815 24.7882 39.0625C24.7882 41.5435 26.8978 43.5547 29.5 43.5547C32.1023 43.5547 34.2118 41.5435 34.2118 39.0625C34.2118 36.5815 32.1023 34.5703 29.5 34.5703ZM25.0266 18.4232L25.7864 31.7045C25.8219 32.326 26.3609 32.8125 27.0137 32.8125H31.9863C32.6391 32.8125 33.1781 32.326 33.2136 31.7045L33.9735 18.4232C34.0119 17.752 33.4513 17.1875 32.7461 17.1875H26.2538C25.5487 17.1875 24.9882 17.752 25.0266 18.4232V18.4232Z"
+                    fill="#3F3F3F"
+                  />
+                </svg>
+              </span>
+            )}
+          </div>
+        ) : (
+          ""
+        )}
       </div>
     );
   }

@@ -114,6 +114,7 @@ export namespace Components {
 
   interface PbpScoreBoard {
     'jsonOpen': boolean;
+    'liveScore': score;
     'message': {
       date: Date;
       text: string;
@@ -126,6 +127,7 @@ export namespace Components {
   }
   interface PbpScoreBoardAttributes extends StencilHTMLAttributes {
     'jsonOpen'?: boolean;
+    'liveScore'?: score;
     'message'?: {
       date: Date;
       text: string;
