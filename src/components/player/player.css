@@ -1,10 +1,25 @@
+
 .player {
+  /* -webkit-animation: fadeout 4s;  */
+  
   width: 1.688em;
   height: 3.875em;
   object-fit: contain;
   position: absolute;
   margin: -2.625em 0 0 -0.75em;
   z-index: 3;
+
+  /* transition: all 0.5s ease-in-out;  */
+  /* transform: rotate3d(0,0,0,0deg); */
+
+
+  /* transition:margin 2s linear; */
+  /* left: 0; */
+  /* transition:left 1s linear; */
+  /* transition:right 5s linear; */
+  /* transition:left 5s linear; */
+
+
 }
 
 .player.rotate {
@@ -12,12 +27,15 @@
   margin: -1.375em 0 0 0.438em;
   width: 1.688em;
   height: 3.875em;
+  /* transition: all 1s linear; */
 }
 
 .palyer3D {
+  /* transition: all 3s linear; */
   width: 1.688em;
   height: 3.875em;
   object-fit: contain;
+  /* transform: translate3d(20px, 20px, 0px); */
   /* background-blend-mode: hue; */
   /* background-image: linear-gradient(to bottom, #edb97c, #edb97c); */
 }
@@ -42,3 +60,5 @@
 
 /* // Large devices (desktops, less than 1200px) */
 @media (max-width: 1199.98px) {  }
+
+

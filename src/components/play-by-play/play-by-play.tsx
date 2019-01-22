@@ -11,121 +11,111 @@ import {
   LiveScore,
   lsPosition
 } from "./interfaces";
-const livScoreMock : LiveScore= {
-	
-		"Scoreboard": {
-			"Score": [
-				{
-					"Position": 1,
-					"Score": "6"
-				},
-				{
-					"Position": 2,
-					"Score": "2"
-				}
-			],
-			"Status": 2,
-			"CurrentPeriod": 2,
-			"Time": -1
+const livScoreMock: LiveScore = {
+  Scoreboard: {
+    Status: 2,
+    CurrentPeriod: 2,
+    Time: "-1",
+    Results: [
+      {
+        Position: "1",
+        Value: "1"
+      },
+      {
+        Position: "2",
+        Value: "0"
+      }
+    ]
+  },
+  Periods: [
+    {
+      Type: 1,
+      IsFinished: true,
+      IsConfirmed: true,
+      Results: [
+        {
+          Position: "1",
+          Value: "6"
+        },
+        {
+          Position: "2",
+          Value: "1"
+        }
+      ],
+
+      Incidents: null
     },
-    "Periods": null,
-    "Statistics":null,
-    "ExtraData":null
-
-
-		// "Periods": {
-		// [
-		// 		{
-		// 			"Score": [
-		// 				{
-		// 					"Position": 1,
-		// 			      "Score": "0"
-		// 				},
-		// 				{
-		// 					"Position": 2,
-		// 			    "Score": "0"
-		// 				}
-		// 			],
-		// 			"Type": 1,
-		// 			"IsFinished": true,
-		// 			"IsConfirmed": true
-		// 		},
-		// 		{
-		// 			"Score": [
-		// 				{
-    //           "Position": 2,
-		// 			    "Score": "0"
-		// 				},
-		// 				{
-		// 					"Position": 2,
-		// 			    "Score": "0"
-		// 				}
-		// 			],
-		// 			"Type": 2,
-		// 			"IsFinished": false,
-		// 			"IsConfirmed": false
-		// 		},
-		// 		{
-		// 			"Score": [
-		// 				{
-    //           "Position": 2,
-		// 			    "Score": "40"
-		// 				},
-		// 				{
-		// 					"Position": 2,
-		// 			    "Score": "0"
-		// 				}
-		// 			],
-		// 			"Type": 60,
-		// 			"IsFinished": false,
-		// 			"IsConfirmed": false
-		// 		}
-    //   ]
-		// },
-		// "Statistics": {
-		// 	"Statistic": [
-		// 		{
-		// 			"Value": [
-		// 				{
-		// 					"Position": "1",
-		// 					"text": "3"
-		// 				},
-		// 				{
-		// 					"Position": "2",
-		// 					"text": "6"
-		// 				}
-		// 			],
-		// 			"Type": "20"
-		// 		},
-		// 		{
-		// 			"Value": [
-		// 				{
-		// 					"Position": "1",
-		// 					"text": "2"
-		// 				},
-		// 				{
-		// 					"Position": "2",
-		// 					"text": "2"
-		// 				}
-		// 			],
-		// 			"Type": "21"
-		// 		}
-		// 	]
-		// },
-		// "ExtraData": {
-		// 	"Data": [
-		// 		{
-		// 			"Name": "Turn",
-		// 			"text": "1"
-		// 		},
-		// 		{
-		// 			"Name": "Serve Number",
-		// 			"text": "1"
-		// 		}
-		// 	]
-		// }
-	
-}
+    {
+      Type: 2,
+      IsFinished: false,
+      IsConfirmed: false,
+      Results: [
+        {
+          Position: "1",
+          Value: "4"
+        },
+        {
+          Position: "2",
+          Value: "4"
+        }
+      ],
+      Incidents: null
+    },
+    {
+      Type: 60,
+      IsFinished: false,
+      IsConfirmed: false,
+      Results: [
+        {
+          Position: "1",
+          Value: "0"
+        },
+        {
+          Position: "2",
+          Value: "0"
+        }
+      ],
+      Incidents: null
+    }
+  ],
+  Statistics: [
+    {
+      Type: 20,
+      Results: [
+        {
+          Position: "1",
+          Value: "2"
+        },
+        {
+          Position: "2",
+          Value: "2"
+        }
+      ],
+      Incidents: null
+    },
+    {
+      Type: 21,
+      Results: [
+        {
+          Position: "1",
+          Value: "2"
+        },
+        {
+          Position: "2",
+          Value: "1"
+        }
+      ],
+      Incidents: null
+    }
+  ],
+  // "LivescoreExtraData":null
+  LivescoreExtraData: [
+    {
+      Name: "1",
+      Value: "2"
+    }
+  ]
+};
 @Component({
   tag: "play-by-play-widget",
   styleUrl: "play-by-play.css"
@@ -137,7 +127,7 @@ export class PlayByPlay {
   @Prop() onconnected: () => void;
   @State() score: score;
   @State() view: "bird" | "camera" | "side";
-  @State() fieldView: "clay" | "hard" | "grass" = "clay";
+  @State() fieldView: "clay" | "hard" | "grass" = "hard";
   @State() connection;
   @State() hubProxy;
   @State() elements: Element[];
@@ -159,11 +149,11 @@ export class PlayByPlay {
   @State() liveScoreData: LiveScore;
 
   componentWillLoad() {
-    this.liveScoreData= livScoreMock;
+    this.liveScoreData = livScoreMock;
     this.view = "camera";
     this.previousBalls = [];
     this.playerTrack = [];
-
+    // this.updateLiveScoreData(this.liveScoreData);
     const url: string = "http://ICnat.lsports.eu:8100";
     this.connection = hubConnection(url);
     this.hubProxy = this.connection.createHubProxy("playByPlayHub");
@@ -172,28 +162,36 @@ export class PlayByPlay {
     this.hubProxy.on("updatePlayByPlay", function(frame: Frame) {
       that.updateElements(frame.Elements);
       that.updateScore(frame.Score);
-      // console.log("frame.Incidents");
-      // console.log(frame.Incidents);
+      // that.updateLiveScoreData(this.liveScoreData)
 
       frame.Incidents.length &&
         that.updateIncident(frame.Incidents[0], frame.Timestamp);
     });
 
-    this.hubProxy.on("liveScoreUpdate", function(liveScoreData : LiveScore) {
+    this.hubProxy.on("updateFixtureLivescore", function(liveScoreData: LiveScore) {
       console.log(liveScoreData);
       that.updateLiveScoreData(liveScoreData);
 
       //TODO frame
     });
 
-    this.hubProxy.on("updateFixtureStatistics", function(frame: Frame) {
+    //Delta of statistics
+    this.hubProxy.on("updateFixtureStatistic", function(frame: Frame) {//tbd sould be fixtureStatistics model
       // console.log(frame);
       // that.showStatistics = true;
       // console.log(frame);
       frame = frame;
     });
 
-    this.hubProxy.on("stateMessageReceived", function(frame: Frame) {
+    // snapshot
+    this.hubProxy.on("updateFixtureStatistics", function(frame: Frame) {//tbd sould be fixtureStatistics model
+      // console.log(frame);
+      // that.showStatistics = true;
+      // console.log(frame);
+      frame = frame;
+    });
+
+    this.hubProxy.on("stateMessageReceived", function(frame: Frame) { 
       that.updateStateMessage(frame);
     });
 
@@ -276,8 +274,8 @@ export class PlayByPlay {
   updateElements = elements => {
     // this.liveScoreMode = true;
     // this.lVisionMode = false;
-    console.log(elements);
-    
+    // console.log(elements);
+
     const previousBall =
       this.elements && this.elements.find(el => el.Type === Elements.Ball);
     const playerSingelTrack =
@@ -285,7 +283,7 @@ export class PlayByPlay {
 
     if (!!previousBall) {
       this.previousBalls.push(previousBall);
-      if (this.previousBalls.length > 8) {
+      if (this.previousBalls.length > 0) {
         this.previousBalls.shift();
       }
     }
@@ -305,16 +303,16 @@ export class PlayByPlay {
   updateScore = score => {
     // console.log("SCORE" );
     // console.log(JSON.stringify(score));
-   
+
     this.score = score;
   };
 
   updateLiveScoreData = liveScoreData => {
     //update setsScore
-    liveScoreData.Scoreboard.Score.map(currPoint => {
+    liveScoreData.Scoreboard.Results.map(currPoint => {
       currPoint.Position == lsPosition.homePlayer
-        ? (this.score.CurrentScore.Home = currPoint.Score)
-        : (this.score.CurrentScore.Away = currPoint.Score);
+        ? (this.score.CurrentScore.Home = currPoint.Value)
+        : (this.score.CurrentScore.Away = currPoint.Value);
     });
   };
   render() {
@@ -329,12 +327,10 @@ export class PlayByPlay {
                 class={""}
               />
             )}
-
             {/* <pbp-angle-control jsonOpen={this.jsonViewerOpen}  view={this.view} onViewChange={this.onViewChange} class="d-none"/> */}
             <br />
             <br />
             <br />
-
             <br />
             <pbp-field jsonOpen={this.jsonViewerOpen} view={this.view}>
               {this.elements &&
@@ -412,7 +408,6 @@ export class PlayByPlay {
             <br />
             <br />
             <br />
-
             <br />
             <pbp-field jsonOpen={this.jsonViewerOpen} view={this.view}>
               <pbp-player

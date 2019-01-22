@@ -108,44 +108,45 @@ export interface score {
     Scoreboard : lsScoreboard;
     Periods : Period[];
     Statistics : lsStatistic[];
-    ExtraData : lsData[];
+    LivescoreExtraData : lsData[];
 
   }
   export interface lsScoreboard{
     Status : number;
     // Description : number;
     CurrentPeriod : number;
-    Time : number;
-    Score : lsScore[];
+    Time : string;
+    Results : lsResult[];
   }
 
-  export interface lsScore{
-    Score: string;
-    Position : number;
+  export interface lsResult{
+    Value: string;
+    Position : string;
   }
 
   export interface Period{
     Type: number;
     IsFinished : boolean;
     IsConfirmed: boolean;
-    score : lsScore[];
+    Results : lsResult[];
+    Incidents : string;
   } 
 
   //TODO: lsIncidents model(?)
 
   export interface lsData{
-    Turn: number;
-    ServeNumber: number;
-    Challenge : boolean;
+    Name: string; 
+    Value: string; 
   } 
   export interface lsStatistic {
     Type: number;
-    Value: lsValue[];
+    Results: lsResult[];
+    Incidents : string;
   }
   
   export interface lsValue {
     Value: string;
-    position: string;
+    Position: string;
   }
 
     //liveScore Enum

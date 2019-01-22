@@ -91,12 +91,12 @@ export class ScoreBoard {
               <span class={`setScore sets A } text-center `}>
                 {parseInt(this.score.CurrentScore.Home) > 0
                   ? this.score.CurrentScore.Home
-                  : "-"}
+                  : "0"}
               </span>
               <span class={`setScore sets B } text-center `}>
                 {parseInt(this.score.CurrentScore.Away) > 0
                   ? this.score.CurrentScore.Away
-                  : "-"}
+                  : "0"}
               </span>
 
               <span class={`setScore game A text-center`}>
@@ -106,8 +106,8 @@ export class ScoreBoard {
                     : parseInt(scorePeriod.Home) < 10 &&
                       parseInt(scorePeriod.Home) > 0
                     ? "0" + scorePeriod.Home
-                    : "-"
-                  : "-"}
+                    : "0"
+                  : "0"}
               </span>
               <span class={`setScore game B text-center`}>
                 {scorePeriod.ScorePeriodValue === ScorePeriodValue.GameScore
@@ -116,8 +116,8 @@ export class ScoreBoard {
                     : parseInt(scorePeriod.Away) < 10 &&
                       parseInt(scorePeriod.Away) > 0
                     ? "0" + scorePeriod.Away
-                    : "-"
-                  : "-"}
+                    : "0"
+                  : "0"}
               </span>
 
               <span class={`setScore point A text-center`}>
@@ -127,8 +127,8 @@ export class ScoreBoard {
                     : parseInt(scorePeriod.Home) < 10 &&
                       parseInt(scorePeriod.Home) > 0
                     ? "0" + scorePeriod.Home
-                    : "-"
-                  : "-"}
+                    : "0"
+                  : "0"}
               </span>
               <span class={`setScore point B text-center`}>
                 {scorePeriod.ScorePeriodValue === ScorePeriodValue.FullTime
@@ -137,8 +137,8 @@ export class ScoreBoard {
                     : parseInt(scorePeriod.Away) < 10 &&
                       parseInt(scorePeriod.Away) > 0
                     ? "0" + scorePeriod.Away
-                    : "-"
-                  : "-"}
+                    : "0"
+                  : "0"}
               </span>
             </div>
           );

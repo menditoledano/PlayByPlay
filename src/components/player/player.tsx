@@ -17,7 +17,8 @@ export class Player {
         class={transform}
         style={{
           top: `${this.position.top * 100}%`,
-          left: `${this.position.left * 100}%`
+          left: `${this.position.left * 100}%`,
+          // transform: rotate3d(`${this.position.top * 100}%`,`${this.position.left * 100}%`)
         }}
       >
         <img

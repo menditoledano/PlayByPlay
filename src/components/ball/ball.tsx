@@ -15,7 +15,7 @@ export class Ball {
   render() {
     return (
       <div class="ball" style={{ left: `${this.position.left*100}%`, top: `${this.position.top*100}%`, opacity: this.opacity ? `${this.opacity}` : '1' }} >
-      <img src="https://res.cloudinary.com/dezalma3v/image/upload/v1546789118/tennis-ball-copy-4.png" class="tennisBall-copy-4"></img>
+      <img src="https://res.cloudinary.com/dezalma3v/image/upload/v1548187446/tennis-ball-copy-4.png" class="tennisBall-copy-4"></img>
       </div>
     );
   }
