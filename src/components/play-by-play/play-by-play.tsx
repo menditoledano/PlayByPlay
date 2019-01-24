@@ -1,4 +1,5 @@
 import { Component, Prop, State } from "@stencil/core";
+// import KalmanFilter from 'kalmanjs';
 import { hubConnection } from "signalr-no-jquery";
 import {
   Incident,
@@ -9,7 +10,8 @@ import {
   Elements,
   score,
   LiveScore,
-  lsPosition
+  lsPosition,
+  IncidentLabel
 } from "./interfaces";
 const livScoreMock: LiveScore = {
   Scoreboard: {
@@ -147,8 +149,9 @@ export class PlayByPlay {
   @State() lVisionMode: boolean = true;
   @State() liveScoreMode: boolean = false;
   @State() liveScoreData: LiveScore;
-
+  
   componentWillLoad() {
+    // const kf = new KalmanFilter();
     this.liveScoreData = livScoreMock;
     this.view = "camera";
     this.previousBalls = [];
@@ -159,39 +162,47 @@ export class PlayByPlay {
     this.hubProxy = this.connection.createHubProxy("playByPlayHub");
     const that = this;
 
-    this.hubProxy.on("updatePlayByPlay", function(frame: Frame) {
+    this.hubProxy.on("pbpFrameReceived", function(frame: any) {
       that.updateElements(frame.Elements);
+      console.log(frame);
+      
       that.updateScore(frame.Score);
-      // that.updateLiveScoreData(this.liveScoreData)
-
       frame.Incidents.length &&
         that.updateIncident(frame.Incidents[0], frame.Timestamp);
+        console.log(frame.Incidents);
+        
+      that.updateStatisticsStatus(frame.Incidents);
     });
 
-    this.hubProxy.on("updateFixtureLivescore", function(liveScoreData: LiveScore) {
+    this.hubProxy.on("livescoreReceived", function(
+      liveScoreData: LiveScore
+    ) {
       console.log(liveScoreData);
       that.updateLiveScoreData(liveScoreData);
 
       //TODO frame
     });
 
+
     //Delta of statistics
-    this.hubProxy.on("updateFixtureStatistic", function(frame: Frame) {//tbd sould be fixtureStatistics model
-      // console.log(frame);
-      // that.showStatistics = true;
-      // console.log(frame);
+    // this.hubProxy.on("updateFixtureStatistic", function(frame: Frame) {
+    //   //tbd sould be fixtureStatistics model
+    //   // console.log(frame);
+    //   // that.showStatistics = true;
+    //   // console.log(frame);
+    //   frame = frame;
+    // });
+
+    this.hubProxy.on("statisticsMessageReceived", function(frame: Frame) {
       frame = frame;
     });
 
     // snapshot
-    this.hubProxy.on("updateFixtureStatistics", function(frame: Frame) {//tbd sould be fixtureStatistics model
-      // console.log(frame);
-      // that.showStatistics = true;
-      // console.log(frame);
+    this.hubProxy.on("statisticsSnapshotReceived", function(frame: Frame) {
       frame = frame;
     });
 
-    this.hubProxy.on("stateMessageReceived", function(frame: Frame) { 
+    this.hubProxy.on("stateMessageReceived", function(frame: Frame) {
       that.updateStateMessage(frame);
     });
 
@@ -244,6 +255,7 @@ export class PlayByPlay {
   };
 
   updateIncident = (incident: Incident, timestamp: Date) => {
+    // this.updateStatisticsStatus(incident);
     if (this.error) {
       return;
     }
@@ -271,11 +283,25 @@ export class PlayByPlay {
     };
   };
 
+  updateStatisticsStatus = incident => {
+    if (incident.Label === IncidentLabel.TennisPointFinished) {
+      this.showStatistics = true;
+      //tbd send to the statistics what to show
+    } else if (incident.Label === IncidentLabel.TennisGameFinished) {
+      this.showStatistics = true;
+    } else if (incident.Label === IncidentLabel.TennisSetFinished) {
+      this.showStatistics = true;
+    } else if (incident.Label === IncidentLabel.TennisMatchFinished) {
+      this.showStatistics = true;
+    }
+  };
+
   updateElements = elements => {
     // this.liveScoreMode = true;
     // this.lVisionMode = false;
     // console.log(elements);
 
+    this.elements && (this.showStatistics = false);
     const previousBall =
       this.elements && this.elements.find(el => el.Type === Elements.Ball);
     const playerSingelTrack =
@@ -290,9 +316,9 @@ export class PlayByPlay {
 
     if (!!playerSingelTrack) {
       this.playerTrack.push(playerSingelTrack);
-      if (this.playerTrack.length > 15) {
-        this.playerTrack.shift();
-      }
+      // if (this.playerTrack.length > 2) {
+      //   this.playerTrack.shift();
+      // }
     }
 
     this.elements = elements;
@@ -337,10 +363,15 @@ export class PlayByPlay {
                 this.elements.map(element => {
                   return element.Type === Elements.Player ? (
                     <pbp-player
+                      // id='pbpPlayer'
                       view={this.view}
                       position={{
-                        top: element.Location.X,
-                        left: element.Location.Y
+                        prevTop: this.playerTrack[this.playerTrack.length - 1]
+                          .Location.X,
+                        prevLeft: this.playerTrack[this.playerTrack.length - 1]
+                          .Location.Y,
+                        currTop: element.Location.X,
+                        currLeft: element.Location.Y
                       }}
                     />
                   ) : (
@@ -413,17 +444,20 @@ export class PlayByPlay {
               <pbp-player
                 view={this.view}
                 position={{
-                  top: 0.82,
-                  left: 0.25
+                  prevTop: 0.65,
+                  prevLeft: 0.45,
+                  currTop: 0.82,
+                  currLeft: 0.25
                 }}
               />
-              <pbp-player
+
+              {/* <pbp-player
                 view={this.view}
                 position={{
                   top: 0.3,
                   left: 0.85
                 }}
-              />
+              /> */}
 
               <pbp-ball
                 position={{

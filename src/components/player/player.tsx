@@ -1,23 +1,44 @@
-import { Component, Prop } from "@stencil/core";
-
+import { Component, Prop, Element } from "@stencil/core";
+import KalmanFilter from 'kalmanjs';
 @Component({
   tag: "pbp-player",
   styleUrl: "player.css"
 })
 export class Player {
+  @Element() private playerElement: HTMLElement;
+   kf = new KalmanFilter();
+
   @Prop() position: {
-    top: number;
-    left: number;
+    prevTop: number;
+    prevLeft: number;
+    currTop: number;
+    currLeft: number;
   };
   @Prop() view: "bird" | "camera" | "side";
+  
+  ComponentWillLoad(){
+   
+    
+  }
   render() {
+    this.playerElement.style.setProperty('--prevX', ''+this.position.prevTop * 100+'%');
+    this.playerElement.style.setProperty('--prevY', ''+this.position.prevLeft * 100+'%');
+    this.playerElement.style.setProperty('--currX', ''+this.position.currTop * 100+'%');
+    this.playerElement.style.setProperty('--currY', ''+this.position.currLeft * 100+'%');
     const transform = "player" + (this.view === "camera" ? " rotate" : "");
+
     return (
       <div
+      id = "player"
         class={transform}
-        style={{
-          top: `${this.position.top * 100}%`,
-          left: `${this.position.left * 100}%`,
+        style= {{
+          // transform: `translate(${this.position.top * 100}%,${this.position.left * 100}%)`
+          top: `${this.position.currTop * 100}%`,
+          left: `${this.position.currLeft * 100}%`
+
+          // top: `${this.kf.filter(this.position.currTop) * 100}%`,
+          // left: `${this.kf.filter(this.position.currLeft) * 100}%`
+          
           // transform: rotate3d(`${this.position.top * 100}%`,`${this.position.left * 100}%`)
         }}
       >

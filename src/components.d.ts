@@ -99,15 +99,19 @@ export namespace Components {
 
   interface PbpPlayer {
     'position': {
-      top: number;
-      left: number;
+      prevTop: number;
+      prevLeft: number;
+      currTop: number;
+      currLeft: number;
     };
     'view': "bird" | "camera" | "side";
   }
   interface PbpPlayerAttributes extends StencilHTMLAttributes {
     'position'?: {
-      top: number;
-      left: number;
+      prevTop: number;
+      prevLeft: number;
+      currTop: number;
+      currLeft: number;
     };
     'view'?: "bird" | "camera" | "side";
   }

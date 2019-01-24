@@ -65,10 +65,17 @@ export enum  ElementsLabel {
 }
 
 export enum  IncidentLabel {
+  RedCard = 0,
   Forehand = 1,
   Serve = 2,
-  Backhand = 3,
-  Hit = 4
+  Kik = 3,
+  Hit = 4,
+  ScoreboardChanged = 5,
+  PlayerOutOfCourt = 6,
+  TennisPointFinished = 10,
+  TennisGameFinished = 11,
+  TennisSetFinished = 12,
+  TennisMatchFinished = 13
 }
 
 export enum State {
