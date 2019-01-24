@@ -21,6 +21,7 @@ export class lastPointsStat {
   render() {
     return (
     <div>  
+       <img src="https://res.cloudinary.com/dezalma3v/image/upload/v1547314994/rectangle.png"class=" stat-rectangle "></img>
       <span class="stat-title text-center">Last point players tracking</span>
      <img src="https://res.cloudinary.com/dezalma3v/image/upload/v1547204069/statField.png"class="img-fluid stat-field"></img>
      

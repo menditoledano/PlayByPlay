@@ -1,79 +1,64 @@
-.stat-background{
-  top: 2em;
-  left: 1.5em;
+.stat-background {
+  top: 3%;
+  left: 3%;
   position: absolute;
-  max-width: 94%;
+  width: 93vw;
+  height: 95vh;
 }
+
 .playersName {
   position: absolute;
-  top: 60px;
-  left: 370px!important;
+  top: 7%;
+  left: 35vw !important;
+  -o-object-fit: contain;
   object-fit: contain;
   font-family: Montserrat;
   font-weight: bolder;
   font-style: normal;
   letter-spacing: 0.8px;
   text-align: center;
-  font-size: 20px;
+  font-size: 2vw;
   font-stretch: normal;
   line-height: normal;
   color: #e8dc49;
 }
 
-.stat-title{
+.stat-title {
   position: absolute;
-  top: 114px;
-  left: 370px!important;
-  object-fit: contain!important;
+  top: 14vh;
+  left: 35vw;
   letter-spacing: 0.8px!important;
-  text-align: center!important;
-  font-size: 20px!important;
-  font-style: normal!important;
+  font-size: 2vw;
   font-stretch: normal!important;
-  line-height: normal!important;
   font-family: Montserrat!important;
-  font-weight: 300!important;
   color: #ffffff;
 }
 
-.stat-rectangle{
-  max-width: 89%;
-  width: 60em;
-  top: 8em;
-  left: 3em;
+.stat-rectangle {
+  width: 89vw;
+  top: 13%;
+  left: 5%;
+  height: 79vh;
   position: absolute;
-  mix-blend-mode: screen!important
+  mix-blend-mode: screen !important;
 
 }
 
-.stat-homeName{
+.stat-homeName {
   position: absolute;
-  top: 170px;
-  left: 88px;
-  object-fit: contain;
+  top: 22%;
+  left: 9%;
   font-family: Montserrat;
-  font-size: 16px;
-  font-weight: 100;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: normal;
-  letter-spacing: -0.1px;
-  text-align: center;
+  font-size: 2vw;
   color: #e8dc49;
-
 }
-.stat-awayName{
-    position: absolute;
-    top: 170px;
-    left: 845px;
-    object-fit: contain;
-    font-family: Montserrat;
-    font-size: 16px;
-    font-weight: 100;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
-    letter-spacing: -0.1px;
-    text-align: center;
-    color: #e8dc49;
+
+.stat-awayName {
+  position: absolute;
+  top: 22%;
+  right: 11%;
+  font-family: Montserrat;
+  font-size: 2vw;
+  font-weight: 100;
+  color: #e8dc49;
 }

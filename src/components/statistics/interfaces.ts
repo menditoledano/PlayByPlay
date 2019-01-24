@@ -6,7 +6,7 @@ export interface statistic {
 }
 
 //interface
-export interface Statistics {
+export interface StatisticsData {
   StatisticType: number;
   StatisticUnit: number;
   ParticipantStatsticMetadata: ParticipantStatsticMetadata[];

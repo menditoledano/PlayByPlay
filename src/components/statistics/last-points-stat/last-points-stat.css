@@ -16,15 +16,16 @@
   background-blend-mode: soft-light;
 }
 .stat-field{
-  left: 87px;
-  width: 847px;
-  top: 211px;
+  left: 9%;
+  width: 80vw;
+  height: 56vh;
+  top: 27%;
   position: absolute;
 }
 
 .stat-pathBall{
-  left: 60px;
-  width: 412px;
-  top: 300px;
+  left: 5%;
+  width: 41vw;
+  top: 36%;
   position: absolute;
 }

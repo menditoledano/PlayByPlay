@@ -1,5 +1,5 @@
-import { Component, State, Prop } from '@stencil/core';
-import { statistic } from './interfaces';
+import { Component, Prop } from '@stencil/core';
+// import { StatisticsData } from './interfaces';
 
 @Component({
   tag: 'pbp-statistics',
@@ -7,13 +7,14 @@ import { statistic } from './interfaces';
 })
 export class Statistics {
   @Prop() open: boolean;
+  @Prop() statistics: any;
 
   // not final
-  @Prop() position: {
-    top: number 
-    left: number
-  };
-  @State() statistics: statistic[]
+  // @Prop() position: {
+  //   top: number 
+  //   left: number
+  // };
+  
 
   componentWillLoad() {
  
@@ -24,7 +25,7 @@ export class Statistics {
         <div>  
          <img src="https://res.cloudinary.com/dezalma3v/image/upload/v1547197062/board-bg.png"class=" stat-background"></img>
          <span class="playersName text-center">R. Federer  -vs-  N. Djokovic</span>
-         <img src="https://res.cloudinary.com/dezalma3v/image/upload/v1547314994/rectangle.png"class=" stat-rectangle "></img>
+         {/* <img src="https://res.cloudinary.com/dezalma3v/image/upload/v1547314994/rectangle.png"class=" stat-rectangle "></img> */}
          <span class="stat-homeName text-center">R. Federer </span>
          <span class="stat-awayName text-center">N. Djokovic</span>
           <pbp-last-points-stat></pbp-last-points-stat>

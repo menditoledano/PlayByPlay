@@ -7,6 +7,7 @@ import KalmanFilter from 'kalmanjs';
 export class Player {
   @Element() private playerElement: HTMLElement;
    kf = new KalmanFilter();
+   @Prop() playerType: any ;
 
   @Prop() position: {
     prevTop: number;

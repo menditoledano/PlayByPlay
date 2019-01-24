@@ -11,7 +11,8 @@ import {
   score,
   LiveScore,
   lsPosition,
-  IncidentLabel
+  IncidentLabel,
+  ElementsLabel
 } from "./interfaces";
 const livScoreMock: LiveScore = {
   Scoreboard: {
@@ -137,7 +138,8 @@ export class PlayByPlay {
   @State() reconnectTimeout: number = 10;
   @State() jsonViewerOpen: boolean = false;
   @State() error: boolean = false;
-  @State() showStatistics: boolean = false;
+  @State() showStatistics: boolean = true;
+  @State() statisticsData: any;
   @State() message: {
     date: Date;
     text: string;
@@ -149,7 +151,7 @@ export class PlayByPlay {
   @State() lVisionMode: boolean = true;
   @State() liveScoreMode: boolean = false;
   @State() liveScoreData: LiveScore;
-  
+
   componentWillLoad() {
     // const kf = new KalmanFilter();
     this.liveScoreData = livScoreMock;
@@ -162,27 +164,25 @@ export class PlayByPlay {
     this.hubProxy = this.connection.createHubProxy("playByPlayHub");
     const that = this;
 
-    this.hubProxy.on("pbpFrameReceived", function(frame: any) {
+    this.hubProxy.on("pbpFrameReceived", function(frame: Frame) {
       that.updateElements(frame.Elements);
-      console.log(frame);
-      
+      // console.log(frame);
+
       that.updateScore(frame.Score);
+
       frame.Incidents.length &&
         that.updateIncident(frame.Incidents[0], frame.Timestamp);
-        console.log(frame.Incidents);
-        
+      // console.log(frame.Incidents);
+      
       that.updateStatisticsStatus(frame.Incidents);
     });
 
-    this.hubProxy.on("livescoreReceived", function(
-      liveScoreData: LiveScore
-    ) {
+    this.hubProxy.on("livescoreReceived", function(liveScoreData: LiveScore) {
       console.log(liveScoreData);
       that.updateLiveScoreData(liveScoreData);
 
       //TODO frame
     });
-
 
     //Delta of statistics
     // this.hubProxy.on("updateFixtureStatistic", function(frame: Frame) {
@@ -193,16 +193,25 @@ export class PlayByPlay {
     //   frame = frame;
     // });
 
-    this.hubProxy.on("statisticsMessageReceived", function(frame: Frame) {
-      frame = frame;
+    this.hubProxy.on("statisticsMessageReceived", function(statistics: any) {
+      statistics = statistics;
+      console.log("statisticsMessageReceived");
+
+      console.log(statistics);
     });
 
     // snapshot
-    this.hubProxy.on("statisticsSnapshotReceived", function(frame: Frame) {
-      frame = frame;
+    this.hubProxy.on("statisticsSnapshotReceived", function(statistics: any) {
+      // console.log('statisticsSnapshotReceived');
+      // console.log(statistics);
+
+      that.updateStatisticsData(statistics);
     });
 
     this.hubProxy.on("stateMessageReceived", function(frame: Frame) {
+      // console.log('stateMessageReceived');
+      // console.log(frame);
+
       that.updateStateMessage(frame);
     });
 
@@ -284,24 +293,42 @@ export class PlayByPlay {
   };
 
   updateStatisticsStatus = incident => {
-    if (incident.Label === IncidentLabel.TennisPointFinished) {
-      this.showStatistics = true;
-      //tbd send to the statistics what to show
-    } else if (incident.Label === IncidentLabel.TennisGameFinished) {
-      this.showStatistics = true;
-    } else if (incident.Label === IncidentLabel.TennisSetFinished) {
-      this.showStatistics = true;
-    } else if (incident.Label === IncidentLabel.TennisMatchFinished) {
-      this.showStatistics = true;
-    }
+    // console.log("on updateStatisticsStatus");
+    incident.map(currIncident => {
+      if (currIncident.Label === IncidentLabel.TennisPointFinished) {
+        console.log("TennisPointFinished ...");
+        // console.log(incident.Label);
+        this.showStatistics = true;
+        setTimeout(()=>{}, 15000);
+        //tbd send to the statistics what to show
+      } else if (currIncident.Label === IncidentLabel.TennisGameFinished) {
+        this.showStatistics = true;
+        setTimeout(()=>{}, 15000);
+      } else if (currIncident.Label === IncidentLabel.TennisSetFinished) {
+        this.showStatistics = true;
+        setTimeout(()=>{}, 15000);
+      } else if (currIncident.Label === IncidentLabel.TennisMatchFinished) {
+        this.showStatistics = true;
+        setTimeout(()=>{}, 15000);
+      }
+     
+    });
+   
+
+   
   };
 
+  updateStatisticsData = statistics => {
+    this.statisticsData = statistics;
+    console.log(statistics);
+    
+  };
   updateElements = elements => {
     // this.liveScoreMode = true;
     // this.lVisionMode = false;
     // console.log(elements);
 
-    this.elements && (this.showStatistics = false);
+    // this.elements && (this.showStatistics = false);
     const previousBall =
       this.elements && this.elements.find(el => el.Type === Elements.Ball);
     const playerSingelTrack =
@@ -358,10 +385,11 @@ export class PlayByPlay {
             <br />
             <br />
             <br />
-            <pbp-field jsonOpen={this.jsonViewerOpen} view={this.view}>
+            <pbp-field view={this.view}>
               {this.elements &&
                 this.elements.map(element => {
-                  return element.Type === Elements.Player ? (
+                  return element.Type === Elements.Player &&
+                    element.Label === ElementsLabel.HomePlayer ? (
                     <pbp-player
                       // id='pbpPlayer'
                       view={this.view}
@@ -374,13 +402,28 @@ export class PlayByPlay {
                         currLeft: element.Location.Y
                       }}
                     />
-                  ) : (
+                  ) : element.Type === Elements.Player ? (
+                    <pbp-player
+                      // id='pbpPlayer'
+                      view={this.view}
+                      position={{
+                        prevTop: this.playerTrack[this.playerTrack.length - 1]
+                          .Location.X,
+                        prevLeft: this.playerTrack[this.playerTrack.length - 1]
+                          .Location.Y,
+                        currTop: element.Location.X,
+                        currLeft: element.Location.Y
+                      }}
+                    />
+                  ) : element.Type === Elements.Ball ? (
                     <pbp-ball
                       position={{
                         top: element.Location.X,
                         left: element.Location.Y
                       }}
                     />
+                  ) : (
+                    "nothing"
                   );
                 })}
               {this.elements &&
@@ -403,9 +446,8 @@ export class PlayByPlay {
                               this.playerTrack.map((player,i) => <pbp-track-player view={this.view} opacity={i === 0 ? .1 : .3 } position={{ top: player.Location.X, left: player.Location.Y }} />)
                             } */}
             </pbp-field>
-            {/* <pbp-message jsonOpen={this.jsonViewerOpen} message={this.message} class="textStyle align-bottom"/> */}
             {this.showStatistics && (
-              <pbp-statistics open={this.jsonViewerOpen} />
+              <pbp-statistics statistics={this.statisticsData} />
             )}
             {this.error && (
               <span class={`error-overlay ${this.jsonViewerOpen && "open"}`}>
@@ -451,13 +493,15 @@ export class PlayByPlay {
                 }}
               />
 
-              {/* <pbp-player
+              <pbp-player
                 view={this.view}
                 position={{
-                  top: 0.3,
-                  left: 0.85
+                  prevTop: 0.85,
+                  prevLeft: 0.35,
+                  currTop: 0.42,
+                  currLeft: 0.15
                 }}
-              /> */}
+              />
 
               <pbp-ball
                 position={{
@@ -468,7 +512,10 @@ export class PlayByPlay {
             </pbp-field>
 
             {this.showStatistics && (
-              <pbp-statistics open={this.jsonViewerOpen} />
+              <pbp-statistics
+                statistics={this.statisticsData}
+                open={this.jsonViewerOpen}
+              />
             )}
             {this.error && (
               <span class={`error-overlay ${this.jsonViewerOpen && "open"}`}>

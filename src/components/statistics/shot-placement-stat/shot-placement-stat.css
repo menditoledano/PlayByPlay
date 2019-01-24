@@ -1,94 +1,101 @@
-.shot-placement-stat-field-home{
-    left: 35px;
-    width: 450px;
-    height: 326px;
-    top: 272px;
-    position: absolute;
-}
-.shot-placement-stat-field-away{
-    right: 44px;
-    width: 450px;
-    height: 326px;
-    top: 272px;
-    position: absolute;
-}
-.small-line.home{
-    left: 141px;
-    width: 234px;
-    height: 2px;
-    top: 381px;
-    position: absolute;
-
+.shot-placement-stat-field-home {
+  left: 7vw;
+  width: 41vw;
+  height: 326px;
+  top: 32vh;
+  position: absolute;
 }
 
-.small-line.away{
-    right: 152px;
-    width: 234px;
-    height: 2px;
-    top: 381px;
-    position: absolute;
+.shot-placement-stat-field-away {
+  right: 8vw;
+  width: 41vw;
+  height: 326px;
+  top: 32vh;
+  position: absolute;
 }
-.long-line.home{
-    left: 120px;
-    width: 281px;
-    height: 2px;
-    top: 485px;
-    position: absolute;
-    
-}
-.long-line.away{
-    right: 129px;
-    width: 281px;
-    height: 2px;
-    top: 485px;
-    position: absolute;
-}
-.stat-title-shot-placement{
-    position: absolute;
-    top: 6.5em;
-    left: 390px!important;
-    object-fit: contain!important;
-    letter-spacing: 0.8px!important;
-    text-align: center!important;
-    font-size: 20px!important;
-    font-style: normal!important;
-    font-stretch: normal!important;
-    line-height: normal!important;
-    font-family: Montserrat!important;
-    font-weight: 300!important;
-    color: #ffffff;
-  }
-  .percentage{
-    position: absolute;
-    width: 70px;
-    height: 24px;
-    object-fit: contain;
-    font-family: Montserrat;
-    font-size: 34px;
-    font-weight: bolder!important;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
-    letter-spacing: normal;
-    text-align: center;
-    color: #ffffff;
-  }
-  .percentage.start{
-    bottom: 255px;
-  }
-  .percentage.middle{
-    bottom: 350px;
-      
-  }
-  .percentage.net{
-    bottom: 450px;
-      
-  }
+
+
+
+.small-line {
  
-  .percentage.home{
-    left: 230px;
-        
-  }
-  .percentage.away{
-    right: 220px;
-  } 
+ 
+  width: 23vw;
+  /* height: 0.2; */
+  top: 45vh;
+  position: absolute;
+}
+.small-line.away {
+right: 17vw;
+}
+.small-line.home {
+  left: 16vw;
+ 
+
+}
+.long-line.home {
+  left: 14vw;
+  width: 27vw;
+  height: 2px;
+  top: 57vh;
+  position: absolute;
+
+}
+
+.long-line.away {
+  right: 15vw;
+  width: 27vw;
+  height: 2px;
+  top: 57vh;
+  position: absolute;
+}
+
+.stat-title-shot-placement {
+  position: absolute;
+  top: 14vh;
+  left: 37vw;
+  letter-spacing: 0.8px !important;
+  font-size: 2vw;
+  font-stretch: normal !important;
+  font-family: Montserrat !important;
+  color: #ffffff;
+}
+
+.percentage {
+  position: absolute;
+  width: 100vw;
+  height: 4vh;
+  -o-object-fit: contain;
+  object-fit: contain;
+  font-family: Montserrat;
+  font-size: 3vw;
+  font-weight: bolder !important;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #ffffff;
+}
+
+.percentage.start {
+  bottom: 36vh;
+}
+
+.percentage.middle {
+  bottom: 48vh;
+
+}
+
+.percentage.net {
+  bottom: 59vh;
+
+}
+
+.percentage.home {
+  left: 22vw;
+
+}
+
+.percentage.away {
+  right: 22vw;
+}

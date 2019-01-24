@@ -42,11 +42,17 @@ export class ScoreBoard {
             <div class="row">
               <span class={`setScore set1 A text-center`}>
                 {/* {scorePeriod.ScorePeriodValue == 1 ? scorePeriod.Home : "-"} */}
-                {this.score.ScorePeriod[0].ScorePeriodValue === ScorePeriodValue.FirstSetscore ? this.score.ScorePeriod[0].Home : '-'}
+                {this.score.ScorePeriod[0].ScorePeriodValue ===
+                ScorePeriodValue.FirstSetscore
+                  ? this.score.ScorePeriod[0].Home
+                  : "-"}
               </span>
               <span class={`setScore set1  B text-center`}>
                 {/* {scorePeriod.ScorePeriodValue == 1 ? scorePeriod.Away : "-"} */}
-                {this.score.ScorePeriod[0].ScorePeriodValue === ScorePeriodValue.FirstSetscore ? this.score.ScorePeriod[0].Away : '-'}
+                {this.score.ScorePeriod[0].ScorePeriodValue ===
+                ScorePeriodValue.FirstSetscore
+                  ? this.score.ScorePeriod[0].Away
+                  : "-"}
               </span>
 
               <span class={`setScore set2 A text-center`}>
@@ -54,27 +60,39 @@ export class ScoreBoard {
                 ScorePeriodValue.SecondSetScore
                   ? scorePeriod.Home
                   : "-"} */}
-                  {this.score.ScorePeriod[1].ScorePeriodValue === ScorePeriodValue.SecondSetScore ? this.score.ScorePeriod[1].Home : '-'}
+                {this.score.ScorePeriod[1].ScorePeriodValue ===
+                ScorePeriodValue.SecondSetScore
+                  ? this.score.ScorePeriod[1].Home
+                  : "-"}
               </span>
               <span class={`setScore set2  B text-center`}>
                 {/* {scorePeriod.ScorePeriodValue ===
                 ScorePeriodValue.SecondSetScore
                   ? scorePeriod.Away
                   : "-"} */}
-                  {this.score.ScorePeriod[1].ScorePeriodValue === ScorePeriodValue.SecondSetScore ? this.score.ScorePeriod[1].Away : '-'}
+                {this.score.ScorePeriod[1].ScorePeriodValue ===
+                ScorePeriodValue.SecondSetScore
+                  ? this.score.ScorePeriod[1].Away
+                  : "-"}
               </span>
 
               <span class={`setScore set3 A text-center`}>
                 {/* {scorePeriod.ScorePeriodValue === ScorePeriodValue.ThirdSetScore
                   ? scorePeriod.Home
                   : "-"} */}
-                  {this.score.ScorePeriod[2].ScorePeriodValue === ScorePeriodValue.ThirdSetScore ? this.score.ScorePeriod[2].Home : '-'}
+                {this.score.ScorePeriod[2].ScorePeriodValue ===
+                ScorePeriodValue.ThirdSetScore
+                  ? this.score.ScorePeriod[2].Home
+                  : "-"}
               </span>
               <span class={`setScore set3  B text-center`}>
                 {/* {scorePeriod.ScorePeriodValue === ScorePeriodValue.ThirdSetScore
                   ? scorePeriod.Away
                   : "-"} */}
-                  {this.score.ScorePeriod[2].ScorePeriodValue === ScorePeriodValue.ThirdSetScore ? this.score.ScorePeriod[2].Away : '-'}
+                {this.score.ScorePeriod[2].ScorePeriodValue ===
+                ScorePeriodValue.ThirdSetScore
+                  ? this.score.ScorePeriod[2].Away
+                  : "-"}
               </span>
 
               <span class={`setScore set4 A text-center`}>
@@ -82,14 +100,20 @@ export class ScoreBoard {
                 ScorePeriodValue.FourthSetScore
                   ? scorePeriod.Home
                   : "-"} */}
-                   {this.score.ScorePeriod[3].ScorePeriodValue === ScorePeriodValue.FourthSetScore ? this.score.ScorePeriod[3].Home : '-'}
+                {this.score.ScorePeriod[3].ScorePeriodValue ===
+                ScorePeriodValue.FourthSetScore
+                  ? this.score.ScorePeriod[3].Home
+                  : "-"}
               </span>
               <span class={`setScore set4  B text-center`}>
                 {/* {scorePeriod.ScorePeriodValue ===
                 ScorePeriodValue.FourthSetScore
                   ? scorePeriod.Away
                   : "-"} */}
-                   {this.score.ScorePeriod[3].ScorePeriodValue === ScorePeriodValue.FourthSetScore ? this.score.ScorePeriod[3].Away : '-'}
+                {this.score.ScorePeriod[3].ScorePeriodValue ===
+                ScorePeriodValue.FourthSetScore
+                  ? this.score.ScorePeriod[3].Away
+                  : "-"}
               </span>
 
               <span class={`setScore sets A } text-center `}>
