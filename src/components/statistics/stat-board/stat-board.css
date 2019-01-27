@@ -1,0 +1,31 @@
+.stat-ball{
+  background-image: url('https://res.cloudinary.com/dezalma3v/image/upload/v1547318794/stat-poit-track.png');
+  background-repeat:no-repeat;
+  background-size:contain; 
+  background-position:center;
+  left: 100px;
+  top: 401px;
+  width: 1.4375em;
+  height: 1.4375em;
+  position: absolute;
+  margin: -8px 0 0 -8px;
+  transform: rotateY(-60deg);
+  z-index: 2;
+  border-radius: 50%;
+  object-fit: contain;
+  background-blend-mode: soft-light;
+}
+.stat-field{
+  left: 9%;
+  width: 80vw;
+  height: 56vh;
+  top: 27%;
+  position: absolute;
+}
+
+.stat-pathBall{
+  left: 5%;
+  width: 41vw;
+  top: 36%;
+  position: absolute;
+}

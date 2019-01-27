@@ -57,7 +57,7 @@
 
 .setScore {
   position: absolute;
-  left: 2%;
+  /* left: 2%; */
   width: 1.4em !important;
   height: 1.5em;
   object-fit: contain;
@@ -79,15 +79,37 @@
 }
 
 .setScore.set2 {
-  left: 11.063em !important;
+  left: 11em !important;
 }
 
 .setScore.set3 {
-  left: 12.688em !important;
+  left: 12.5em !important;
 }
 
 .setScore.set4 {
-  left: 14.313em !important;
+  left: 14em !important;
+}
+.setScore.set5 {
+  left: 15.5em !important;
+}
+
+.title.set1 {
+  left: 14.438em !important;
+}
+
+.title.set2 {
+  left: 16.80em !important;
+}
+
+.title.set3 {
+  left: 19em !important;
+}
+
+.title.set4 {
+  left: 21.313em !important;
+}
+.title.set5 {
+  left: 23.5em !important;
 }
 
 .A {
@@ -101,17 +123,18 @@
 
 
 .sets {
-  left: 256px !important;
+  left: 267px !important;
 }
 
-.game {
+/* .game {
   text-align: center;
   left: 290px !important;
 
-}
+} */
 
 .point {
-  left: 325px !important;
+  text-align: center;
+  left: 301px !important;
 }
 
 .line {

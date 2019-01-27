@@ -6,8 +6,8 @@ import { score, ScorePeriodValue } from "./interfaces";
   styleUrl: "score-board.css"
 })
 export class ScoreBoard {
-  @Prop() playerA: string = "R. Federe";
-  @Prop() playerB: string = "N. Djokovic";
+  @Prop() playerA: string = "Home";
+  @Prop() playerB: string = "Away";
   @Prop() score: score;
   @Prop() liveScore: score;
   @Prop() open: boolean;
@@ -30,12 +30,18 @@ export class ScoreBoard {
           <span class="playerText playerName A">{this.playerA}</span>
           <span class="playerText playerName B">{this.playerB}</span>
         </div>
-
-        <span class="title previusSets">Previus Sets</span>
+{console.log(this.score)};
+}
+        {/* <span class="title previusSets">Previus Sets</span> */}
 
         <span class="title sets ">Sets</span>
-        <span class="title game ">Game</span>
-        <span class="title point">Point</span>
+        {/* <span class="title game ">Game</span> */}
+        <span class="title point">Points</span>
+        <span class="title set1">1st</span>
+        <span class="title set2">2st</span>
+        <span class="title set3">3st</span>
+        <span class="title set4">4st</span>
+        <span class="title set5">5st</span>
 
         {this.score.ScorePeriod.map(scorePeriod => {
           return (
@@ -115,6 +121,20 @@ export class ScoreBoard {
                   ? this.score.ScorePeriod[3].Away
                   : "-"}
               </span>
+              <span class={`setScore set5 A text-center`}>
+               
+                {this.score.ScorePeriod[4]&&this.score.ScorePeriod[4].ScorePeriodValue ===
+                ScorePeriodValue.FifthSetScore
+                  ? this.score.ScorePeriod[4].Home
+                  : "-"}
+              </span>
+              <span class={`setScore set5  B text-center`}>
+              
+                {this.score.ScorePeriod[4]&&this.score.ScorePeriod[4].ScorePeriodValue ===
+                ScorePeriodValue.FifthSetScore
+                  ? this.score.ScorePeriod[4].Away
+                  : "-"}
+              </span>
 
               <span class={`setScore sets A } text-center `}>
                 {parseInt(this.score.CurrentScore.Home) > 0
@@ -127,7 +147,7 @@ export class ScoreBoard {
                   : "0"}
               </span>
 
-              <span class={`setScore game A text-center`}>
+              {/* <span class={`setScore game A text-center`}>
                 {scorePeriod.ScorePeriodValue === ScorePeriodValue.GameScore
                   ? parseInt(scorePeriod.Home) >= 10
                     ? scorePeriod.Home
@@ -146,7 +166,7 @@ export class ScoreBoard {
                     ? "0" + scorePeriod.Away
                     : "0"
                   : "0"}
-              </span>
+              </span> */}
 
               <span class={`setScore point A text-center`}>
                 {scorePeriod.ScorePeriodValue === ScorePeriodValue.FullTime

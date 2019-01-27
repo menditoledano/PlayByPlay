@@ -14,7 +14,7 @@ export class TrackBall {
 
   render() {
     return (
-      <div class="ball" style={{ left: `${this.position.left*100}%`, top: `${this.position.top*100}%`, opacity: this.opacity ? `${this.opacity}` : '1' }} >
+      <div class="track-ball" style={{ left: `${this.position.left*100}%`, top: `${this.position.top*100}%`, opacity: this.opacity ? `${this.opacity}` : '1' }} >
       </div>
     );
   }

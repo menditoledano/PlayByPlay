@@ -46,6 +46,7 @@ export enum StatisticType {
   LongestPointStreak = 6,
   NetShotPlacement = 7,
   BaselineShotPlacement = 8,
+  MidlineShotPlacement = 9,
   Ace = 20,
   DoubleFaults = 21,
   Win1stServe = 34,

@@ -1,6 +1,19 @@
-.ball {
+.track-ball {
   position: absolute;
   transform: rotateY(-60deg);
   z-index: 2;
   background-color:rgb(182, 213, 119);
+  width: 0.6em;
+  height: 0.6em;
+}
+
+@media only screen and (max-width: 600px) {
+  .track-ball {
+    position: absolute;
+    width: 0.4em;
+    height: 0.4em;
+    object-fit: contain;
+    background-blend-mode: soft-light;
+    /* background-image: linear-gradient(to bottom, #000000, #000000); */
+  }
 }

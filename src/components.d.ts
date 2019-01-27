@@ -172,6 +172,21 @@ export namespace Components {
     };
   }
 
+  interface PbpStatBoard {
+    'open': boolean;
+    'position': {
+      top: number
+      left: number
+    };
+  }
+  interface PbpStatBoardAttributes extends StencilHTMLAttributes {
+    'open'?: boolean;
+    'position'?: {
+      top: number
+      left: number
+    };
+  }
+
   interface PbpStatistics {
     'open': boolean;
     'statistics': any;
@@ -227,6 +242,7 @@ declare global {
     'PbpScoreBoard': Components.PbpScoreBoard;
     'PbpLastPointsStat': Components.PbpLastPointsStat;
     'PbpShotPlacementStat': Components.PbpShotPlacementStat;
+    'PbpStatBoard': Components.PbpStatBoard;
     'PbpStatistics': Components.PbpStatistics;
     'PbpTrackBall': Components.PbpTrackBall;
     'PbpTrackPlayer': Components.PbpTrackPlayer;
@@ -244,6 +260,7 @@ declare global {
     'pbp-score-board': Components.PbpScoreBoardAttributes;
     'pbp-last-points-stat': Components.PbpLastPointsStatAttributes;
     'pbp-shot-placement-stat': Components.PbpShotPlacementStatAttributes;
+    'pbp-stat-board': Components.PbpStatBoardAttributes;
     'pbp-statistics': Components.PbpStatisticsAttributes;
     'pbp-track-ball': Components.PbpTrackBallAttributes;
     'pbp-track-player': Components.PbpTrackPlayerAttributes;
@@ -316,6 +333,12 @@ declare global {
     new (): HTMLPbpShotPlacementStatElement;
   };
 
+  interface HTMLPbpStatBoardElement extends Components.PbpStatBoard, HTMLStencilElement {}
+  var HTMLPbpStatBoardElement: {
+    prototype: HTMLPbpStatBoardElement;
+    new (): HTMLPbpStatBoardElement;
+  };
+
   interface HTMLPbpStatisticsElement extends Components.PbpStatistics, HTMLStencilElement {}
   var HTMLPbpStatisticsElement: {
     prototype: HTMLPbpStatisticsElement;
@@ -346,6 +369,7 @@ declare global {
     'pbp-score-board': HTMLPbpScoreBoardElement
     'pbp-last-points-stat': HTMLPbpLastPointsStatElement
     'pbp-shot-placement-stat': HTMLPbpShotPlacementStatElement
+    'pbp-stat-board': HTMLPbpStatBoardElement
     'pbp-statistics': HTMLPbpStatisticsElement
     'pbp-track-ball': HTMLPbpTrackBallElement
     'pbp-track-player': HTMLPbpTrackPlayerElement
@@ -363,6 +387,7 @@ declare global {
     'pbp-score-board': HTMLPbpScoreBoardElement;
     'pbp-last-points-stat': HTMLPbpLastPointsStatElement;
     'pbp-shot-placement-stat': HTMLPbpShotPlacementStatElement;
+    'pbp-stat-board': HTMLPbpStatBoardElement;
     'pbp-statistics': HTMLPbpStatisticsElement;
     'pbp-track-ball': HTMLPbpTrackBallElement;
     'pbp-track-player': HTMLPbpTrackPlayerElement;

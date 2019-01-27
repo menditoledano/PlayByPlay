@@ -1,12 +1,14 @@
 import { Component, Prop, Element } from "@stencil/core";
 import KalmanFilter from 'kalmanjs';
+// import paper from '../../../node_modules/paper';
 @Component({
   tag: "pbp-player",
   styleUrl: "player.css"
 })
 export class Player {
   @Element() private playerElement: HTMLElement;
-   kf = new KalmanFilter();
+   kf = new KalmanFilter({ R: 1, Q: 10, C:1 });
+  //  paper =new paper();
    @Prop() playerType: any ;
 
   @Prop() position: {
@@ -18,7 +20,12 @@ export class Player {
   @Prop() view: "bird" | "camera" | "side";
   
   ComponentWillLoad(){
-   
+  // console.log( this.position.currLeft);
+  // console.log(this.kf.filter(this.position.currLeft));
+  // console.log('...');
+  
+  
+  
     
   }
   render() {
@@ -36,12 +43,14 @@ export class Player {
           // transform: `translate(${this.position.top * 100}%,${this.position.left * 100}%)`
           top: `${this.position.currTop * 100}%`,
           left: `${this.position.currLeft * 100}%`
+          
 
           // top: `${this.kf.filter(this.position.currTop) * 100}%`,
           // left: `${this.kf.filter(this.position.currLeft) * 100}%`
           
           // transform: rotate3d(`${this.position.top * 100}%`,`${this.position.left * 100}%`)
         }}
+        
       >
         <img
           src=" https://res.cloudinary.com/dezalma3v/image/upload/v1546788800/palyer-3-d.png"

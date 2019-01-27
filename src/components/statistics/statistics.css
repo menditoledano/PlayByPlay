@@ -27,10 +27,10 @@
   position: absolute;
   top: 14vh;
   left: 35vw;
-  letter-spacing: 0.8px!important;
+  letter-spacing: 0.8px !important;
   font-size: 2vw;
-  font-stretch: normal!important;
-  font-family: Montserrat!important;
+  font-stretch: normal !important;
+  font-family: Montserrat !important;
   color: #ffffff;
 }
 
@@ -61,4 +61,30 @@
   font-size: 2vw;
   font-weight: 100;
   color: #e8dc49;
+}
+
+
+
+.carousel {
+  position: unset !important;
+}
+
+.carousel-item {
+  position: unset !important;
+
+}
+
+.carousel-inner {
+  position: unset !important;
+}
+
+.carousel-indicators>li {
+  border-radius: 50%;
+  width: 5px !important;
+  height: 5px !important;
+  border: 1px solid #fff !important;
+  background-color: transparent!important;
+}
+.carousel-indicators .active {
+background-color: #fff!important;
 }

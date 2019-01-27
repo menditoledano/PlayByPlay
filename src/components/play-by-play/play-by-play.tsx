@@ -1,5 +1,5 @@
 import { Component, Prop, State } from "@stencil/core";
-// import KalmanFilter from 'kalmanjs';
+import KalmanFilter from "kalmanjs";
 import { hubConnection } from "signalr-no-jquery";
 import {
   Incident,
@@ -11,8 +11,7 @@ import {
   score,
   LiveScore,
   lsPosition,
-  IncidentLabel,
-  ElementsLabel
+  IncidentLabel
 } from "./interfaces";
 const livScoreMock: LiveScore = {
   Scoreboard: {
@@ -138,7 +137,7 @@ export class PlayByPlay {
   @State() reconnectTimeout: number = 10;
   @State() jsonViewerOpen: boolean = false;
   @State() error: boolean = false;
-  @State() showStatistics: boolean = true;
+  @State() showStatistics: boolean = false;
   @State() statisticsData: any;
   @State() message: {
     date: Date;
@@ -151,9 +150,16 @@ export class PlayByPlay {
   @State() lVisionMode: boolean = true;
   @State() liveScoreMode: boolean = false;
   @State() liveScoreData: LiveScore;
+  @State() kf: any;
 
   componentWillLoad() {
-    // const kf = new KalmanFilter();
+    this.kf = new KalmanFilter({ R: 0.001, Q: 2 });
+    // console.log(this.kf.filter(1));
+    // console.log(this.kf.filter(2));
+    // console.log(this.kf.filter(3));
+    // console.log(this.kf.filter(4));
+    // console.log(this.kf.filter(2));
+
     this.liveScoreData = livScoreMock;
     this.view = "camera";
     this.previousBalls = [];
@@ -173,7 +179,7 @@ export class PlayByPlay {
       frame.Incidents.length &&
         that.updateIncident(frame.Incidents[0], frame.Timestamp);
       // console.log(frame.Incidents);
-      
+
       that.updateStatisticsStatus(frame.Incidents);
     });
 
@@ -296,32 +302,29 @@ export class PlayByPlay {
     // console.log("on updateStatisticsStatus");
     incident.map(currIncident => {
       if (currIncident.Label === IncidentLabel.TennisPointFinished) {
-        console.log("TennisPointFinished ...");
+        // console.log("TennisPointFinished ...");
         // console.log(incident.Label);
-        this.showStatistics = true;
-        setTimeout(()=>{}, 15000);
+        this.showStatistics = false;
+
+        setTimeout(() => this.showStatistics=false, 15000);
+        // this.showStatistics = false;
         //tbd send to the statistics what to show
       } else if (currIncident.Label === IncidentLabel.TennisGameFinished) {
-        this.showStatistics = true;
-        setTimeout(()=>{}, 15000);
+        // this.showStatistics = false;
+        setTimeout(() => {}, 10000);
       } else if (currIncident.Label === IncidentLabel.TennisSetFinished) {
-        this.showStatistics = true;
-        setTimeout(()=>{}, 15000);
+        // this.showStatistics = false;
+        setTimeout(() => {}, 15000);
       } else if (currIncident.Label === IncidentLabel.TennisMatchFinished) {
-        this.showStatistics = true;
-        setTimeout(()=>{}, 15000);
+        // this.showStatistics = false;
+        setTimeout(() => {}, 15000);
       }
-     
     });
-   
-
-   
   };
 
   updateStatisticsData = statistics => {
     this.statisticsData = statistics;
-    console.log(statistics);
-    
+    // console.log(statistics);
   };
   updateElements = elements => {
     // this.liveScoreMode = true;
@@ -336,7 +339,7 @@ export class PlayByPlay {
 
     if (!!previousBall) {
       this.previousBalls.push(previousBall);
-      if (this.previousBalls.length > 0) {
+      if (this.previousBalls.length > 2) {
         this.previousBalls.shift();
       }
     }
@@ -388,21 +391,7 @@ export class PlayByPlay {
             <pbp-field view={this.view}>
               {this.elements &&
                 this.elements.map(element => {
-                  return element.Type === Elements.Player &&
-                    element.Label === ElementsLabel.HomePlayer ? (
-                    <pbp-player
-                      // id='pbpPlayer'
-                      view={this.view}
-                      position={{
-                        prevTop: this.playerTrack[this.playerTrack.length - 1]
-                          .Location.X,
-                        prevLeft: this.playerTrack[this.playerTrack.length - 1]
-                          .Location.Y,
-                        currTop: element.Location.X,
-                        currLeft: element.Location.Y
-                      }}
-                    />
-                  ) : element.Type === Elements.Player ? (
+                  return element.Type === Elements.Player ? (
                     <pbp-player
                       // id='pbpPlayer'
                       view={this.view}
@@ -431,7 +420,7 @@ export class PlayByPlay {
                   .length &&
                 this.previousBalls &&
                 this.previousBalls.map((ball, i) => (
-                  <pbp-track-ball
+                  <pbp-ball
                     opacity={i === 0 ? 0.1 : 0.3}
                     position={{
                       top: ball.Location.X,
