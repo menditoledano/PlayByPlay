@@ -19,6 +19,7 @@ export class ScoreBoard {
   };
   render() {
     return (
+      
       <div class="">
         <div class="">
           <img
@@ -30,7 +31,7 @@ export class ScoreBoard {
           <span class="playerText playerName A">{this.playerA}</span>
           <span class="playerText playerName B">{this.playerB}</span>
         </div>
-{console.log(this.score)};
+
 }
         {/* <span class="title previusSets">Previus Sets</span> */}
 
@@ -48,14 +49,14 @@ export class ScoreBoard {
             <div class="row">
               <span class={`setScore set1 A text-center`}>
                 {/* {scorePeriod.ScorePeriodValue == 1 ? scorePeriod.Home : "-"} */}
-                {this.score.ScorePeriod[0].ScorePeriodValue ===
+                {this.score.ScorePeriod[0]&&this.score.ScorePeriod[0].ScorePeriodValue ===
                 ScorePeriodValue.FirstSetscore
                   ? this.score.ScorePeriod[0].Home
                   : "-"}
               </span>
               <span class={`setScore set1  B text-center`}>
                 {/* {scorePeriod.ScorePeriodValue == 1 ? scorePeriod.Away : "-"} */}
-                {this.score.ScorePeriod[0].ScorePeriodValue ===
+                {this.score.ScorePeriod[0]&&this.score.ScorePeriod[0].ScorePeriodValue ===
                 ScorePeriodValue.FirstSetscore
                   ? this.score.ScorePeriod[0].Away
                   : "-"}
@@ -66,7 +67,7 @@ export class ScoreBoard {
                 ScorePeriodValue.SecondSetScore
                   ? scorePeriod.Home
                   : "-"} */}
-                {this.score.ScorePeriod[1].ScorePeriodValue ===
+                {this.score.ScorePeriod[1]&&this.score.ScorePeriod[1].ScorePeriodValue ===
                 ScorePeriodValue.SecondSetScore
                   ? this.score.ScorePeriod[1].Home
                   : "-"}
@@ -76,7 +77,7 @@ export class ScoreBoard {
                 ScorePeriodValue.SecondSetScore
                   ? scorePeriod.Away
                   : "-"} */}
-                {this.score.ScorePeriod[1].ScorePeriodValue ===
+                {this.score.ScorePeriod[1]&&this.score.ScorePeriod[1].ScorePeriodValue ===
                 ScorePeriodValue.SecondSetScore
                   ? this.score.ScorePeriod[1].Away
                   : "-"}
@@ -86,7 +87,7 @@ export class ScoreBoard {
                 {/* {scorePeriod.ScorePeriodValue === ScorePeriodValue.ThirdSetScore
                   ? scorePeriod.Home
                   : "-"} */}
-                {this.score.ScorePeriod[2].ScorePeriodValue ===
+                {this.score.ScorePeriod[2]&&this.score.ScorePeriod[2].ScorePeriodValue ===
                 ScorePeriodValue.ThirdSetScore
                   ? this.score.ScorePeriod[2].Home
                   : "-"}
@@ -95,7 +96,7 @@ export class ScoreBoard {
                 {/* {scorePeriod.ScorePeriodValue === ScorePeriodValue.ThirdSetScore
                   ? scorePeriod.Away
                   : "-"} */}
-                {this.score.ScorePeriod[2].ScorePeriodValue ===
+                {this.score.ScorePeriod[2]&&this.score.ScorePeriod[2].ScorePeriodValue ===
                 ScorePeriodValue.ThirdSetScore
                   ? this.score.ScorePeriod[2].Away
                   : "-"}
@@ -106,7 +107,7 @@ export class ScoreBoard {
                 ScorePeriodValue.FourthSetScore
                   ? scorePeriod.Home
                   : "-"} */}
-                {this.score.ScorePeriod[3].ScorePeriodValue ===
+                {this.score.ScorePeriod[3]&&this.score.ScorePeriod[3].ScorePeriodValue ===
                 ScorePeriodValue.FourthSetScore
                   ? this.score.ScorePeriod[3].Home
                   : "-"}
@@ -116,7 +117,7 @@ export class ScoreBoard {
                 ScorePeriodValue.FourthSetScore
                   ? scorePeriod.Away
                   : "-"} */}
-                {this.score.ScorePeriod[3].ScorePeriodValue ===
+                {this.score.ScorePeriod[3]&&this.score.ScorePeriod[3].ScorePeriodValue ===
                 ScorePeriodValue.FourthSetScore
                   ? this.score.ScorePeriod[3].Away
                   : "-"}

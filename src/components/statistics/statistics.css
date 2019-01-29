@@ -9,7 +9,7 @@
 .playersName {
   position: absolute;
   top: 7%;
-  left: 35vw !important;
+  left: 40% !important;
   -o-object-fit: contain;
   object-fit: contain;
   font-family: Montserrat;

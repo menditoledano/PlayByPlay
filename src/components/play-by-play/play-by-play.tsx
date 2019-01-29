@@ -178,7 +178,7 @@ export class PlayByPlay {
 
       frame.Incidents.length &&
         that.updateIncident(frame.Incidents[0], frame.Timestamp);
-      // console.log(frame.Incidents);
+      console.log(frame.Incidents);
 
       that.updateStatisticsStatus(frame.Incidents);
     });
@@ -214,11 +214,15 @@ export class PlayByPlay {
       that.updateStatisticsData(statistics);
     });
 
-    this.hubProxy.on("stateMessageReceived", function(frame: Frame) {
+    this.hubProxy.on("stateMessageReceived", function(frame: any) {
       // console.log('stateMessageReceived');
       // console.log(frame);
 
       that.updateStateMessage(frame);
+      console.log('stateMessageReceived');
+      
+      console.log(frame);
+      
     });
 
     this.start();
@@ -304,9 +308,8 @@ export class PlayByPlay {
       if (currIncident.Label === IncidentLabel.TennisPointFinished) {
         // console.log("TennisPointFinished ...");
         // console.log(incident.Label);
-        this.showStatistics = false;
-
-        setTimeout(() => this.showStatistics=false, 15000);
+        // this.showStatistics = false;
+        // setTimeout(() => this.showStatistics=false, 15000);
         // this.showStatistics = false;
         //tbd send to the statistics what to show
       } else if (currIncident.Label === IncidentLabel.TennisGameFinished) {
@@ -380,7 +383,7 @@ export class PlayByPlay {
               <pbp-score-board
                 score={this.score}
                 message={this.message}
-                class={""}
+                // class={"d-none"}
               />
             )}
             {/* <pbp-angle-control jsonOpen={this.jsonViewerOpen}  view={this.view} onViewChange={this.onViewChange} class="d-none"/> */}

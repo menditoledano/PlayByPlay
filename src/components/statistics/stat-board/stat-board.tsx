@@ -21,12 +21,17 @@ export class lastPointsStat {
   render() {
     return (
     <div>  
-       <img src="https://res.cloudinary.com/dezalma3v/image/upload/v1547314994/rectangle.png"class=" stat-rectangle "></img>
-      <span class="stat-title text-center">Last point players tracking</span>
-     <img src="https://res.cloudinary.com/dezalma3v/image/upload/v1547204069/statField.png"class="img-fluid stat-field"></img>
+      
+       <img src="https://res.cloudinary.com/dezalma3v/image/upload/v1547314994/rectangle.png"class=" graph-stat-rectangle "></img>
+      <span class="stat-title title-lps text-center">Longest point Streak</span>
+      <img src="https://res.cloudinary.com/dezalma3v/image/upload/v1548622737/graph-stat.png"class=" graph-stat "></img>
+      <img src="https://res.cloudinary.com/dezalma3v/image/upload/v1548698782/small-rectangle-stat.png"class=" small-stat-rectangle ace"></img>
+      <img src="https://res.cloudinary.com/dezalma3v/image/upload/v1548698782/small-rectangle-stat.png"class=" small-stat-rectangle doubleFault"></img>
+      <img src="https://res.cloudinary.com/dezalma3v/image/upload/v1548698782/small-rectangle-stat.png"class=" small-stat-rectangle breakPoint"></img>
+      {/* <img src="https://res.cloudinary.com/dezalma3v/image/upload/v1548698782/small-rectangle-stat.png"class=" small-stat-rectangle distanceCovered"></img> */}
      
-     <img src="https://res.cloudinary.com/dezalma3v/image/upload/v1547375535/group.png"class="img-fluid stat-pathBall"></img>
-     {/* <div class="stat-ball" style= {{ left: `110`, top: `400`}}></div> */}
+     
+    
     </div>
     );
   }

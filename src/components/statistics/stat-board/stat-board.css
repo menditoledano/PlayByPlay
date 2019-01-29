@@ -1,31 +1,46 @@
-.stat-ball{
-  background-image: url('https://res.cloudinary.com/dezalma3v/image/upload/v1547318794/stat-poit-track.png');
-  background-repeat:no-repeat;
-  background-size:contain; 
-  background-position:center;
-  left: 100px;
-  top: 401px;
-  width: 1.4375em;
-  height: 1.4375em;
+.graph-stat-rectangle {
+  width: 89vw;
+  top: 13%;
+  left: 5%;
+  height: 53vh;
   position: absolute;
-  margin: -8px 0 0 -8px;
-  transform: rotateY(-60deg);
-  z-index: 2;
-  border-radius: 50%;
-  object-fit: contain;
-  background-blend-mode: soft-light;
+  mix-blend-mode: screen !important;
 }
-.stat-field{
-  left: 9%;
-  width: 80vw;
-  height: 56vh;
-  top: 27%;
+.graph-stat{
+  width: 78vw;
+  top: 22%;
+  left: 15%;
+  height: 37vh;
   position: absolute;
+  mix-blend-mode: screen !important;
+}
+.title-lps{
+  position: absolute;
+  top: 14vh;
+  left: 38%!important;
+  letter-spacing: 0.8px !important;
+  font-size: 2vw;
+  /* font-stretch: normal !important; */
+  font-family: Montserrat !important;
+  color: #ffffff;
 }
 
-.stat-pathBall{
-  left: 5%;
-  width: 41vw;
-  top: 36%;
+.small-stat-rectangle{
+  width: 24vw;
+  top: 68%;
+  height: 25vh;
   position: absolute;
+  mix-blend-mode: screen !important;
+}
+.small-stat-rectangle.ace{
+  left: 5%;
+}
+.small-stat-rectangle.doubleFault{
+  left: 15%;
+}
+.small-stat-rectangle.breakPoint{
+  left: 25%;
+}
+.small-stat-rectangle.distanceCovered{
+  left: 35%;
 }
