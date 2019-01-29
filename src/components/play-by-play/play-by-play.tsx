@@ -383,7 +383,7 @@ export class PlayByPlay {
               <pbp-score-board
                 score={this.score}
                 message={this.message}
-                // class={"d-none"}
+                class={"d-none"}
               />
             )}
             {/* <pbp-angle-control jsonOpen={this.jsonViewerOpen}  view={this.view} onViewChange={this.onViewChange} class="d-none"/> */}
