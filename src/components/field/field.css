@@ -43,7 +43,7 @@
       transition: all ease-in-out .2s;
       width: 83vw;
       margin: auto;
-      height: 65vh;
+      height: 60vh;
 }
 
 .field-wrapper.json-open .field:after {
