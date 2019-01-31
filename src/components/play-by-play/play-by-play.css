@@ -15,7 +15,7 @@
       height: 100vh;
       display: grid;
       grid-template-columns: auto;
-      grid-template-rows:5% 7%;
+      grid-template-rows:12% 7%;
       position: relative;
       overflow: hidden;
       background-repeat: no-repeat;
@@ -23,13 +23,13 @@
  
 }
 .wrapper.clay {
-  background-image:url("https://res.cloudinary.com/dezalma3v/image/upload/v1547764510/cameraView_clay_bigMargins_1024x768.jpg"); 
+  background-image:url("https://res.cloudinary.com/dezalma3v/image/upload/v1548273484/cameraView_clay_bigMargins_1024x768.jpg"); 
 }
 .wrapper.hard {
   background-image:url("https://res.cloudinary.com/dezalma3v/image/upload/v1548689777/cameraView_hardCourt_bigMargins_1024x768.jpg"); 
 }
 .wrapper.grass {
-  background-image:url("https://res.cloudinary.com/dezalma3v/image/upload/v1547764513/cameraView_grass_bigMargins_1024x768.jpg"); 
+  background-image:url("https://res.cloudinary.com/dezalma3v/image/upload/v1548273474/cameraView_grass_bigMargins_1024x768.jpg"); 
 }
 
 
@@ -38,7 +38,7 @@
   top: 0;
   right: 0;
   left: 0;
-  bottom: 80px;
+  bottom: 0;
   background: rgba(206, 206, 206, 0.8);
   display: flex;
   align-items: center;
@@ -50,5 +50,52 @@
   right: 150px;
 }
 
+.dom_overlay_container{
+  pointer-events:none; overflow:hidden; width:393px; 
+  /* height:323px;  */
+  position: absolute; 
+  left: 0px; 
+  top: 0px;
+  display: block;
+}
+.canvas{
+  transform: rotate(90deg) rotateX(-60deg);
+  margin: -1.375em 0 0 0.438em; 
+  pointer-events:none; overflow:hidden; width:10vw; 
+  /* height:323px;  */
+  position: absolute;
+   left: 0px; 
+   top: 0px; 
+   display: block;
+}
+.animation_container{
+  /* background-color:rgba(255, 255, 255, 1.00); width:393px; */
+   height:30vh;
+}
 
+.errorMessage{
+  background-image: url('https://res.cloudinary.com/dezalma3v/image/upload/v1548952582/errorMessage.png');
+  position: absolute;
+  width: 90vw;
+  height: 78vh;
+  left: 5vw;
+  top: 40vh;
+  object-fit: contain;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-blend-mode: soft-light;
+}
 
+.errorText{
+  position: absolute;
+  font-family: Montserrat;
+  font-size: 127%;
+  font-weight: bolder;
+  font-style: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #e8dc49;
+  display: block;
+  width: 100%;
+  top: 3vw;
+}

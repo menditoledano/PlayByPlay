@@ -31,7 +31,9 @@ export interface Incident {
 export enum States {
   StreamStarted = 0,
   StreamStopped = 1,
-  Fade = 2
+  Fade = 2,
+  FallBack = 3,
+  Freeze = 4
 }
 
 export enum Elements {
@@ -76,14 +78,16 @@ export enum  IncidentLabel {
   TennisPointFinished = 10,
   TennisGameFinished = 11,
   TennisSetFinished = 12,
-  TennisMatchFinished = 13
+  TennisMatchFinished = 13,
+  TennisPointStreak = 14
 }
 
 export enum State {
   StreamStarted = 1,
   StreamStopped = 2,
   Fade = 3,
-  Fallback = 4
+  Fallback = 4,
+  Freeze = 5
 }
 
 //
@@ -175,6 +179,17 @@ export interface score {
       homePlayer = 1,
       awayPlayer = 2,
 
+    }
+
+    export enum  ScorePeriodValue {
+  	
+      FirstSetscore = 1, 	
+      SecondSetScore = 2,		
+      ThirdSetScore   = 3,
+      FourthSetScore = 4,
+      FifthSetScore = 5,
+      GameScore = 60,
+      FullTime = 100
     }
 
     // export enum lsStatusDescription {  	

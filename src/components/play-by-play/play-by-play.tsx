@@ -1,5 +1,6 @@
 import { Component, Prop, State } from "@stencil/core";
 import KalmanFilter from "kalmanjs";
+
 import { hubConnection } from "signalr-no-jquery";
 import {
   Incident,
@@ -133,6 +134,7 @@ export class PlayByPlay {
   @State() connection;
   @State() hubProxy;
   @State() elements: Element[];
+  @State() prevElements: any[];
   @State() reconnectAttemp: number = 0;
   @State() reconnectTimeout: number = 10;
   @State() jsonViewerOpen: boolean = false;
@@ -151,15 +153,14 @@ export class PlayByPlay {
   @State() liveScoreMode: boolean = false;
   @State() liveScoreData: LiveScore;
   @State() kf: any;
-
+  @State() showMessageBoard: boolean = false;
+  @State() scoreToShow: string;
+  @State() homePlayer: string;
+  @State() awayPlayer: string;
+  @State() delayForElements: boolean = true;
+  @State() freezeElements: boolean = false;
   componentWillLoad() {
     this.kf = new KalmanFilter({ R: 0.001, Q: 2 });
-    // console.log(this.kf.filter(1));
-    // console.log(this.kf.filter(2));
-    // console.log(this.kf.filter(3));
-    // console.log(this.kf.filter(4));
-    // console.log(this.kf.filter(2));
-
     this.liveScoreData = livScoreMock;
     this.view = "camera";
     this.previousBalls = [];
@@ -170,6 +171,20 @@ export class PlayByPlay {
     this.hubProxy = this.connection.createHubProxy("playByPlayHub");
     const that = this;
 
+    this.hubProxy.on("fixtureDataReceived", function(fixtureData: any) {
+      console.log("fixtureData");
+
+      console.log(fixtureData);
+      that.homePlayer = fixtureData.Body.Events[0].Fixture.Participants[0].Name;
+      that.awayPlayer = fixtureData.Body.Events[0].Fixture.Participants[1].Name;
+      console.log(that.homePlayer + that.awayPlayer);
+
+      fixtureData.Body.Events[0].Fixture.FixtureExtraData[1].Value.length
+        ? (that.fieldView =
+            fixtureData.Body.Events[0].Fixture.FixtureExtraData[1].Value)
+        : "hard";
+    });
+
     this.hubProxy.on("pbpFrameReceived", function(frame: Frame) {
       that.updateElements(frame.Elements);
       // console.log(frame);
@@ -178,32 +193,22 @@ export class PlayByPlay {
 
       frame.Incidents.length &&
         that.updateIncident(frame.Incidents[0], frame.Timestamp);
-      console.log(frame.Incidents);
+      // console.log("frame.Incidents");
+      // console.log(frame.Incidents);
 
       that.updateStatisticsStatus(frame.Incidents);
     });
 
-    this.hubProxy.on("livescoreReceived", function(liveScoreData: LiveScore) {
-      console.log(liveScoreData);
+    this.hubProxy.on("livescoreReceived", function(liveScoreData: any) {
+      console.log("liveScoreData");
+      console.log(liveScoreData.Body.Events[0].Livescore);
       that.updateLiveScoreData(liveScoreData);
-
-      //TODO frame
     });
-
-    //Delta of statistics
-    // this.hubProxy.on("updateFixtureStatistic", function(frame: Frame) {
-    //   //tbd sould be fixtureStatistics model
-    //   // console.log(frame);
-    //   // that.showStatistics = true;
-    //   // console.log(frame);
-    //   frame = frame;
-    // });
-
     this.hubProxy.on("statisticsMessageReceived", function(statistics: any) {
       statistics = statistics;
-      console.log("statisticsMessageReceived");
+      // console.log("statisticsMessageReceived");
 
-      console.log(statistics);
+      // console.log(statistics);
     });
 
     // snapshot
@@ -215,14 +220,7 @@ export class PlayByPlay {
     });
 
     this.hubProxy.on("stateMessageReceived", function(frame: any) {
-      // console.log('stateMessageReceived');
-      // console.log(frame);
-
       that.updateStateMessage(frame);
-      console.log('stateMessageReceived');
-      
-      console.log(frame);
-      
     });
 
     this.start();
@@ -240,14 +238,13 @@ export class PlayByPlay {
       })
       .fail(() => {
         this.error = true;
-        // this.ondisconnected();
+
         if (this.reconnectAttemp < 3) {
           this.reconnectAttemp++;
           this.updateErrorMessage();
           that.message = { date: new Date(), text: "Connecting" };
           setTimeout(that.start, this.reconnectTimeout * 1000);
         } else {
-          // this.onloaderror();
         }
       });
   };
@@ -274,7 +271,6 @@ export class PlayByPlay {
   };
 
   updateIncident = (incident: Incident, timestamp: Date) => {
-    // this.updateStatisticsStatus(incident);
     if (this.error) {
       return;
     }
@@ -284,57 +280,101 @@ export class PlayByPlay {
     };
   };
 
-  updateStateMessage = frame => {
-    if (frame.State === States.StreamStopped) {
+  updateStateMessage = state => {
+    console.log("state");
+
+    console.log(state);
+
+    if (state.State === States.StreamStopped) {
       this.error = false;
-      // this.showStatistics = false;
-    } else if (frame.State === States.StreamStarted) {
-      this.error = false;
-      // this.showStatistics = false;
-    } else if (frame.State === States.Fade) {
-      // this.showStatistics = false;
-      this.error = false;
+    } else if (state.State === States.StreamStarted) {
+      if (this.delayForElements) {
+        this.freezeElements = false;
+        this.error = false;
+        this.showStatistics = false;
+        this.showMessageBoard = false;
+      }
+    } else if (state.State === States.Fade) {
+      this.error = true;
+    } else if (state.State === States.FallBack) {
+      this.lVisionMode = false;
+      this.liveScoreMode = true;
+      console.log("transfer to livescore mode");
+    } else if (state.State === States.Freeze) {
+      this.freezeElements = true;
+      // this.error = true;
     }
+
     this.message = {
-      date: new Date(frame.Timestamp),
-      text: frame.Description,
-      type: frame.State === States.StreamStopped ? "ERROR" : "INFO"
+      date: new Date(state.Timestamp),
+      text: state.Description,
+      type: state.State === States.StreamStopped ? "ERROR" : "INFO"
     };
   };
 
   updateStatisticsStatus = incident => {
-    // console.log("on updateStatisticsStatus");
     incident.map(currIncident => {
-      if (currIncident.Label === IncidentLabel.TennisPointFinished) {
-        // console.log("TennisPointFinished ...");
-        // console.log(incident.Label);
-        // this.showStatistics = false;
-        // setTimeout(() => this.showStatistics=false, 15000);
-        // this.showStatistics = false;
-        //tbd send to the statistics what to show
-      } else if (currIncident.Label === IncidentLabel.TennisGameFinished) {
-        // this.showStatistics = false;
-        setTimeout(() => {}, 10000);
+      if (currIncident.Label === IncidentLabel.TennisMatchFinished) {
+        this.scoreToShow = "Match";
+        console.log("Match");
+        console.log(currIncident.Label);
+        this.delayForElements = false;
+        this.showMessageBoard = true;
+        setTimeout(() => {
+          this.showStatistics = true;
+        }, 1000);
+        setTimeout(() => {
+          this.delayForElements = true;
+        }, 7000);
       } else if (currIncident.Label === IncidentLabel.TennisSetFinished) {
-        // this.showStatistics = false;
-        setTimeout(() => {}, 15000);
-      } else if (currIncident.Label === IncidentLabel.TennisMatchFinished) {
-        // this.showStatistics = false;
-        setTimeout(() => {}, 15000);
+        this.scoreToShow = "Set";
+        console.log("set");
+        console.log(currIncident.Label);
+        this.delayForElements = false;
+        this.showMessageBoard = true;
+        setTimeout(() => {
+          this.showStatistics = true;
+        }, 1000);
+        setTimeout(() => {
+          this.delayForElements = true;
+        }, 7000);
+      } else if (currIncident.Label === IncidentLabel.TennisGameFinished) {
+        this.scoreToShow = "Game";
+        console.log("game");
+        console.log(currIncident.Label);
+        this.delayForElements = false;
+        this.showMessageBoard = true;
+        setTimeout(() => {
+          this.showStatistics = true;
+        }, 1000);
+        setTimeout(() => {
+          this.delayForElements = true;
+        }, 7000);
+      } else if (currIncident.Label === IncidentLabel.TennisPointFinished) {
+        this.scoreToShow = "Point";
+        console.log("TennisPointFinished");
+        console.log(currIncident.Label);
+        this.delayForElements = false;
+        this.showMessageBoard = true;
+        setTimeout(() => {
+          this.showStatistics = true;
+        }, 1300);
+        setTimeout(() => {
+          this.delayForElements = true;
+        }, 7000);
       }
     });
   };
 
   updateStatisticsData = statistics => {
     this.statisticsData = statistics;
-    // console.log(statistics);
   };
   updateElements = elements => {
-    // this.liveScoreMode = true;
-    // this.lVisionMode = false;
-    // console.log(elements);
+    this.lVisionMode = true;
 
-    // this.elements && (this.showStatistics = false);
+    this.elements && this.delayForElements
+      ? ((this.showMessageBoard = false), (this.showStatistics = false))
+      : "";
     const previousBall =
       this.elements && this.elements.find(el => el.Type === Elements.Ball);
     const playerSingelTrack =
@@ -349,20 +389,21 @@ export class PlayByPlay {
 
     if (!!playerSingelTrack) {
       this.playerTrack.push(playerSingelTrack);
-      // if (this.playerTrack.length > 2) {
-      //   this.playerTrack.shift();
-      // }
+      if (this.playerTrack.length > 2) {
+        this.playerTrack.shift();
+      }
     }
+    // if (!!prevElements) {
+    //   this.prevElements.push(elements);
+    //   if (this.prevElements.length > 2) {
+    //     this.prevElements.shift();
+    //   }
+    // }
 
     this.elements = elements;
   };
 
-  //
-
   updateScore = score => {
-    // console.log("SCORE" );
-    // console.log(JSON.stringify(score));
-
     this.score = score;
   };
 
@@ -379,24 +420,28 @@ export class PlayByPlay {
       <div class="">
         {this.lVisionMode ? (
           <div class={`wrapper ${this.fieldView}`}>
-            {this.score && (
+            {/* {this.score && (
               <pbp-score-board
                 score={this.score}
                 message={this.message}
                 // class={"d-none"}
               />
-            )}
+            )} */}
             {/* <pbp-angle-control jsonOpen={this.jsonViewerOpen}  view={this.view} onViewChange={this.onViewChange} class="d-none"/> */}
             <br />
             <br />
             <br />
             <br />
+            {this.showMessageBoard && (
+              <pbp-message-animate messageText={this.scoreToShow} />
+            )}
+
             <pbp-field view={this.view}>
-              {this.elements &&
+              {!this.freezeElements &&
+                this.elements &&
                 this.elements.map(element => {
                   return element.Type === Elements.Player ? (
                     <pbp-player
-                      // id='pbpPlayer'
                       view={this.view}
                       position={{
                         prevTop: this.playerTrack[this.playerTrack.length - 1]
@@ -443,19 +488,16 @@ export class PlayByPlay {
             )}
             {this.error && (
               <span class={`error-overlay ${this.jsonViewerOpen && "open"}`}>
-                <svg
-                  width="59"
-                  height="50"
-                  viewBox="0 0 59 50"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M58.336 42.97C60.2266 46.0944 57.8534 50 54.0772 50H4.92223C1.13875 50 -1.2235 46.0884 0.663472 42.97L25.2413 2.34229C27.1329 -0.783593 31.8706 -0.777929 33.7588 2.34229L58.336 42.97V42.97ZM29.5 34.5703C26.8978 34.5703 24.7882 36.5815 24.7882 39.0625C24.7882 41.5435 26.8978 43.5547 29.5 43.5547C32.1023 43.5547 34.2118 41.5435 34.2118 39.0625C34.2118 36.5815 32.1023 34.5703 29.5 34.5703ZM25.0266 18.4232L25.7864 31.7045C25.8219 32.326 26.3609 32.8125 27.0137 32.8125H31.9863C32.6391 32.8125 33.1781 32.326 33.2136 31.7045L33.9735 18.4232C34.0119 17.752 33.4513 17.1875 32.7461 17.1875H26.2538C25.5487 17.1875 24.9882 17.752 25.0266 18.4232V18.4232Z"
-                    fill="#3F3F3F"
-                  />
-                </svg>
+                <div class="errorMessage">
+                  <span class="errorText">
+                    {" "}
+                    {this.message && this.message.text}
+                  </span>
+                </div>
               </span>
+            )}
+            {!this.showStatistics && this.freezeElements && (
+              <span class={`error-overlay ${this.jsonViewerOpen && "open"}`} />
             )}
           </div>
         ) : //show in livscoreMode
@@ -485,6 +527,10 @@ export class PlayByPlay {
                 }}
               />
 
+              <div id="animation_container" class="animation_container">
+                <canvas id="canvas" width="393" height="323" class="canvas" />
+                <div id="dom_overlay_container" class="dom_overlay_container" />
+              </div>
               <pbp-player
                 view={this.view}
                 position={{
@@ -509,22 +555,7 @@ export class PlayByPlay {
                 open={this.jsonViewerOpen}
               />
             )}
-            {this.error && (
-              <span class={`error-overlay ${this.jsonViewerOpen && "open"}`}>
-                <svg
-                  width="59"
-                  height="50"
-                  viewBox="0 0 59 50"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M58.336 42.97C60.2266 46.0944 57.8534 50 54.0772 50H4.92223C1.13875 50 -1.2235 46.0884 0.663472 42.97L25.2413 2.34229C27.1329 -0.783593 31.8706 -0.777929 33.7588 2.34229L58.336 42.97V42.97ZM29.5 34.5703C26.8978 34.5703 24.7882 36.5815 24.7882 39.0625C24.7882 41.5435 26.8978 43.5547 29.5 43.5547C32.1023 43.5547 34.2118 41.5435 34.2118 39.0625C34.2118 36.5815 32.1023 34.5703 29.5 34.5703ZM25.0266 18.4232L25.7864 31.7045C25.8219 32.326 26.3609 32.8125 27.0137 32.8125H31.9863C32.6391 32.8125 33.1781 32.326 33.2136 31.7045L33.9735 18.4232C34.0119 17.752 33.4513 17.1875 32.7461 17.1875H26.2538C25.5487 17.1875 24.9882 17.752 25.0266 18.4232V18.4232Z"
-                    fill="#3F3F3F"
-                  />
-                </svg>
-              </span>
-            )}
+            {this.error && <span class={`error-overlay`} />}
           </div>
         ) : (
           ""

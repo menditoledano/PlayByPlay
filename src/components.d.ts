@@ -61,6 +61,13 @@ export namespace Components {
     'open'?: boolean;
   }
 
+  interface PbpMessageAnimate {
+    'messageText': string;
+  }
+  interface PbpMessageAnimateAttributes extends StencilHTMLAttributes {
+    'messageText'?: string;
+  }
+
   interface PbpMessage {
     'jsonOpen': boolean;
     'message': {
@@ -235,6 +242,7 @@ declare global {
     'PbpBall': Components.PbpBall;
     'PbpField': Components.PbpField;
     'PbpJsonViewer': Components.PbpJsonViewer;
+    'PbpMessageAnimate': Components.PbpMessageAnimate;
     'PbpMessage': Components.PbpMessage;
     'PbpNet': Components.PbpNet;
     'PlayByPlayWidget': Components.PlayByPlayWidget;
@@ -253,6 +261,7 @@ declare global {
     'pbp-ball': Components.PbpBallAttributes;
     'pbp-field': Components.PbpFieldAttributes;
     'pbp-json-viewer': Components.PbpJsonViewerAttributes;
+    'pbp-message-animate': Components.PbpMessageAnimateAttributes;
     'pbp-message': Components.PbpMessageAttributes;
     'pbp-net': Components.PbpNetAttributes;
     'play-by-play-widget': Components.PlayByPlayWidgetAttributes;
@@ -289,6 +298,12 @@ declare global {
   var HTMLPbpJsonViewerElement: {
     prototype: HTMLPbpJsonViewerElement;
     new (): HTMLPbpJsonViewerElement;
+  };
+
+  interface HTMLPbpMessageAnimateElement extends Components.PbpMessageAnimate, HTMLStencilElement {}
+  var HTMLPbpMessageAnimateElement: {
+    prototype: HTMLPbpMessageAnimateElement;
+    new (): HTMLPbpMessageAnimateElement;
   };
 
   interface HTMLPbpMessageElement extends Components.PbpMessage, HTMLStencilElement {}
@@ -362,6 +377,7 @@ declare global {
     'pbp-ball': HTMLPbpBallElement
     'pbp-field': HTMLPbpFieldElement
     'pbp-json-viewer': HTMLPbpJsonViewerElement
+    'pbp-message-animate': HTMLPbpMessageAnimateElement
     'pbp-message': HTMLPbpMessageElement
     'pbp-net': HTMLPbpNetElement
     'play-by-play-widget': HTMLPlayByPlayWidgetElement
@@ -380,6 +396,7 @@ declare global {
     'pbp-ball': HTMLPbpBallElement;
     'pbp-field': HTMLPbpFieldElement;
     'pbp-json-viewer': HTMLPbpJsonViewerElement;
+    'pbp-message-animate': HTMLPbpMessageAnimateElement;
     'pbp-message': HTMLPbpMessageElement;
     'pbp-net': HTMLPbpNetElement;
     'play-by-play-widget': HTMLPlayByPlayWidgetElement;

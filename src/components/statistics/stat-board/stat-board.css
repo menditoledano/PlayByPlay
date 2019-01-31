@@ -2,7 +2,7 @@
   width: 89vw;
   top: 13%;
   left: 5%;
-  height: 53vh;
+  height: 46vh;
   position: absolute;
   mix-blend-mode: screen !important;
 }
@@ -26,9 +26,9 @@
 }
 
 .small-stat-rectangle{
-  width: 24vw;
-  top: 68%;
-  height: 25vh;
+  width: 28vw;
+  top: 61%;
+  height: 31vh;
   position: absolute;
   mix-blend-mode: screen !important;
 }
@@ -36,10 +36,10 @@
   left: 5%;
 }
 .small-stat-rectangle.doubleFault{
-  left: 15%;
+  left: 35.5%;
 }
 .small-stat-rectangle.breakPoint{
-  left: 25%;
+  left: 66%;
 }
 .small-stat-rectangle.distanceCovered{
   left: 35%;

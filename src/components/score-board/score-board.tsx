@@ -170,7 +170,7 @@ export class ScoreBoard {
               </span> */}
 
               <span class={`setScore point A text-center`}>
-                {scorePeriod.ScorePeriodValue === ScorePeriodValue.FullTime
+                {scorePeriod.ScorePeriodValue === ScorePeriodValue.GameScore
                   ? parseInt(scorePeriod.Home) >= 10
                     ? scorePeriod.Home
                     : parseInt(scorePeriod.Home) < 10 &&
@@ -180,7 +180,7 @@ export class ScoreBoard {
                   : "0"}
               </span>
               <span class={`setScore point B text-center`}>
-                {scorePeriod.ScorePeriodValue === ScorePeriodValue.FullTime
+                {scorePeriod.ScorePeriodValue === ScorePeriodValue.GameScore
                   ? parseInt(scorePeriod.Away) >= 10
                     ? scorePeriod.Away
                     : parseInt(scorePeriod.Away) < 10 &&
