@@ -10,6 +10,9 @@ export class Player {
    kf = new KalmanFilter({ R: 1, Q: 10, C:1 });
   //  paper =new paper();
    @Prop() playerType: any ;
+   @Prop() opacity : number;
+   @Prop() postionNumber : number;
+
 
   @Prop() position: {
     prevTop: number;
@@ -33,16 +36,18 @@ export class Player {
     this.playerElement.style.setProperty('--prevY', ''+this.position.prevLeft * 100+'%');
     this.playerElement.style.setProperty('--currX', ''+this.position.currTop * 100+'%');
     this.playerElement.style.setProperty('--currY', ''+this.position.currLeft * 100+'%');
-    const transform = "player" + (this.view === "camera" ? " rotate" : "");
+    const transform = "player" + (this.view === "camera" ? " rotate" : "") + " " + this.postionNumber;
 
     return (
       <div
       id = "player"
         class={transform}
         style= {{
+         
           // transform: `translate(${this.position.top * 100}%,${this.position.left * 100}%)`
           top: `${this.position.currTop * 100}%`,
-          left: `${this.position.currLeft * 100}%`
+          left: `${this.position.currLeft * 100}%`,
+          opacity:`${this.opacity}`
           
 
           // top: `${this.kf.filter(this.position.currTop) * 100}%`,

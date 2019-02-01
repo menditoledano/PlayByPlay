@@ -99,3 +99,11 @@
   width: 100%;
   top: 3vw;
 }
+/* @keyframes moveAnimation1 {
+  from {top:15%; left : 19%}
+  to {top:171%; left:102%}
+}
+.moveAnimation{
+  animation-name: moveAnimation1;
+  animation-duration: 4s;
+} */

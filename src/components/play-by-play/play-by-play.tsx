@@ -148,9 +148,9 @@ export class PlayByPlay {
   };
   @State() previousBalls: Element[];
   @State() playerTrack: Element[];
-
-  @State() lVisionMode: boolean = true;
-  @State() liveScoreMode: boolean = false;
+  @State() prevElement: Element[];
+  @State() lVisionMode: boolean = false;
+  @State() liveScoreMode: boolean = true  ;
   @State() liveScoreData: LiveScore;
   @State() kf: any;
   @State() showMessageBoard: boolean = false;
@@ -159,6 +159,7 @@ export class PlayByPlay {
   @State() awayPlayer: string;
   @State() delayForElements: boolean = true;
   @State() freezeElements: boolean = false;
+  @State() lsPlayersPosition: number = 2;
   componentWillLoad() {
     this.kf = new KalmanFilter({ R: 0.001, Q: 2 });
     this.liveScoreData = livScoreMock;
@@ -370,7 +371,7 @@ export class PlayByPlay {
     this.statisticsData = statistics;
   };
   updateElements = elements => {
-    this.lVisionMode = true;
+    // this.lVisionMode = true;
 
     this.elements && this.delayForElements
       ? ((this.showMessageBoard = false), (this.showStatistics = false))
@@ -379,6 +380,7 @@ export class PlayByPlay {
       this.elements && this.elements.find(el => el.Type === Elements.Ball);
     const playerSingelTrack =
       this.elements && this.elements.find(el => el.Type === Elements.Player);
+    // const singleElement = this.elements && this.elements;
 
     if (!!previousBall) {
       this.previousBalls.push(previousBall);
@@ -393,14 +395,17 @@ export class PlayByPlay {
         this.playerTrack.shift();
       }
     }
-    // if (!!prevElements) {
-    //   this.prevElements.push(elements);
-    //   if (this.prevElements.length > 2) {
-    //     this.prevElements.shift();
-    //   }
-    // }
+    if (elements.length > 1) {
+     
 
-    this.elements = elements;
+      this.prevElement = elements;
+      console.log(this.prevElement);
+    }
+    // if (this.freezeElements) {
+    //   this.elements = this.prevElement;
+    //   console.log(this.prevElement);
+    // } else 
+    !this.freezeElements? this.elements = elements : this.elements = this.prevElement;
   };
 
   updateScore = score => {
@@ -438,7 +443,7 @@ export class PlayByPlay {
 
             <pbp-field view={this.view}>
               {!this.freezeElements &&
-                this.elements &&
+                this.elements ?
                 this.elements.map(element => {
                   return element.Type === Elements.Player ? (
                     <pbp-player
@@ -462,7 +467,36 @@ export class PlayByPlay {
                   ) : (
                     "nothing"
                   );
-                })}
+                }):  
+              
+              //show freeze mode
+                this.prevElement&&this.prevElement.map(element => {
+                  return element.Type === Elements.Player ? (
+                    <pbp-player 
+                    //  opacity={0.1}
+                      view={this.view}
+                      position={{
+                        prevTop: this.playerTrack[this.playerTrack.length - 1]
+                          .Location.X,
+                        prevLeft: this.playerTrack[this.playerTrack.length - 1]
+                          .Location.Y,
+                        currTop: element.Location.X,
+                        currLeft: element.Location.Y
+                      }}
+                      // opacity={1}
+                    />
+                  ) : element.Type === Elements.Ball ? (
+                    <pbp-ball
+                      position={{
+                        top: element.Location.X,
+                        left: element.Location.Y
+                      }}
+                    />
+                  ) : (
+                    "nothing"
+                  );
+                })
+          }
               {this.elements &&
                 !!this.elements.filter(el => el.Type === Elements.Ball)
                   .length &&
@@ -496,20 +530,20 @@ export class PlayByPlay {
                 </div>
               </span>
             )}
-            {!this.showStatistics && this.freezeElements && (
+            {/* {!this.showStatistics && this.freezeElements && (
               <span class={`error-overlay ${this.jsonViewerOpen && "open"}`} />
-            )}
+            )} */}
           </div>
         ) : //show in livscoreMode
         this.liveScoreMode ? (
           <div class={`wrapper ${this.fieldView}`}>
-            {this.score && (
+            {/* {this.score && (
               <pbp-score-board
                 score={this.score}
                 message={this.message}
                 class={""}
               />
-            )}
+            )} */}
 
             {/* <pbp-angle-control jsonOpen={this.jsonViewerOpen}  view={this.view} onViewChange={this.onViewChange} class="d-none"/> */}
             <br />
@@ -517,31 +551,33 @@ export class PlayByPlay {
             <br />
             <br />
             <pbp-field jsonOpen={this.jsonViewerOpen} view={this.view}>
-              <pbp-player
-                view={this.view}
-                position={{
-                  prevTop: 0.65,
-                  prevLeft: 0.45,
-                  currTop: 0.82,
-                  currLeft: 0.25
-                }}
-              />
+             
 
-              <div id="animation_container" class="animation_container">
+              {/* <div id="animation_container" class="animation_container">
                 <canvas id="canvas" width="393" height="323" class="canvas" />
                 <div id="dom_overlay_container" class="dom_overlay_container" />
-              </div>
+              </div> */}
               <pbp-player
                 view={this.view}
                 position={{
                   prevTop: 0.85,
                   prevLeft: 0.35,
-                  currTop: 0.42,
-                  currLeft: 0.15
+                  currTop: this.lsPlayersPosition== 1? 0.12: 0.80,
+                  currLeft: -0.04
+                }}
+              />
+               <pbp-player
+                view={this.view}
+                position={{
+                  prevTop: 0.65,
+                  prevLeft: 0.45,
+                  currTop: this.lsPlayersPosition== 1? 0.75: 0.25 ,
+                  currLeft: 1
                 }}
               />
 
-              <pbp-ball
+              <pbp-ball 
+              animationNumber= {this.lsPlayersPosition}
                 position={{
                   top: 0.86,
                   left: -0.085

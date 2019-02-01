@@ -1,3 +1,18 @@
+
+@keyframes moveAnimation1 {
+  from {top:15%; left : 19%}
+  to {top:75%; left:100%}
+}
+@keyframes moveAnimation2 {
+  from {top:75%; left : 19%}
+  to {top:25%; left:100%}
+}
+/* .moveAnimation{
+  animation-name: moveAnimation1;
+  animation-duration: 4s;
+} */
+
+
 .ball {
   background-image: url("https://res.cloudinary.com/dezalma3v/image/upload/v1548187446/tennis-ball-copy-4.png");
   width: 0.6em;
@@ -14,6 +29,24 @@
 
   /* background-color: #C1FF5C; */
 }
+.ball.moveAnimation1 {
+  animation-name: moveAnimation1;
+  animation-duration: 1.5s;
+  animation-timing-function: linear;
+  /* animation-delay: 2s; */
+  animation-iteration-count: infinite;
+  /* animation-direction: alternate */
+}
+
+.ball.moveAnimation2 {
+  animation-name: moveAnimation2;
+  animation-duration: 1.5s;
+  animation-timing-function: linear;
+  /* animation-delay: 2s; */
+  animation-iteration-count: infinite;
+  /* animation-direction: alternate */
+}
+
 
 .tennisBall-copy-4 {
   position: absolute;

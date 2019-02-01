@@ -137,12 +137,12 @@ export class ScoreBoard {
                   : "-"}
               </span>
 
-              <span class={`setScore sets A } text-center `}>
+              <span class={`setScore sets A  text-center `}>
                 {parseInt(this.score.CurrentScore.Home) > 0
                   ? this.score.CurrentScore.Home
                   : "0"}
               </span>
-              <span class={`setScore sets B } text-center `}>
+              <span class={`setScore sets B  text-center `}>
                 {parseInt(this.score.CurrentScore.Away) > 0
                   ? this.score.CurrentScore.Away
                   : "0"}

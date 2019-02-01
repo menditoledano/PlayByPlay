@@ -27,6 +27,7 @@ export namespace Components {
   }
 
   interface PbpBall {
+    'animationNumber': number;
     'opacity': number;
     'position': {
       top: number
@@ -34,6 +35,7 @@ export namespace Components {
     };
   }
   interface PbpBallAttributes extends StencilHTMLAttributes {
+    'animationNumber'?: number;
     'opacity'?: number;
     'position'?: {
       top: number
@@ -102,6 +104,7 @@ export namespace Components {
   }
 
   interface PbpPlayer {
+    'opacity': number;
     'playerType': any;
     'position': {
       prevTop: number;
@@ -109,9 +112,11 @@ export namespace Components {
       currTop: number;
       currLeft: number;
     };
+    'postionNumber': number;
     'view': "bird" | "camera" | "side";
   }
   interface PbpPlayerAttributes extends StencilHTMLAttributes {
+    'opacity'?: number;
     'playerType'?: any;
     'position'?: {
       prevTop: number;
@@ -119,6 +124,7 @@ export namespace Components {
       currTop: number;
       currLeft: number;
     };
+    'postionNumber'?: number;
     'view'?: "bird" | "camera" | "side";
   }
 

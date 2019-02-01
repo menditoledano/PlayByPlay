@@ -16,7 +16,7 @@
     crossorigin="anonymous"></script>
 
     <script src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>
-    <!-- <script>
+     <script>
       (function (cjs, an) {
   
         var p; // shortcut to reference prototypes
@@ -1048,12 +1048,12 @@
                 sRatio = Math.max(xRatio, yRatio);
               }
             }
-            // if(canvas){ 
+            if(canvas){ 
               canvas.width = w * pRatio * sRatio;
             canvas.height = h * pRatio * sRatio;
             canvas.style.width = dom_overlay_container.style.width = anim_container.style.width = w * sRatio + 'px';
             canvas.style.height = anim_container.style.height = dom_overlay_container.style.height = h * sRatio + 'px';
-            // }
+             }
             stage.scaleX = pRatio * sRatio;
             stage.scaleY = pRatio * sRatio;
             lastW = iw;
@@ -1069,16 +1069,16 @@
         fnStartAnimation();
       }
   
-    </script>
-     -->
+    </script> 
+  
   <!-- write your code here -->
 </head>
 
-<body >
+<body onload="init()">
 
     <!-- <script type="text/javascript">init();</script> -->
 
-  <play-by-play-widget fixtureid="4298446" />
+  <play-by-play-widget fixtureid="1" />
   <!-- 4261779 -->
   <!-- 4294363 -->
 
