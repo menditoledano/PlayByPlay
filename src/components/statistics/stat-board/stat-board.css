@@ -44,3 +44,28 @@
 .small-stat-rectangle.distanceCovered{
   left: 35%;
 }
+
+@media only screen and (max-width: 420px) {
+ 
+  .small-stat-rectangle.doubleFault{
+    left: 5%;
+  }
+
+  .small-stat-rectangle{
+    width: 88vw;
+    top: 52%;
+    height: 41vh;
+    position: absolute;
+    mix-blend-mode: screen !important;
+  }
+  .graph-stat-rectangle {
+    width: 89vw;
+    top: 11%;
+    left: 5%;
+    height: 40vh;
+    position: absolute;
+    mix-blend-mode: screen !important;
+  }
+
+}
+

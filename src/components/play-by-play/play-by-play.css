@@ -11,15 +11,16 @@
 
 .wrapper {
    
-      width: 100vw;
-      height: 100vh;
-      display: grid;
-      grid-template-columns: auto;
-      grid-template-rows:12% 7%;
-      position: relative;
-      overflow: hidden;
-      background-repeat: no-repeat;
-      background-size: contain;
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: 12% 7%;
+  position: relative;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
  
 }
 .wrapper.clay {
@@ -107,3 +108,11 @@
   animation-name: moveAnimation1;
   animation-duration: 4s;
 } */
+@media only screen and (max-width: 420px) {
+  .wrapper.hard {
+    grid-template-columns: auto 91% auto;
+
+    background-image:url("https://res.cloudinary.com/dezalma3v/image/upload/v1549028767/bg-mobile-hard.png"); 
+  }
+}
+

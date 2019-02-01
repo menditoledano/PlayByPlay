@@ -139,7 +139,7 @@ export class PlayByPlay {
   @State() reconnectTimeout: number = 10;
   @State() jsonViewerOpen: boolean = false;
   @State() error: boolean = false;
-  @State() showStatistics: boolean = false;
+  @State() showStatistics: boolean = true;
   @State() statisticsData: any;
   @State() message: {
     date: Date;
@@ -149,8 +149,8 @@ export class PlayByPlay {
   @State() previousBalls: Element[];
   @State() playerTrack: Element[];
   @State() prevElement: Element[];
-  @State() lVisionMode: boolean = false;
-  @State() liveScoreMode: boolean = true  ;
+  @State() lVisionMode: boolean = true;
+  @State() liveScoreMode: boolean = false  ;
   @State() liveScoreData: LiveScore;
   @State() kf: any;
   @State() showMessageBoard: boolean = false;
