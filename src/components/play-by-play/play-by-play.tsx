@@ -139,7 +139,7 @@ export class PlayByPlay {
   @State() reconnectTimeout: number = 10;
   @State() jsonViewerOpen: boolean = false;
   @State() error: boolean = false;
-  @State() showStatistics: boolean = true;
+  @State() showStatistics: boolean = false;
   @State() statisticsData: any;
   @State() message: {
     date: Date;
