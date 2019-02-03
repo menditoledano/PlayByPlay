@@ -140,7 +140,7 @@ export class PlayByPlay {
   @State() jsonViewerOpen: boolean = false;
   @State() error: boolean = false;
   @State() showStatistics: boolean = false;
-  @State() statisticsData: any;
+  @State() statisticsData: any =[];
   @State() message: {
     date: Date;
     text: string;
@@ -182,7 +182,7 @@ export class PlayByPlay {
 
       fixtureData.Body.Events[0].Fixture.FixtureExtraData[1].Value.length
         ? (that.fieldView =
-            fixtureData.Body.Events[0].Fixture.FixtureExtraData[1].Value)
+            fixtureData.Body.Events[0].Fixture.FixtureExtraData[1].Value.toLowerCase())
         : "hard";
     });
 
@@ -206,18 +206,19 @@ export class PlayByPlay {
       that.updateLiveScoreData(liveScoreData);
     });
     this.hubProxy.on("statisticsMessageReceived", function(statistics: any) {
-      statistics = statistics;
-      // console.log("statisticsMessageReceived");
+      //statistics = statistics;
+      that.updateStatisticsData(statistics);
+      console.log("statisticsMessageReceived");
 
-      // console.log(statistics);
+      console.log(statistics);
     });
 
     // snapshot
     this.hubProxy.on("statisticsSnapshotReceived", function(statistics: any) {
-      // console.log('statisticsSnapshotReceived');
-      // console.log(statistics);
+      console.log('statisticsSnapshotReceived');
+       console.log(statistics);
 
-      that.updateStatisticsData(statistics);
+      that.updateStatisticsSnapShotData(statistics);
     });
 
     this.hubProxy.on("stateMessageReceived", function(frame: any) {
@@ -282,9 +283,9 @@ export class PlayByPlay {
   };
 
   updateStateMessage = state => {
-    console.log("state");
+    // console.log("state");
 
-    console.log(state);
+    // console.log(state);
 
     if (state.State === States.StreamStopped) {
       this.error = false;
@@ -366,9 +367,27 @@ export class PlayByPlay {
       }
     });
   };
-
-  updateStatisticsData = statistics => {
-    this.statisticsData = statistics;
+  updateStatisticsSnapShotData = statistics => {
+    // this.statisticsData.push(statistics);
+    this.statisticsData = statistics; 
+    // console.log(this.statisticsData);
+    
+  };
+  updateStatisticsData = statistic => {
+    // this.statisticsData.push(statistics);
+this.statisticsData.map(currStat=>{
+  if(currStat.StatisticType === statistic.StatisticType){
+    currStat.ParticipantStatisticMetadata.map(currSnapMetadata=>{
+      statistic.ParticipantStatisticMetadata.map(currMsgMetadata=>{
+        currSnapMetadata.ParticipantStat === currMsgMetadata.ParticipantStat ?
+        currSnapMetadata.StatPerPeriod = currMsgMetadata.StatPerPeriod:''
+      })
+    })
+  }
+})
+    // this.statisticsData = statistic; 
+    // console.log(this.statisticsData);
+    
   };
   updateElements = elements => {
     // this.lVisionMode = true;
@@ -399,7 +418,7 @@ export class PlayByPlay {
      
 
       this.prevElement = elements;
-      console.log(this.prevElement);
+      // console.log(this.prevElement);
     }
     // if (this.freezeElements) {
     //   this.elements = this.prevElement;
@@ -438,7 +457,7 @@ export class PlayByPlay {
             <br />
             <br />
             {this.showMessageBoard && (
-              <pbp-message-animate messageText={this.scoreToShow} />
+              <pbp-message-animate class="msgAnimate" messageText={this.scoreToShow} />
             )}
 
             <pbp-field view={this.view}>
@@ -518,7 +537,7 @@ export class PlayByPlay {
                             } */}
             </pbp-field>
             {this.showStatistics && (
-              <pbp-statistics statistics={this.statisticsData} />
+              <pbp-statistics homePlayerName={this.homePlayer} awayPlayerName={this.awayPlayer} statistics={this.statisticsData} />
             )}
             {this.error && (
               <span class={`error-overlay ${this.jsonViewerOpen && "open"}`}>

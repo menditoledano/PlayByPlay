@@ -57,14 +57,14 @@ export enum MessageTypes {
 }
 
 export enum ElementsType {
-  Person = 1,
-  Ball = 2
+  Person = 0,
+  Ball = 1
 }
 
 export enum  ElementsLabel {
-  HomePlayer = 1,
-  AwayPlayer = 2,
-  TennisBall = 3
+  HomePlayer = 0,
+  AwayPlayer = 1,
+  TennisBall = 2
 }
 
 export enum  IncidentLabel {
@@ -203,3 +203,11 @@ export interface score {
     //   CoverageLost = 8, 	
     //   AboutToStart = 9
     // }
+
+
+export enum ParticipantStat {
+  HomePlayer1 = 1,
+  HomePlayer2 = 2,
+  AwayPlayer1 = 3,
+  AwayPlayer2 = 4
+}

@@ -186,25 +186,21 @@ export namespace Components {
   }
 
   interface PbpStatBoard {
-    'open': boolean;
-    'position': {
-      top: number
-      left: number
-    };
+    'statisticsData': any;
   }
   interface PbpStatBoardAttributes extends StencilHTMLAttributes {
-    'open'?: boolean;
-    'position'?: {
-      top: number
-      left: number
-    };
+    'statisticsData'?: any;
   }
 
   interface PbpStatistics {
+    'awayPlayerName': any;
+    'homePlayerName': any;
     'open': boolean;
     'statistics': any;
   }
   interface PbpStatisticsAttributes extends StencilHTMLAttributes {
+    'awayPlayerName'?: any;
+    'homePlayerName'?: any;
     'open'?: boolean;
     'statistics'?: any;
   }

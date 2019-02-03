@@ -1,16 +1,26 @@
-
 @keyframes moveAnimation1 {
-  from {top:15%; left : 19%}
-  to {top:75%; left:100%}
+  from {
+    top: 15%;
+    left: 19%
+  }
+
+  to {
+    top: 75%;
+    left: 100%
+  }
 }
+
 @keyframes moveAnimation2 {
-  from {top:75%; left : 19%}
-  to {top:25%; left:100%}
+  from {
+    top: 75%;
+    left: 19%
+  }
+
+  to {
+    top: 25%;
+    left: 100%
+  }
 }
-/* .moveAnimation{
-  animation-name: moveAnimation1;
-  animation-duration: 4s;
-} */
 
 
 .ball {
@@ -24,11 +34,8 @@
   border-radius: 50%;
   object-fit: contain;
   background-blend-mode: soft-light;
-  /* background-color: #C1FF5C; */
-  /* background-image: linear-gradient(to bottom, #000000, #000000); */
-
-  /* background-color: #C1FF5C; */
 }
+
 .ball.moveAnimation1 {
   animation-name: moveAnimation1;
   animation-duration: 1.5s;
@@ -54,17 +61,20 @@
   height: 0.6em;
   object-fit: contain;
   background-blend-mode: soft-light;
-  /* background-image: linear-gradient(to bottom, #000000, #000000); */
 }
 
 
 @media only screen and (max-width: 600px) {
+  .ball {
+    width: 0.4em;
+    height: 0.4em;
+  }
+
   .tennisBall-copy-4 {
     position: absolute;
     width: 0.4em;
     height: 0.4em;
     object-fit: contain;
     background-blend-mode: soft-light;
-    /* background-image: linear-gradient(to bottom, #000000, #000000); */
   }
 }

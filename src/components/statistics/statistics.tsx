@@ -8,12 +8,8 @@ import { Component, Prop } from "@stencil/core";
 export class Statistics {
   @Prop() open: boolean;
   @Prop() statistics: any;
-
-  // not final
-  // @Prop() position: {
-  //   top: number
-  //   left: number
-  // };
+  @Prop() homePlayerName: any;
+  @Prop() awayPlayerName: any;
 
   componentWillLoad() {}
 
@@ -24,11 +20,7 @@ export class Statistics {
           src="https://res.cloudinary.com/dezalma3v/image/upload/v1547197062/board-bg.png"
           class=" stat-background"
         />
-        <span class="playersName text-center">Home -vs- Away</span>
-        {/* <img src="https://res.cloudinary.com/dezalma3v/image/upload/v1547314994/rectangle.png"class=" stat-rectangle "></img> */}
-        {/* <span class="stat-homeName text-center"> Home </span>
-        <span class="stat-awayName text-center"> Away </span> */}
-        {/* <pbp-last-points-stat></pbp-last-points-stat> */}
+        <span class="playersName text-center">{this.homePlayerName + ' -vs- '+ this.awayPlayerName} </span>
         <div
           id="carouselExampleIndicators"
           class="carousel slide"
@@ -45,8 +37,7 @@ export class Statistics {
           </ol>
           <div class="carousel-inner">
             <div class="carousel-item active">
-             <pbp-stat-board />
-               {/* <pbp-last-points-stat /> */}
+              <pbp-stat-board statisticsData={this.statistics} />
             </div>
             {/* <div class="carousel-item">
               <pbp-shot-placement-stat />

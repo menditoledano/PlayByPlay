@@ -46,14 +46,14 @@ export enum StatisticType {
   LongestPointStreak = 6,
   NetShotPlacement = 7,
   BaselineShotPlacement = 8,
-  MidlineShotPlacement = 9,
+  // MidlineShotPlacement = 9,
   Ace = 20,
   DoubleFaults = 21,
   Win1stServe = 34,
   BreakPointConversions = 23,
-  PlayersHeatmap = 13,
-  LastPointPlayersTracking = 14,
-  Winner = 15
+  // PlayersHeatmap = 13,
+  // LastPointPlayersTracking = 14,
+  // Winner = 15
 }
 
 export enum StatisticUnit {
@@ -61,7 +61,7 @@ export enum StatisticUnit {
   Percentage = 2,
   KmH = 3,
   Counter = 4,
-  Graph = 5
+  // Graph = 5
 }
 
 export enum ParticipantStat {

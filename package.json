@@ -1,6 +1,6 @@
 {
   "name": "play-by-play-dev",
-  "version": "0.1.16",
+  "version": "0.1.17",
   "description": "Play by Play component",
   "module": "dist/esm/index.js",
   "main": "dist/play-by-play.js",
@@ -17,16 +17,19 @@
   },
   "dependencies": {
     "@aspnet/signalr": "^1.0.4",
+    "acorn": "^6.0.6",
     "bootstrap": "^4.2.1",
     "browserify": "^16.2.3",
+    "jquery": "^3.3.1",
     "kalmanjs": "^1.1.0",
     "paper": "^0.12.0",
+    "popper.js": "^1.14.7",
     "rollup": "^1.1.0",
     "stencil": "0.0.5",
     "watchify": "^3.11.0"
   },
   "devDependencies": {
-    "@stencil/core": "^0.17.0",
+    "@stencil/core": "^0.17.1",
     "@types/jest": "23.3.10",
     "@types/puppeteer": "1.11.1",
     "jest": "23.6.0",

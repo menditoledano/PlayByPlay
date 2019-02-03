@@ -1,12 +1,13 @@
 .graph-stat-rectangle {
-  width: 89vw;
+  width: 44vw;
   top: 13%;
-  left: 5%;
-  height: 46vh;
+  left: 50%;
+  height: 80vh;
   position: absolute;
   mix-blend-mode: screen !important;
 }
-.graph-stat{
+
+.graph-stat {
   width: 78vw;
   top: 22%;
   left: 15%;
@@ -14,10 +15,11 @@
   position: absolute;
   mix-blend-mode: screen !important;
 }
-.title-lps{
+
+.title-lps {
   position: absolute;
   top: 14vh;
-  left: 38%!important;
+  left: 38% !important;
   letter-spacing: 0.8px !important;
   font-size: 2vw;
   /* font-stretch: normal !important; */
@@ -25,39 +27,76 @@
   color: #ffffff;
 }
 
-.small-stat-rectangle{
-  width: 28vw;
-  top: 61%;
-  height: 31vh;
+.title-ace {
+  display: block;
+  /* width: 100%; */
+  font-size: 3vw !important;
+  left: 25% !important;
+
+}
+
+.title-doubleFault {
+  display: block;
+  /* width: 100%; */
+  font-size: 3vw !important;
+  left: 62% !important
+}
+
+.curr-points-ace{
+  top: 19% !important;
+  left: 21%!important;
+}
+.curr-points-doubleFault{
+  top: 19% !important;
+  left: 65%!important;
+}
+
+
+.small-stat-rectangle {
+  width: 44vw;
+  top: 13%;
+  height: 80vh;
   position: absolute;
   mix-blend-mode: screen !important;
 }
-.small-stat-rectangle.ace{
-  left: 5%;
+
+.small-stat-rectangle.ace {
+  right: 5%;
 }
-.small-stat-rectangle.doubleFault{
-  left: 35.5%;
+
+.small-stat-rectangle.doubleFault {
+  left: 5.5%;
 }
-.small-stat-rectangle.breakPoint{
+
+.small-stat-rectangle.breakPoint {
   left: 66%;
 }
-.small-stat-rectangle.distanceCovered{
+
+.small-stat-rectangle.distanceCovered {
   left: 35%;
 }
 
 @media only screen and (max-width: 420px) {
- 
-  .small-stat-rectangle.doubleFault{
+
+  .small-stat-rectangle.doubleFault {
     left: 5%;
+    top: 52%;
   }
 
-  .small-stat-rectangle{
+  .small-stat-rectangle.ace {
+    left: 6%;
+    top: 10%;
+  }
+
+
+  .small-stat-rectangle {
     width: 88vw;
     top: 52%;
     height: 41vh;
     position: absolute;
     mix-blend-mode: screen !important;
   }
+
   .graph-stat-rectangle {
     width: 89vw;
     top: 11%;
@@ -69,3 +108,147 @@
 
 }
 
+.aceDataHome {
+  background-image: url('https://res.cloudinary.com/dezalma3v/image/upload/v1549188189/ellipse_3x.png');
+  /* background-color: #ffffff; */
+  position: absolute;
+  width: 24vw;
+  height: 20vh !important;
+  top: 40%;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  left: 3%;
+  height: 20vh;
+  mix-blend-mode: screen !important;
+  /* color: brown; */
+
+  /* width: 20px; */
+  /* height: 13px;
+  object-fit: contain; */
+  font-family: Montserrat;
+  font-size: 3vw;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: 0.1px;
+  text-align: center;
+  color: #ffffff;
+
+
+}
+.point{
+
+}
+
+.aceDataAway {
+  background-image: url('https://res.cloudinary.com/dezalma3v/image/upload/v1549188189/ellipse_3x.png');
+  /* background-color: #ffffff; */
+  position: absolute;
+  width: 24vw;
+  height: 20vh !important;
+  top: 40%;
+  left: 26%;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  mix-blend-mode: screen !important;
+  /* color: brown; */
+  font-family: Montserrat;
+  font-size: 3vw;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: 0.1px;
+  text-align: center;
+  color: #ffffff;
+}
+
+
+.doubleFaultHome {
+  /* background-image: url('https://res.cloudinary.com/dezalma3v/image/upload/v1549207282/run-icon_3x.png'); */
+  position: absolute;
+  width: 24vw;
+  height: 20vh !important;
+  top: 40%;
+  left: 50%;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  mix-blend-mode: screen !important;
+  /* color: brown; */
+  font-family: Montserrat;
+  font-size: 3vw;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: 0.1px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.doubleFaultIcon {
+  background-image: url('https://res.cloudinary.com/dezalma3v/image/upload/v1549207282/run-icon_3x.png');
+  position: absolute;
+  width: 4vw;
+  height: 20vh !important;
+  top: 40%;
+  left: 70%;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  mix-blend-mode: screen !important;
+  /* color: brown; */
+  font-family: Montserrat;
+  font-size: 3vw;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: 0.1px;
+  text-align: center;
+  color: #ffffff;
+}
+.doubleFaultAway {
+  /* background-image: url('https://res.cloudinary.com/dezalma3v/image/upload/v1549188189/ellipse_3x.png'); */
+  /* background-color: #ffffff; */
+  position: absolute;
+  width: 24vw;
+  height: 20vh !important;
+  top: 40%;
+  left: 73%;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  mix-blend-mode: screen !important;
+  /* color: brown; */
+  font-family: Montserrat;
+  font-size: 3vw;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: 0.1px;
+  text-align: center;
+  color: #ffffff;
+}
+.pointTitle{
+  top: 45%!important;
+  position: absolute;
+  left: 7vw;
+  letter-spacing: 0.1px;
+}
+.pointTitleA{
+top: 45%!important;
+position: absolute;
+left: 9.5vw;
+letter-spacing: 0.1px;
+}
+.point{
+
+  top: 3vh;
+  position: relative;
+}
