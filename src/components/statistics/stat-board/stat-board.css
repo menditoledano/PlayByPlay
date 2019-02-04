@@ -35,20 +35,21 @@
 
 }
 
-.title-doubleFault {
+.title-distanceCovered {
   display: block;
   /* width: 100%; */
   font-size: 3vw !important;
-  left: 62% !important
+  left: 60% !important
 }
 
-.curr-points-ace{
+.curr-points-ace {
   top: 19% !important;
-  left: 21%!important;
+  left: 21% !important;
 }
-.curr-points-doubleFault{
+
+.curr-points-distanceCovered {
   top: 19% !important;
-  left: 65%!important;
+  left: 65% !important;
 }
 
 
@@ -61,24 +62,22 @@
 }
 
 .small-stat-rectangle.ace {
-  right: 5%;
+  left: 5%;
 }
 
-.small-stat-rectangle.doubleFault {
-  left: 5.5%;
+.small-stat-rectangle.distanceCovered {
+  right: 5.5%;
 }
 
 .small-stat-rectangle.breakPoint {
   left: 66%;
 }
 
-.small-stat-rectangle.distanceCovered {
-  left: 35%;
-}
+
 
 @media only screen and (max-width: 420px) {
 
-  .small-stat-rectangle.doubleFault {
+  .small-stat-rectangle.distanceCovered {
     left: 5%;
     top: 52%;
   }
@@ -138,9 +137,8 @@
 
 
 }
-.point{
 
-}
+.point {}
 
 .aceDataAway {
   background-image: url('https://res.cloudinary.com/dezalma3v/image/upload/v1549188189/ellipse_3x.png');
@@ -167,7 +165,7 @@
 }
 
 
-.doubleFaultHome {
+.distanceCoveredHome {
   /* background-image: url('https://res.cloudinary.com/dezalma3v/image/upload/v1549207282/run-icon_3x.png'); */
   position: absolute;
   width: 24vw;
@@ -190,7 +188,7 @@
   color: #ffffff;
 }
 
-.doubleFaultIcon {
+.distanceCoveredIcon {
   background-image: url('https://res.cloudinary.com/dezalma3v/image/upload/v1549207282/run-icon_3x.png');
   position: absolute;
   width: 4vw;
@@ -212,7 +210,8 @@
   text-align: center;
   color: #ffffff;
 }
-.doubleFaultAway {
+
+.distanceCoveredAway {
   /* background-image: url('https://res.cloudinary.com/dezalma3v/image/upload/v1549188189/ellipse_3x.png'); */
   /* background-color: #ffffff; */
   position: absolute;
@@ -235,20 +234,91 @@
   text-align: center;
   color: #ffffff;
 }
-.pointTitle{
-  top: 45%!important;
+
+.pointTitle {
+  top: 45% !important;
   position: absolute;
   left: 7vw;
   letter-spacing: 0.1px;
 }
-.pointTitleA{
-top: 45%!important;
-position: absolute;
-left: 9.5vw;
-letter-spacing: 0.1px;
+
+.pointTitleA {
+  top: 45% !important;
+  position: absolute;
+  left: 9.5vw;
+  letter-spacing: 0.1px;
 }
-.point{
+
+.point {
 
   top: 3vh;
   position: relative;
+}
+
+
+
+@media only screen and (max-width: 420px) {
+
+  .title-distanceCovered {
+    top: 12vh;
+    display: block;
+    /* width: 100%; */
+    font-size: 3vw !important;
+    left: 39% !important;
+  }
+
+  .distanceCoveredAway {
+    height: 20vh !important;
+    top: 20%;
+    left: 63%;
+    font-size: 4vw;
+  }
+
+  .distanceCoveredIcon {
+    width: 8vw;
+    height: 20vh !important;
+    top: 17%;
+    left: 47%;
+  }
+
+  .distanceCoveredHome {
+
+    top: 20%;
+    left: 11%;
+
+    font-size: 4vw;
+
+  }
+
+  .title-ace {
+    top: 55vh!important;
+    left: 45% !important;
+
+  }
+
+
+  .aceDataHome {
+    top: 63%;
+
+    left: 12%;
+
+  }
+
+  .point {
+    top: 7vh;
+    position: relative;
+  }
+
+  .pointTitle {
+    top: 51% !important;
+  }
+
+  .aceDataAway {
+    top: 63%;
+    left: 62%;
+  }
+
+  .carousel-indicators {
+    bottom: 2%;
+  }
 }

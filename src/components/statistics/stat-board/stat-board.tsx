@@ -10,8 +10,8 @@ export class statBoard {
   @Prop() statisticsData: any;
   @State() aceHome: any;
   @State() aceAway: any;
-  @State() doubleFaultHome: any;
-  @State() doubleFaultAway: any;
+  @State() distanceCoveredHome: any;
+  @State() distanceCoveredAway: any;
 
   componentWillLoad() {
     {
@@ -28,9 +28,9 @@ export class statBoard {
           : currStat.StatisticType == 1
           ? currStat.ParticipantStatisticMetadata.map(data => {
               data.ParticipantStat === ParticipantStat.HomePlayer1
-                ? (this.doubleFaultHome = data.StatPerPeriod[0].StatValue)
+                ? (this.distanceCoveredHome = data.StatPerPeriod[0].StatValue)
                 : data.ParticipantStat === ParticipantStat.AwayPlayer1
-                ? (this.doubleFaultAway = data.StatPerPeriod[0].StatValue)
+                ? (this.distanceCoveredAway = data.StatPerPeriod[0].StatValue)
                 : "";
             })
           : "";
@@ -72,24 +72,24 @@ export class statBoard {
           </div>
         </div>
 
-        <div class="doubleFault">
-          <span class="stat-title title-doubleFault text-center">
-            {`Double Fault` + ``}
+        <div class="distanceCovered">
+          <span class="stat-title title-distanceCovered text-center">
+            {`Distance Covered` + ``}
           </span>
-          <span class="stat-title  curr-points-doubleFault text-center">
+          <span class="stat-title  curr-points-distanceCovered text-center">
             {/* (Last Game) */}
           </span>
           <img
             src="https://res.cloudinary.com/dezalma3v/image/upload/v1548698782/small-rectangle-stat.png"
-            class="small-stat-rectangle doubleFault"
+            class="small-stat-rectangle distanceCovered"
           />
-          <span class="doubleFaultHome">
-            {this.doubleFaultHome && this.doubleFaultHome + "\n" + " "}
+          <span class="distanceCoveredHome">
+            {this.distanceCoveredHome && Math.floor(this.distanceCoveredHome) + "\n" + " "}
             <span class="pointTitleA">m</span>
           </span>
-          <span class="doubleFaultIcon" />
-          <span class="doubleFaultAway">
-            {this.doubleFaultAway && this.doubleFaultAway + "\n" + " "}
+          <span class="distanceCoveredIcon" />
+          <span class="distanceCoveredAway">
+            {this.distanceCoveredAway && Math.floor(this.distanceCoveredAway )+ "\n" + " "}
             <span class="pointTitleA">m</span>
           </span>
         </div>

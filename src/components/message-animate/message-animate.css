@@ -1,3 +1,5 @@
+
+
 .scoreBG {
   background-image: url('https://res.cloudinary.com/dezalma3v/image/upload/v1548880330/scoreBG.png');
   position: absolute;
@@ -5,6 +7,7 @@
   height: 29vh;
   left: 31vw;
   top: 28vh;
+   transition: top 3s;
   -o-object-fit: contain;
   object-fit: contain;
   background-repeat: no-repeat;
@@ -22,6 +25,7 @@
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
+   transition: top 3s;
   color: #ffffff;
   position: absolute;
   display: block;
@@ -33,6 +37,7 @@
   position: absolute;
   width: 12vw;
   height: 35vh;
+   transition: top 3s;
   left: 64vw;
   top: 28vh;
   -o-object-fit: contain;
@@ -47,6 +52,7 @@
   position: absolute;
   width: 12vw;
   height: 35vh;
+   transition: top 3s;
   left: 23vw;
   top: 28vh;
   -o-object-fit: contain;
@@ -59,6 +65,7 @@
 @media only screen and (max-width: 420px) {
 
   .score {
+     transition: top 3s;
     top: 31%;
     font-family: Montserrat;
     font-size: 230%;

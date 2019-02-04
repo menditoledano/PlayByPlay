@@ -100,6 +100,14 @@
   width: 100%;
   top: 3vw;
 }
+@keyframes fadeInMsg {
+  from {top:0vh;}
+  to {top:28vh}
+}
+.msgAnimate{
+  animation: fadeInMsg 2s;
+}
+
 /* @keyframes moveAnimation1 {
   from {top:15%; left : 19%}
   to {top:171%; left:102%}
