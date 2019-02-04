@@ -194,8 +194,8 @@ export class PlayByPlay {
       frame.Incidents.length &&
         that.updateIncident(frame.Incidents[0], frame.Timestamp);
 
-     console.log("frame.Incidents");
-     console.log(frame);
+     frame.Incidents.length && console.log("frame.Incidents");
+     frame.Incidents.length && console.log(frame);
 
       that.updateStatisticsStatus(frame.Incidents);
     });
