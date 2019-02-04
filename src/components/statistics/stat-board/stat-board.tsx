@@ -94,10 +94,10 @@ export class statBoard {
           </span>
         </div>
 
-        <img
+        {/* <img
           src="https://res.cloudinary.com/dezalma3v/image/upload/v1548698782/small-rectangle-stat.png"
           class=" d-none d-sm-block small-stat-rectangle breakPoint"
-        />
+        /> */}
         {/* <img src="https://res.cloudinary.com/dezalma3v/image/upload/v1548698782/small-rectangle-stat.png"class=" small-stat-rectangle distanceCovered"></img> */}
       </div>
     );
