@@ -1,12 +1,11 @@
-import { Component, Prop, Element } from "@stencil/core";
+import { Component, Prop } from "@stencil/core";
 import KalmanFilter from 'kalmanjs';
-// import paper from '../../../node_modules/paper';
 @Component({
   tag: "pbp-player",
   styleUrl: "player.css"
 })
 export class Player {
-  @Element() private playerElement: HTMLElement;
+  // @Element() private playerElement: HTMLElement;
    kf = new KalmanFilter({ R: 1, Q: 10, C:1 });
   //  paper =new paper();
    @Prop() playerType: any ;
@@ -15,27 +14,18 @@ export class Player {
 
 
   @Prop() position: {
-    prevTop: number;
-    prevLeft: number;
     currTop: number;
     currLeft: number;
   };
   @Prop() view: "bird" | "camera" | "side";
   
   ComponentWillLoad(){
-  // console.log( this.position.currLeft);
-  // console.log(this.kf.filter(this.position.currLeft));
-  // console.log('...');
-  
+
   
   
     
   }
   render() {
-    this.playerElement.style.setProperty('--prevX', ''+this.position.prevTop * 100+'%');
-    this.playerElement.style.setProperty('--prevY', ''+this.position.prevLeft * 100+'%');
-    this.playerElement.style.setProperty('--currX', ''+this.position.currTop * 100+'%');
-    this.playerElement.style.setProperty('--currY', ''+this.position.currLeft * 100+'%');
     const transform = "player" + (this.view === "camera" ? " rotate" : "") + " " + this.postionNumber;
 
     return (

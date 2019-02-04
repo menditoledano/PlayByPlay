@@ -5,7 +5,7 @@ import { hubConnection } from "signalr-no-jquery";
 import {
   Incident,
   Element,
-  Frame,
+  // Frame,
   Incidents,
   States,
   Elements,
@@ -140,7 +140,7 @@ export class PlayByPlay {
   @State() jsonViewerOpen: boolean = false;
   @State() error: boolean = false;
   @State() showStatistics: boolean = false;
-  @State() statisticsData: any =[];
+  @State() statisticsData: any = [];
   @State() message: {
     date: Date;
     text: string;
@@ -150,7 +150,7 @@ export class PlayByPlay {
   @State() playerTrack: Element[];
   @State() prevElement: Element[];
   @State() lVisionMode: boolean = true;
-  @State() liveScoreMode: boolean = false  ;
+  @State() liveScoreMode: boolean = false;
   @State() liveScoreData: LiveScore;
   @State() kf: any;
   @State() showMessageBoard: boolean = false;
@@ -181,12 +181,11 @@ export class PlayByPlay {
       console.log(that.homePlayer + that.awayPlayer);
 
       fixtureData.Body.Events[0].Fixture.FixtureExtraData[1].Value.length
-        ? (that.fieldView =
-            fixtureData.Body.Events[0].Fixture.FixtureExtraData[1].Value.toLowerCase())
+        ? (that.fieldView = fixtureData.Body.Events[0].Fixture.FixtureExtraData[1].Value.toLowerCase())
         : "hard";
     });
 
-    this.hubProxy.on("pbpFrameReceived", function(frame: Frame) {
+    this.hubProxy.on("pbpFrameReceived", function(frame: any) {
       that.updateElements(frame.Elements);
       // console.log(frame);
 
@@ -194,8 +193,9 @@ export class PlayByPlay {
 
       frame.Incidents.length &&
         that.updateIncident(frame.Incidents[0], frame.Timestamp);
-      // console.log("frame.Incidents");
-      // console.log(frame.Incidents);
+
+     console.log("frame.Incidents");
+     console.log(frame);
 
       that.updateStatisticsStatus(frame.Incidents);
     });
@@ -208,15 +208,15 @@ export class PlayByPlay {
     this.hubProxy.on("statisticsMessageReceived", function(statistics: any) {
       //statistics = statistics;
       that.updateStatisticsData(statistics);
-      console.log("statisticsMessageReceived");
+      // console.log("statisticsMessageReceived");
 
-      console.log(statistics);
+      // console.log(statistics);
     });
 
     // snapshot
     this.hubProxy.on("statisticsSnapshotReceived", function(statistics: any) {
-      console.log('statisticsSnapshotReceived');
-       console.log(statistics);
+      // console.log("statisticsSnapshotReceived");
+      // console.log(statistics);
 
       that.updateStatisticsSnapShotData(statistics);
     });
@@ -283,9 +283,9 @@ export class PlayByPlay {
   };
 
   updateStateMessage = state => {
-    // console.log("state");
+    console.log("state");
 
-    // console.log(state);
+    console.log(state);
 
     if (state.State === States.StreamStopped) {
       this.error = false;
@@ -369,28 +369,28 @@ export class PlayByPlay {
   };
   updateStatisticsSnapShotData = statistics => {
     // this.statisticsData.push(statistics);
-    this.statisticsData = statistics; 
+    this.statisticsData = statistics;
     // console.log(this.statisticsData);
-    
   };
   updateStatisticsData = statistic => {
     // this.statisticsData.push(statistics);
-this.statisticsData.map(currStat=>{
-  if(currStat.StatisticType === statistic.StatisticType){
-    currStat.ParticipantStatisticMetadata.map(currSnapMetadata=>{
-      statistic.ParticipantStatisticMetadata.map(currMsgMetadata=>{
-        currSnapMetadata.ParticipantStat === currMsgMetadata.ParticipantStat ?
-        currSnapMetadata.StatPerPeriod = currMsgMetadata.StatPerPeriod:''
-      })
-    })
-  }
-})
-    // this.statisticsData = statistic; 
+    this.statisticsData.map(currStat => {
+      if (currStat.StatisticType === statistic.StatisticType) {
+        currStat.ParticipantStatisticMetadata.map(currSnapMetadata => {
+          statistic.ParticipantStatisticMetadata.map(currMsgMetadata => {
+            currSnapMetadata.ParticipantStat === currMsgMetadata.ParticipantStat
+              ? (currSnapMetadata.StatPerPeriod = currMsgMetadata.StatPerPeriod)
+              : "";
+          });
+        });
+      }
+    });
+    // this.statisticsData = statistic;
     // console.log(this.statisticsData);
-    
   };
   updateElements = elements => {
-    // this.lVisionMode = true;
+    this.lVisionMode = true;
+    this.liveScoreMode = false;
 
     this.elements && this.delayForElements
       ? ((this.showMessageBoard = false), (this.showStatistics = false))
@@ -415,16 +415,16 @@ this.statisticsData.map(currStat=>{
       }
     }
     if (elements.length > 1) {
-     
-
       this.prevElement = elements;
       // console.log(this.prevElement);
     }
     // if (this.freezeElements) {
     //   this.elements = this.prevElement;
     //   console.log(this.prevElement);
-    // } else 
-    !this.freezeElements? this.elements = elements : this.elements = this.prevElement;
+    // } else
+    !this.freezeElements
+      ? (this.elements = elements)
+      : (this.elements = this.prevElement);
   };
 
   updateScore = score => {
@@ -457,65 +457,62 @@ this.statisticsData.map(currStat=>{
             <br />
             <br />
             {this.showMessageBoard && (
-              <pbp-message-animate class="msgAnimate" messageText={this.scoreToShow} />
+              <pbp-message-animate
+                class="msgAnimate"
+                messageText={this.scoreToShow}
+              />
             )}
 
             <pbp-field view={this.view}>
-              {!this.freezeElements &&
-                this.elements ?
-                this.elements.map(element => {
-                  return element.Type === Elements.Player ? (
-                    <pbp-player
-                      view={this.view}
-                      position={{
-                        prevTop: this.playerTrack[this.playerTrack.length - 1]
-                          .Location.X,
-                        prevLeft: this.playerTrack[this.playerTrack.length - 1]
-                          .Location.Y,
-                        currTop: element.Location.X,
-                        currLeft: element.Location.Y
-                      }}
-                    />
-                  ) : element.Type === Elements.Ball ? (
-                    <pbp-ball
-                      position={{
-                        top: element.Location.X,
-                        left: element.Location.Y
-                      }}
-                    />
-                  ) : (
-                    "nothing"
-                  );
-                }):  
-              
-              //show freeze mode
-                this.prevElement&&this.prevElement.map(element => {
-                  return element.Type === Elements.Player ? (
-                    <pbp-player 
-                    //  opacity={0.1}
-                      view={this.view}
-                      position={{
-                        prevTop: this.playerTrack[this.playerTrack.length - 1]
-                          .Location.X,
-                        prevLeft: this.playerTrack[this.playerTrack.length - 1]
-                          .Location.Y,
-                        currTop: element.Location.X,
-                        currLeft: element.Location.Y
-                      }}
-                      // opacity={1}
-                    />
-                  ) : element.Type === Elements.Ball ? (
-                    <pbp-ball
-                      position={{
-                        top: element.Location.X,
-                        left: element.Location.Y
-                      }}
-                    />
-                  ) : (
-                    "nothing"
-                  );
-                })
-          }
+              {!this.freezeElements && this.elements
+                ? this.elements.map(element => {
+                    return element.Type === Elements.Player ? (
+                      <pbp-player
+                     
+                        view={this.view}
+                        position={{
+                           
+                          currTop: element.Location.X,
+                          currLeft: element.Location.Y
+                        }}
+                      />
+                    ) : element.Type === Elements.Ball ? (
+                      <pbp-ball
+                        position={{
+                          top: element.Location.X,
+                          left: element.Location.Y
+                        }}
+                      />
+                    ) : (
+                      "nothing"
+                    );
+                  })
+                : //show freeze mode
+                  this.prevElement &&
+                  this.prevElement.map(element => {
+                    return element.Type === Elements.Player ? (
+                      <pbp-player
+                        //  opacity={0.1}
+                        opacity={0.5}
+                        view={this.view}
+                        position={{
+                          currTop: element.Location.X,
+                          currLeft: element.Location.Y
+                        }}
+                        // opacity={1}
+                      />
+                    ) : element.Type === Elements.Ball ? (
+                      <pbp-ball
+                      opacity={0.5}
+                        position={{
+                          top: element.Location.X,
+                          left: element.Location.Y
+                        }}
+                      />
+                    ) : (
+                      "nothing"
+                    );
+                  })}
               {this.elements &&
                 !!this.elements.filter(el => el.Type === Elements.Ball)
                   .length &&
@@ -537,7 +534,11 @@ this.statisticsData.map(currStat=>{
                             } */}
             </pbp-field>
             {this.showStatistics && (
-              <pbp-statistics homePlayerName={this.homePlayer} awayPlayerName={this.awayPlayer} statistics={this.statisticsData} />
+              <pbp-statistics
+                homePlayerName={this.homePlayer}
+                awayPlayerName={this.awayPlayer}
+                statistics={this.statisticsData}
+              />
             )}
             {this.error && (
               <span class={`error-overlay ${this.jsonViewerOpen && "open"}`}>
@@ -570,33 +571,27 @@ this.statisticsData.map(currStat=>{
             <br />
             <br />
             <pbp-field jsonOpen={this.jsonViewerOpen} view={this.view}>
-             
-
-              {/* <div id="animation_container" class="animation_container">
+              <div id="animation_container" class="animation_container">
                 <canvas id="canvas" width="393" height="323" class="canvas" />
                 <div id="dom_overlay_container" class="dom_overlay_container" />
-              </div> */}
+              </div>
               <pbp-player
                 view={this.view}
                 position={{
-                  prevTop: 0.85,
-                  prevLeft: 0.35,
-                  currTop: this.lsPlayersPosition== 1? 0.12: 0.80,
+                  currTop: this.lsPlayersPosition == 1 ? 0.12 : 0.8,
                   currLeft: -0.04
                 }}
               />
-               <pbp-player
+              <pbp-player
                 view={this.view}
                 position={{
-                  prevTop: 0.65,
-                  prevLeft: 0.45,
-                  currTop: this.lsPlayersPosition== 1? 0.75: 0.25 ,
+                  currTop: this.lsPlayersPosition == 1 ? 0.75 : 0.25,
                   currLeft: 1
                 }}
               />
 
-              <pbp-ball 
-              animationNumber= {this.lsPlayersPosition}
+              <pbp-ball
+                animationNumber={this.lsPlayersPosition}
                 position={{
                   top: 0.86,
                   left: -0.085

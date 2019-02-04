@@ -1,24 +1,61 @@
 @keyframes moveAnimation1 {
   from {
-    top: 15%;
-    left: 19%
+    top: 20%;
+    left: 10%
   }
+  35% {
+    top: 40%;
+    left: 60%
+  }
+  45% {
+    top: 45%;
+    left: 65%
+  }
+
+  65% {
+    top: 55%;
+    left: 75%
+  }
+
+
+  85% {
+    top: 65%;
+    left: 75%
+  }
+
 
   to {
     top: 75%;
-    left: 100%
+    left: 75%
   }
 }
 
 @keyframes moveAnimation2 {
   from {
     top: 75%;
-    left: 19%
+    left: 10%;
+
+  }
+
+  35% {
+    top: 60%;
+    left: 65%
+  }
+
+  55% {
+    top: 50%;
+    left: 78%
+  }
+  
+
+  80% {
+    top: 40%;
+    left: 80%
   }
 
   to {
-    top: 25%;
-    left: 100%
+    top: 35%;
+    left: 80%;
   }
 }
 
@@ -38,7 +75,7 @@
 
 .ball.moveAnimation1 {
   animation-name: moveAnimation1;
-  animation-duration: 1.5s;
+  animation-duration: 1.2s;
   animation-timing-function: linear;
   /* animation-delay: 2s; */
   animation-iteration-count: infinite;
@@ -47,7 +84,7 @@
 
 .ball.moveAnimation2 {
   animation-name: moveAnimation2;
-  animation-duration: 1.5s;
+  animation-duration: 1.2s;
   animation-timing-function: linear;
   /* animation-delay: 2s; */
   animation-iteration-count: infinite;

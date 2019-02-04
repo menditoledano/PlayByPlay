@@ -107,8 +107,6 @@ export namespace Components {
     'opacity': number;
     'playerType': any;
     'position': {
-      prevTop: number;
-      prevLeft: number;
       currTop: number;
       currLeft: number;
     };
@@ -119,8 +117,6 @@ export namespace Components {
     'opacity'?: number;
     'playerType'?: any;
     'position'?: {
-      prevTop: number;
-      prevLeft: number;
       currTop: number;
       currLeft: number;
     };
