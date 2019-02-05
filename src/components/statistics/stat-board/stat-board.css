@@ -72,8 +72,38 @@
 .small-stat-rectangle.breakPoint {
   left: 66%;
 }
-
-
+.playerName{
+  top: 81vh;
+  
+  width: 113px;
+  height: 21px;
+  -o-object-fit: contain;
+  object-fit: contain;
+  font-family: Montserrat;
+  font-size: 3vw;
+  font-weight: 300;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: -0.7px;
+  text-align: center;
+  color: #e8dc49;
+  position: absolute;
+}
+.playerName.first.home{
+left: 51vw;
+}
+.playerName.first.away{
+  left: 75vw;
+  }
+  .playerName.second.home{
+    left: 5vw;
+    }
+    .playerName.second.away{
+      left: 29vw;
+      }
+      
+  
 
 @media only screen and (max-width: 420px) {
 

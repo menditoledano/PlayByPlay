@@ -20,7 +20,9 @@ export class Statistics {
           src="https://res.cloudinary.com/dezalma3v/image/upload/v1547197062/board-bg.png"
           class=" stat-background"
         />
-        <span class="playersName text-center">{this.homePlayerName + ' -vs- '+ this.awayPlayerName} </span>
+        <span class="playersName text-center">
+          {this.homePlayerName + " -vs- " + this.awayPlayerName}{" "}
+        </span>
         <div
           id="carouselExampleIndicators"
           class="carousel slide"
@@ -37,7 +39,7 @@ export class Statistics {
           </ol>
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <pbp-stat-board statisticsData={this.statistics} />
+              <pbp-stat-board statisticsData={this.statistics}  homePlayerName={this.homePlayerName} awayPlayerName={this.awayPlayerName}/>
             </div>
             {/* <div class="carousel-item">
               <pbp-shot-placement-stat />

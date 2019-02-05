@@ -182,9 +182,13 @@ export namespace Components {
   }
 
   interface PbpStatBoard {
+    'awayPlayerName': any;
+    'homePlayerName': any;
     'statisticsData': any;
   }
   interface PbpStatBoardAttributes extends StencilHTMLAttributes {
+    'awayPlayerName'?: any;
+    'homePlayerName'?: any;
     'statisticsData'?: any;
   }
 

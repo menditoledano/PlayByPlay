@@ -159,7 +159,7 @@ export class PlayByPlay {
   @State() awayPlayer: string;
   @State() delayForElements: boolean = true;
   @State() freezeElements: boolean = false;
-  @State() lsPlayersPosition: number = 2;
+  @State() lsPlayersPosition: number = 1;
   componentWillLoad() {
     this.kf = new KalmanFilter({ R: 0.001, Q: 2 });
     this.liveScoreData = livScoreMock;
@@ -194,8 +194,8 @@ export class PlayByPlay {
       frame.Incidents.length &&
         that.updateIncident(frame.Incidents[0], frame.Timestamp);
 
-     frame.Incidents.length && console.log("frame.Incidents");
-     frame.Incidents.length && console.log(frame);
+      frame.Incidents.length ? console.log("frame.Incidents"):'';
+      frame.Incidents.length ? console.log(frame):'';
 
       that.updateStatisticsStatus(frame.Incidents);
     });
@@ -206,7 +206,6 @@ export class PlayByPlay {
       that.updateLiveScoreData(liveScoreData);
     });
     this.hubProxy.on("statisticsMessageReceived", function(statistics: any) {
-      //statistics = statistics;
       that.updateStatisticsData(statistics);
       // console.log("statisticsMessageReceived");
 
@@ -442,8 +441,10 @@ export class PlayByPlay {
   render() {
     return (
       <div class="">
+     
         {this.lVisionMode ? (
           <div class={`wrapper ${this.fieldView}`}>
+           <img class='betaIcon' src="https://res.cloudinary.com/dezalma3v/image/upload/v1549369560/Beta_icon-18.png"></img>
             {/* {this.score && (
               <pbp-score-board
                 score={this.score}
@@ -468,16 +469,16 @@ export class PlayByPlay {
                 ? this.elements.map(element => {
                     return element.Type === Elements.Player ? (
                       <pbp-player
-                     
                         view={this.view}
+                        opacity={1}
                         position={{
-                           
                           currTop: element.Location.X,
                           currLeft: element.Location.Y
                         }}
                       />
                     ) : element.Type === Elements.Ball ? (
                       <pbp-ball
+                      opacity={1}
                         position={{
                           top: element.Location.X,
                           left: element.Location.Y
@@ -503,7 +504,7 @@ export class PlayByPlay {
                       />
                     ) : element.Type === Elements.Ball ? (
                       <pbp-ball
-                      opacity={0.5}
+                        opacity={0.5}
                         position={{
                           top: element.Location.X,
                           left: element.Location.Y
@@ -557,6 +558,7 @@ export class PlayByPlay {
         ) : //show in livscoreMode
         this.liveScoreMode ? (
           <div class={`wrapper ${this.fieldView}`}>
+          <img class='betaIcon' src="https://res.cloudinary.com/dezalma3v/image/upload/v1549369560/Beta_icon-18.png"></img>
             {/* {this.score && (
               <pbp-score-board
                 score={this.score}
@@ -597,6 +599,7 @@ export class PlayByPlay {
                   left: -0.085
                 }}
               />
+              <div class={`ballLanding${this.lsPlayersPosition}`}></div>
             </pbp-field>
 
             {this.showStatistics && (

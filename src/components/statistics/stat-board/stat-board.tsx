@@ -12,6 +12,8 @@ export class statBoard {
   @State() aceAway: any;
   @State() distanceCoveredHome: any;
   @State() distanceCoveredAway: any;
+  @Prop() homePlayerName: any;
+  @Prop() awayPlayerName: any;
 
   componentWillLoad() {
     {
@@ -69,7 +71,10 @@ export class statBoard {
               {this.aceAway && +this.aceAway + "\n" + " "}
             </span>
             <span class="pointTitle">points</span>
+         
           </div>
+          <span class="playerName second home">{this.homePlayerName}</span>
+          <span class="playerName second away">{this.awayPlayerName}</span>
         </div>
 
         <div class="distanceCovered">
@@ -84,14 +89,18 @@ export class statBoard {
             class="small-stat-rectangle distanceCovered"
           />
           <span class="distanceCoveredHome">
-            {this.distanceCoveredHome && Math.floor(this.distanceCoveredHome) + "\n" + " "}
+            {this.distanceCoveredHome &&
+              Math.floor(this.distanceCoveredHome) + "\n" + " "}
             <span class="pointTitleA">m</span>
           </span>
           <span class="distanceCoveredIcon" />
           <span class="distanceCoveredAway">
-            {this.distanceCoveredAway && Math.floor(this.distanceCoveredAway )+ "\n" + " "}
+            {this.distanceCoveredAway &&
+              Math.floor(this.distanceCoveredAway) + "\n" + " "}
             <span class="pointTitleA">m</span>
           </span>
+          <span class="playerName first home">{this.homePlayerName}</span>
+          <span class="playerName first away">{this.awayPlayerName}</span>
         </div>
 
         {/* <img
