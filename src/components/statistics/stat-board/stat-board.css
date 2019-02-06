@@ -35,12 +35,99 @@
 
 }
 
+.title-doubleFault {
+  display: block;
+  /* width: 100%; */
+  font-size: 3vw !important;
+  left: 16% !important;
+
+}
+
 .title-distanceCovered {
   display: block;
   /* width: 100%; */
   font-size: 3vw !important;
   left: 60% !important
 }
+
+.title-breakPointWon {
+  display: block;
+  /* width: 100%; */
+  font-size: 3vw !important;
+  left: 59% !important
+}
+
+.circular-chart {
+  width: 36vw;
+  height: 19vh;
+  top: 38vh;
+  display: block;
+  margin: 10px auto;
+  /* z-index: 3; */
+  position: absolute;
+
+}
+
+.circular-chart.away {
+  left: 66vw;
+}
+
+.circular-chart.home {
+  left: 43vw;
+}
+
+.circle {
+  stroke: #d3d7dc;
+  fill: none;
+  stroke-width: 3.5px;
+  -webkit-animation: progress 1s ease-out forwards;
+  animation: progress 1s ease-out forwards;
+}
+
+@keyframes progress {
+  0% {
+    stroke-dasharray: 0 100;
+  }
+}
+
+.Attempts {
+
+
+  top: 50vh;
+  position: absolute;
+  width: 45vw;
+  height: 10vh;
+  font-family: Montserrat;
+  font-size: 1.8vw;
+  font-weight: 300;
+  letter-spacing: -0.3px;
+  text-align: center;
+  color: #4c6d8e;
+}
+
+.Attempts.home {
+  left: 38.5vw;
+}
+
+.Attempts.away {
+  left: 61.5vw;
+}
+
+.breakPointWon.points {
+   
+    position: absolute;
+   
+    font-family: Montserrat;
+    font-size: 3vw;
+    font-weight: bold;
+    letter-spacing: 0.1px;
+    text-align: center;
+    color: #ffffff;
+    left: 82vw;
+    top: 45vh;
+}
+.breakPointWon.points.home { left: 59vw;}
+.breakPointWon.points.away { left: 82vw;}
 
 .curr-points-ace {
   top: 19% !important;
@@ -72,9 +159,10 @@
 .small-stat-rectangle.breakPoint {
   left: 66%;
 }
-.playerName{
+
+.playerName {
   top: 81vh;
-  
+
   width: 113px;
   height: 21px;
   -o-object-fit: contain;
@@ -90,51 +178,21 @@
   color: #e8dc49;
   position: absolute;
 }
-.playerName.first.home{
-left: 51vw;
+
+.playerName.first.home {
+  left: 51vw;
 }
-.playerName.first.away{
+
+.playerName.first.away {
   left: 75vw;
-  }
-  .playerName.second.home{
-    left: 5vw;
-    }
-    .playerName.second.away{
-      left: 29vw;
-      }
-      
-  
+}
 
-@media only screen and (max-width: 420px) {
+.playerName.second.home {
+  left: 5vw;
+}
 
-  .small-stat-rectangle.distanceCovered {
-    left: 5%;
-    top: 52%;
-  }
-
-  .small-stat-rectangle.ace {
-    left: 6%;
-    top: 10%;
-  }
-
-
-  .small-stat-rectangle {
-    width: 88vw;
-    top: 52%;
-    height: 41vh;
-    position: absolute;
-    mix-blend-mode: screen !important;
-  }
-
-  .graph-stat-rectangle {
-    width: 89vw;
-    top: 11%;
-    left: 5%;
-    height: 40vh;
-    position: absolute;
-    mix-blend-mode: screen !important;
-  }
-
+.playerName.second.away {
+  left: 29vw;
 }
 
 .aceDataHome {
@@ -285,9 +343,39 @@ left: 51vw;
   position: relative;
 }
 
+.double-fault {}
 
 
 @media only screen and (max-width: 420px) {
+
+  .small-stat-rectangle.distanceCovered {
+    left: 5%;
+    top: 52%;
+  }
+
+  .small-stat-rectangle.ace {
+    left: 6%;
+    top: 10%;
+  }
+
+
+  .small-stat-rectangle {
+    width: 88vw;
+    top: 52%;
+    height: 41vh;
+    position: absolute;
+    mix-blend-mode: screen !important;
+  }
+
+  .graph-stat-rectangle {
+    width: 89vw;
+    top: 11%;
+    left: 5%;
+    height: 40vh;
+    position: absolute;
+    mix-blend-mode: screen !important;
+  }
+
 
   .title-distanceCovered {
     top: 12vh;
@@ -321,10 +409,11 @@ left: 51vw;
   }
 
   .title-ace {
-    top: 55vh!important;
+    top: 55vh !important;
     left: 45% !important;
 
   }
+
 
 
   .aceDataHome {

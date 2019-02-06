@@ -194,8 +194,8 @@ export class PlayByPlay {
       frame.Incidents.length &&
         that.updateIncident(frame.Incidents[0], frame.Timestamp);
 
-         frame.Incidents.length &&console.log("frame.Incidents");
-         frame.Incidents.length &&console.log(frame.Incidents);
+      frame.Incidents.length && console.log("frame.Incidents");
+      frame.Incidents.length && console.log(frame.Incidents);
 
       that.updateStatisticsStatus(frame.Incidents);
     });
@@ -207,15 +207,15 @@ export class PlayByPlay {
     });
     this.hubProxy.on("statisticsMessageReceived", function(statistics: any) {
       that.updateStatisticsData(statistics);
-      console.log("statisticsMessageReceived");
+      // console.log("statisticsMessageReceived");
 
-      console.log(statistics);
+      // console.log(statistics);
     });
 
     // snapshot
     this.hubProxy.on("statisticsSnapshotReceived", function(statistics: any) {
-      // console.log("statisticsSnapshotReceived");
-      // console.log(statistics);
+      console.log("statisticsSnapshotReceived");
+      console.log(statistics);
 
       that.updateStatisticsSnapShotData(statistics);
     });
@@ -223,7 +223,6 @@ export class PlayByPlay {
     this.hubProxy.on("stateMessageReceived", function(frame: any) {
       that.updateStateMessage(frame);
       // console.log(frame);
-      
     });
 
     this.start();
@@ -377,18 +376,26 @@ export class PlayByPlay {
     // console.log(this.statisticsData);
   };
   updateStatisticsData = statistic => {
-    // this.statisticsData.push(statistics);
-    this.statisticsData.map(currStat => {
-      if (currStat.StatisticType === statistic.StatisticType) {
-        currStat.ParticipantStatisticMetadata.map(currSnapMetadata => {
-          statistic.ParticipantStatisticMetadata.map(currMsgMetadata => {
-            currSnapMetadata.ParticipantStat === currMsgMetadata.ParticipantStat
-              ? (currSnapMetadata.StatPerPeriod = currMsgMetadata.StatPerPeriod)
-              : "";
-          });
+    this.statisticsData &&
+   typeof this.statisticsData.find(
+      lookForStat => lookForStat.StatisticType === statistic.StatisticType
+    ) == "undefined"
+      ? this.statisticsData.push(statistic)
+      : 
+      this.statisticsData.map(currStat => {
+          if (currStat.StatisticType === statistic.StatisticType) {
+            currStat.ParticipantStatisticMetadata.map(currSnapMetadata => {
+              statistic.ParticipantStatisticMetadata.map(currMsgMetadata => {
+                currSnapMetadata.ParticipantStat ===
+                currMsgMetadata.ParticipantStat
+                  ? (currSnapMetadata.StatPerPeriod =
+                      currMsgMetadata.StatPerPeriod)
+                  : "";
+                  ;
+              });
+            });
+          }
         });
-      }
-    });
     // this.statisticsData = statistic;
     // console.log(this.statisticsData);
   };
@@ -446,10 +453,12 @@ export class PlayByPlay {
   render() {
     return (
       <div class="">
-     
         {this.lVisionMode ? (
           <div class={`wrapper ${this.fieldView}`}>
-           <img class='betaIcon' src="https://res.cloudinary.com/dezalma3v/image/upload/v1549369560/Beta_icon-18.png"></img>
+            <img
+              class="betaIcon"
+              src="https://res.cloudinary.com/dezalma3v/image/upload/v1549369560/Beta_icon-18.png"
+            />
             {/* {this.score && (
               <pbp-score-board
                 score={this.score}
@@ -483,7 +492,7 @@ export class PlayByPlay {
                       />
                     ) : element.Type === Elements.Ball ? (
                       <pbp-ball
-                      opacity={1}
+                        opacity={1}
                         position={{
                           top: element.Location.X,
                           left: element.Location.Y
@@ -563,7 +572,10 @@ export class PlayByPlay {
         ) : //show in livscoreMode
         this.liveScoreMode ? (
           <div class={`wrapper ${this.fieldView}`}>
-          <img class='betaIcon' src="https://res.cloudinary.com/dezalma3v/image/upload/v1549369560/Beta_icon-18.png"></img>
+            <img
+              class="betaIcon"
+              src="https://res.cloudinary.com/dezalma3v/image/upload/v1549369560/Beta_icon-18.png"
+            />
             {/* {this.score && (
               <pbp-score-board
                 score={this.score}
@@ -604,7 +616,7 @@ export class PlayByPlay {
                   left: -0.085
                 }}
               />
-              <div class={`ballLanding${this.lsPlayersPosition}`}></div>
+              <div class={`ballLanding${this.lsPlayersPosition}`} />
             </pbp-field>
 
             {this.showStatistics && (

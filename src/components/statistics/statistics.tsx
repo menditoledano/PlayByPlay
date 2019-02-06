@@ -16,14 +16,16 @@ export class Statistics {
   render() {
     return (
       <div>
+
         <img
           src="https://res.cloudinary.com/dezalma3v/image/upload/v1547197062/board-bg.png"
           class=" stat-background"
         />
         <span class="playersName text-center">
+        
           {this.homePlayerName + " -vs- " + this.awayPlayerName}{" "}
         </span>
-        <div
+        {/* <div
           id="carouselExampleIndicators"
           class="carousel slide"
           data-ride="carousel"
@@ -38,15 +40,10 @@ export class Statistics {
             <li data-target="#carouselExampleIndicators" data-slide-to="2" />
           </ol>
           <div class="carousel-inner">
-            <div class="carousel-item active">
+            <div class="carousel-item active"> */}
               <pbp-stat-board statisticsData={this.statistics}  homePlayerName={this.homePlayerName} awayPlayerName={this.awayPlayerName}/>
-            </div>
-            {/* <div class="carousel-item">
-              <pbp-shot-placement-stat />
-            </div> */}
-            {/* <div class="carousel-item">
-              <pbp-stat-board />
-            </div> */}
+            {/* </div>
+       
           </div>
           <a
             class="carousel-control-prev"
@@ -54,8 +51,7 @@ export class Statistics {
             role="button"
             data-slide="prev"
           >
-            {/* <span class="carousel-control-prev-icon" aria-hidden="true" /> */}
-            {/* <span class="sr-only">Previous</span> */}
+          
           </a>
           <a
             class="carousel-control-next"
@@ -63,10 +59,9 @@ export class Statistics {
             role="button"
             data-slide="next"
           >
-            {/* <span class="carousel-control-next-icon" aria-hidden="true" />
-            <span class="sr-only">Next</span> */}
+       
           </a>
-        </div>
+        </div> */}
       </div>
     );
   }
