@@ -169,7 +169,7 @@ export class PlayByPlay {
     // this.updateLiveScoreData(this.liveScoreData);
     const url: string = "http://ICnat.lsports.eu:8100";
     this.connection = hubConnection(url);
-    this.hubProxy = this.connection.createHubProxy("playByPlayHub");
+    this.hubProxy = this.connection.createHubProxy("PlayByPlayHub");
     const that = this;
 
     this.hubProxy.on("fixtureDataReceived", function(fixtureData: any) {
@@ -194,8 +194,8 @@ export class PlayByPlay {
       frame.Incidents.length &&
         that.updateIncident(frame.Incidents[0], frame.Timestamp);
 
-      frame.Incidents.length ? console.log("frame.Incidents"):'';
-      frame.Incidents.length ? console.log(frame):'';
+         frame.Incidents.length &&console.log("frame.Incidents");
+         frame.Incidents.length &&console.log(frame.Incidents);
 
       that.updateStatisticsStatus(frame.Incidents);
     });
@@ -207,9 +207,9 @@ export class PlayByPlay {
     });
     this.hubProxy.on("statisticsMessageReceived", function(statistics: any) {
       that.updateStatisticsData(statistics);
-      // console.log("statisticsMessageReceived");
+      console.log("statisticsMessageReceived");
 
-      // console.log(statistics);
+      console.log(statistics);
     });
 
     // snapshot
@@ -222,6 +222,8 @@ export class PlayByPlay {
 
     this.hubProxy.on("stateMessageReceived", function(frame: any) {
       that.updateStateMessage(frame);
+      // console.log(frame);
+      
     });
 
     this.start();
@@ -275,9 +277,12 @@ export class PlayByPlay {
     if (this.error) {
       return;
     }
+    incident = incident;
+    timestamp = timestamp;
+
     this.message = {
       date: new Date(timestamp),
-      text: `${Incidents[incident.Label]} \n by ${incident.Metadata.Performer}`
+      text: `${Incidents[incident.Label]}`
     };
   };
 
