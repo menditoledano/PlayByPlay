@@ -139,7 +139,7 @@ export class PlayByPlay {
   @State() reconnectTimeout: number = 10;
   @State() jsonViewerOpen: boolean = false;
   @State() error: boolean = false;
-  @State() showStatistics: boolean = false;
+  @State() showStatistics: boolean = true;
   @State() statisticsData: any = [];
   @State() message: {
     date: Date;
@@ -296,7 +296,7 @@ export class PlayByPlay {
       if (this.delayForElements) {
         this.freezeElements = false;
         this.error = false;
-        this.showStatistics = false;
+        this.showStatistics = true;
         this.showMessageBoard = false;
       }
     } else if (state.State === States.Fade) {
@@ -404,7 +404,7 @@ export class PlayByPlay {
     this.liveScoreMode = false;
 
     this.elements && this.delayForElements
-      ? ((this.showMessageBoard = false), (this.showStatistics = false))
+      ? ((this.showMessageBoard = false), (this.showStatistics = true))
       : "";
     const previousBall =
       this.elements && this.elements.find(el => el.Type === Elements.Ball);

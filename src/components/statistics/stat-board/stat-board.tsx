@@ -16,6 +16,9 @@ export class statBoard {
   @State() distanceCoveredAway: any;
   @State() breakPointWonHome: any;
   @State() breakPointWonAway: any;
+  @State() Win1stServeHome: any;
+  @State() Win1stServeAway: any;
+
   @Prop() homePlayerName: any;
   @Prop() awayPlayerName: any;
 
@@ -53,6 +56,14 @@ export class statBoard {
                 ? (this.breakPointWonHome = data.StatPerPeriod[0].StatValue)
                 : data.ParticipantStat === ParticipantStat.AwayPlayer1
                 ? (this.breakPointWonAway = data.StatPerPeriod[0].StatValue)
+                : "";
+            })
+          : currStat.StatisticType == StatisticType.Win1stServe
+          ? currStat.ParticipantStatisticMetadata.map(data => {
+              data.ParticipantStat === ParticipantStat.HomePlayer1
+                ? (this.Win1stServeHome = data.StatPerPeriod[0].StatValue)
+                : data.ParticipantStat === ParticipantStat.AwayPlayer1
+                ? (this.Win1stServeAway = data.StatPerPeriod[0].StatValue)
                 : "";
             })
           : "";
@@ -98,13 +109,13 @@ export class statBoard {
                     {" "}
                     {this.aceHome && +this.aceHome + "\n" + " "}
                   </span>
-                  <span class="pointTitle">points</span>
+                  {/* <span class="pointTitle">points</span> */}
                 </div>
                 <div class="aceDataAway">
                   <span class=" point">
                     {this.aceAway && +this.aceAway + "\n" + " "}
                   </span>
-                  <span class="pointTitle">points</span>
+                  {/* <span class="pointTitle">points</span> */}
                 </div>
                 <span class="playerName second home">
                   {this.homePlayerName}
@@ -156,13 +167,13 @@ export class statBoard {
                     {" "}
                     {this.doublFaultHome && +this.doublFaultHome + "\n" + " "}
                   </span>
-                  <span class="pointTitle">points</span>
+                  {/* <span class="pointTitle">points</span> */}
                 </div>
                 <div class="aceDataAway">
                   <span class=" point">
                     {this.doublFaultAway && +this.doublFaultAway + "\n" + " "}
                   </span>
-                  <span class="pointTitle">points</span>
+                  {/* <span class="pointTitle">points</span> */}
                 </div>
                 <span class="playerName second home">
                   {this.homePlayerName}
@@ -183,6 +194,15 @@ export class statBoard {
                   src="https://res.cloudinary.com/dezalma3v/image/upload/v1548698782/small-rectangle-stat.png"
                   class="small-stat-rectangle distanceCovered"
                 />
+                <svg viewBox="0 0 36 36" class="circular-home-cover">
+                  <path
+                    class="circle-cover"
+                    stroke-dasharray={`100, 100`}
+                    d="M18 2.0845
+      a 15.9155 15.9155 0 0 1 0 31.831
+      a 15.9155 15.9155 0 0 1 0 -31.831"
+                  />
+                </svg>
                 <svg viewBox="0 0 36 36" class="circular-chart home">
                   <path
                     class="circle"
@@ -192,8 +212,29 @@ export class statBoard {
       a 15.9155 15.9155 0 0 1 0 -31.831"
                   />
                 </svg>
-                <span class="breakPointWon points home">{this.breakPointWonHome}%</span>
-                <span class="Attempts home">Attempts</span>
+
+                <span class="breakPointWon points home">
+                  {this.breakPointWonHome}%
+                </span>
+                {/* <span class="Attempts home">Attempts</span> */}
+                {/* <svg viewBox="0 0 36 36" class="circular-away-cover-border">
+                  <path
+                    class="circle-border"
+                    stroke-dasharray={`100, 100`}
+                    d="M18 2.0845
+      a 15.9155 15.9155 0 0 1 0 31.831
+      a 15.9155 15.9155 0 0 1 0 -31.831"
+                  />
+                </svg> */}
+                <svg viewBox="0 0 36 36" class="circular-away-cover">
+                  <path
+                    class="circle-cover"
+                    stroke-dasharray={`100, 100`}
+                    d="M18 2.0845
+      a 15.9155 15.9155 0 0 1 0 31.831
+      a 15.9155 15.9155 0 0 1 0 -31.831"
+                  />
+                </svg>
                 <svg viewBox="0 0 36 36" class="circular-chart away">
                   <path
                     class="circle"
@@ -203,14 +244,84 @@ export class statBoard {
       a 15.9155 15.9155 0 0 1 0 -31.831"
                   />
                 </svg>
-                <span class="breakPointWon points away">{this.breakPointWonAway}%</span>
-                <span class="Attempts away">Attempts</span>
+                <span class="breakPointWon points away">
+                  {this.breakPointWonAway}%
+                </span>
+                {/* <span class="Attempts away">Attempts</span> */}
                 <span class="playerName first home">{this.homePlayerName}</span>
                 <span class="playerName first away">{this.awayPlayerName}</span>
               </div>
             </div>
             <div class="carousel-item">
-              {/* <img class="d-block w-100" src="..." alt="Third slide"> */}
+              
+            <div class="Win1stServe">
+                <span class="stat-title title-Win1stServe text-center">
+                  {`Win 1st Serve ` + ``}
+                </span>
+                <span class="stat-title  curr-points-distanceCovered text-center">
+                  {/* (Last Game) */}
+                </span>
+                <img
+                  src="https://res.cloudinary.com/dezalma3v/image/upload/v1548698782/small-rectangle-stat.png"
+                  class="small-stat-rectangle distanceCovered"
+                />
+                <svg viewBox="0 0 36 36" class="circular-home-cover">
+                  <path
+                    class="circle-cover"
+                    stroke-dasharray={`100, 100`}
+                    d="M18 2.0845
+      a 15.9155 15.9155 0 0 1 0 31.831
+      a 15.9155 15.9155 0 0 1 0 -31.831"
+                  />
+                </svg>
+                <svg viewBox="0 0 36 36" class="circular-chart home">
+                  <path
+                    class="circle"
+                    stroke-dasharray={`${this.Win1stServeHome}, 100`}
+                    d="M18 2.0845
+      a 15.9155 15.9155 0 0 1 0 31.831
+      a 15.9155 15.9155 0 0 1 0 -31.831"
+                  />
+                </svg>
+
+                <span class="breakPointWon points home">
+                  {this.Win1stServeHome}%
+                </span>
+                {/* <span class="Attempts home">Attempts</span> */}
+                {/* <svg viewBox="0 0 36 36" class="circular-away-cover-border">
+                  <path
+                    class="circle-border"
+                    stroke-dasharray={`100, 100`}
+                    d="M18 2.0845
+      a 15.9155 15.9155 0 0 1 0 31.831
+      a 15.9155 15.9155 0 0 1 0 -31.831"
+                  />
+                </svg> */}
+                <svg viewBox="0 0 36 36" class="circular-away-cover">
+                  <path
+                    class="circle-cover"
+                    stroke-dasharray={`100, 100`}
+                    d="M18 2.0845
+      a 15.9155 15.9155 0 0 1 0 31.831
+      a 15.9155 15.9155 0 0 1 0 -31.831"
+                  />
+                </svg>
+                <svg viewBox="0 0 36 36" class="circular-chart away">
+                  <path
+                    class="circle"
+                    stroke-dasharray={`${this.Win1stServeAway}, 100`}
+                    d="M18 2.0845
+      a 15.9155 15.9155 0 0 1 0 31.831
+      a 15.9155 15.9155 0 0 1 0 -31.831"
+                  />
+                </svg>
+                <span class="breakPointWon points away">
+                  {this.Win1stServeAway}%
+                </span>
+                {/* <span class="Attempts away">Attempts</span> */}
+                <span class="playerName first home">{this.homePlayerName}</span>
+                <span class="playerName first away">{this.awayPlayerName}</span>
+              </div>
             </div>
           </div>
           <a

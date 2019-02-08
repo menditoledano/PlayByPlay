@@ -29,7 +29,7 @@
     "watchify": "^3.11.0"
   },
   "devDependencies": {
-    "@stencil/core": "^0.17.1",
+    "@stencil/core": "^0.17.2",
     "@types/jest": "23.3.10",
     "@types/puppeteer": "1.11.1",
     "jest": "23.6.0",

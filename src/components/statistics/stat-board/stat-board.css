@@ -56,6 +56,13 @@
   font-size: 3vw !important;
   left: 59% !important
 }
+.title-Win1stServe {
+  display: block;
+  /* width: 100%; */
+  font-size: 3vw !important;
+  left: 62% !important
+}
+
 
 .circular-chart {
   width: 36vw;
@@ -76,8 +83,57 @@
   left: 43vw;
 }
 
+.circular-home-cover {
+  width: 36vw;
+  height: 19vh;
+  top: 38vh;
+  display: block;
+  margin: 10px auto;
+  /* z-index: 3; */
+  position: absolute;
+  left: 43vw;
+}
+.circular-away-cover{
+  width: 36vw;
+  height: 19vh;
+  top: 38vh;
+  display: block;
+  margin: 10px auto;
+  /* z-index: 3; */
+  position: absolute;
+  left: 66vw;
+  
+}
+/* .circular-away-cover-border{
+  width: 36vw;
+  height: 20vh;
+  top: 38vh;
+  display: block;
+  margin: 10px auto;
+  
+  position: absolute;
+  left: 66vw;
+} */
+
+
+
 .circle {
   stroke: #d3d7dc;
+  fill: none;
+  stroke-width: 3.5px;
+  -webkit-animation: progress 1s ease-out forwards;
+  animation: progress 1s ease-out forwards;
+}
+
+.circle-cover {
+  stroke: #4c6d8e;
+  fill: none;
+  stroke-width: 3.5px;
+  -webkit-animation: progress 1s ease-out forwards;
+  animation: progress 1s ease-out forwards;
+}
+.circle-border {
+  stroke: whitesmoke;
   fill: none;
   stroke-width: 3.5px;
   -webkit-animation: progress 1s ease-out forwards;
@@ -114,20 +170,26 @@
 }
 
 .breakPointWon.points {
-   
-    position: absolute;
-   
-    font-family: Montserrat;
-    font-size: 3vw;
-    font-weight: bold;
-    letter-spacing: 0.1px;
-    text-align: center;
-    color: #ffffff;
-    left: 82vw;
-    top: 45vh;
+
+  position: absolute;
+
+  font-family: Montserrat;
+  font-size: 3vw;
+  font-weight: bold;
+  letter-spacing: 0.1px;
+  text-align: center;
+  color: #ffffff;
+  left: 82vw;
+  top: 47vh;
 }
-.breakPointWon.points.home { left: 59vw;}
-.breakPointWon.points.away { left: 82vw;}
+
+.breakPointWon.points.home {
+  left: 59vw;
+}
+
+.breakPointWon.points.away {
+  left: 82vw;
+}
 
 .curr-points-ace {
   top: 19% !important;
@@ -339,7 +401,7 @@
 
 .point {
 
-  top: 3vh;
+  top: 7vh;
   position: relative;
 }
 
