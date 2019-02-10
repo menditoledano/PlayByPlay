@@ -253,7 +253,7 @@ export class statBoard {
               </div>
             </div>
             <div class="carousel-item">
-              
+            <img src="https://res.cloudinary.com/dezalma3v/image/upload/v1548698782/small-rectangle-stat.png" class="small-stat-rectangle ace"></img>
             <div class="Win1stServe">
                 <span class="stat-title title-Win1stServe text-center">
                   {`Win 1st Serve ` + ``}
@@ -261,10 +261,7 @@ export class statBoard {
                 <span class="stat-title  curr-points-distanceCovered text-center">
                   {/* (Last Game) */}
                 </span>
-                <img
-                  src="https://res.cloudinary.com/dezalma3v/image/upload/v1548698782/small-rectangle-stat.png"
-                  class="small-stat-rectangle distanceCovered"
-                />
+               
                 <svg viewBox="0 0 36 36" class="circular-home-cover">
                   <path
                     class="circle-cover"

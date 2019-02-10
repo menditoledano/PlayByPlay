@@ -9,7 +9,7 @@
 @keyframes ballLanding {
   from {opacity: 1;}
   50%{
-    opacity: 0;
+    opacity: 1;
   }
   90%{
     opacity: 0;
@@ -204,6 +204,50 @@
   animation-duration: 4s;
 } */
 @media only screen and (max-width: 420px) {
+  .ballLanding2{
+    background-image: url('https://res.cloudinary.com/dezalma3v/image/upload/v1549305705/ball-on-court_3x.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    z-index: 3;
+    /* top: 26%;
+    left: 72%; */
+    width: 11vw;
+    height: 4vh;
+    -webkit-animation-name: ballLanding;
+    animation-name: ballLanding;
+    /* -webkit-animation-duration: 1.2s; */
+    animation-duration: 1.4s;
+    animation-delay: 1.6s;
+    -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
+    /* animation-delay: 2s; */
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+  }
+  .ballLanding1{
+  background-image: url('https://res.cloudinary.com/dezalma3v/image/upload/v1549305705/ball-on-court_3x.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  position: absolute;
+  z-index: 3;
+  width: 11vw;
+  height: 4vh;
+  -webkit-animation-name: ballLanding;
+  animation-name: ballLanding;
+  /* -webkit-animation-duration: 1.2s; */
+  -webkit-animation-duration: 1.4s;
+  animation-duration: 1.4s;
+  -webkit-animation-delay: 1.6s;
+  animation-delay: 1.6s;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+  /* animation-delay: 2s; */
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  }
   .betaIcon{
     height: 10vh;
   }

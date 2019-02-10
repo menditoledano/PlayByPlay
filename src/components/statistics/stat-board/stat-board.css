@@ -56,6 +56,7 @@
   font-size: 3vw !important;
   left: 59% !important
 }
+
 .title-Win1stServe {
   display: block;
   /* width: 100%; */
@@ -93,7 +94,8 @@
   position: absolute;
   left: 43vw;
 }
-.circular-away-cover{
+
+.circular-away-cover {
   width: 36vw;
   height: 19vh;
   top: 38vh;
@@ -102,8 +104,9 @@
   /* z-index: 3; */
   position: absolute;
   left: 66vw;
-  
+
 }
+
 /* .circular-away-cover-border{
   width: 36vw;
   height: 20vh;
@@ -132,6 +135,7 @@
   -webkit-animation: progress 1s ease-out forwards;
   animation: progress 1s ease-out forwards;
 }
+
 .circle-border {
   stroke: whitesmoke;
   fill: none;
@@ -409,6 +413,77 @@
 
 
 @media only screen and (max-width: 420px) {
+  .breakPointWon.points.home {
+    left: 24vw;
+}
+  .breakPointWon.points.away {
+    left: 69vw;
+}
+
+
+.breakPointWon.points {
+    position: absolute;
+    font-family: Montserrat;
+    font-size: 5vw;
+    font-weight: bold;
+    letter-spacing: 0.1px;
+    text-align: center;
+    color: #ffffff;
+    left: 82vw;
+    top: 30vh;
+}
+  .circular-chart.away {
+    left: 55vw;
+  }
+
+  .circular-chart {
+
+    width: 36vw;
+    height: 19vh;
+    top: 21vh;
+    display: block;
+    margin: 10px auto;
+    /* z-index: 3; */
+    position: absolute;
+  }
+
+  .circular-chart.home {
+    left: 9vw;
+  }
+
+  .circular-away-cover {
+    width: 36vw;
+    height: 19vh;
+    top: 21vh;
+    display: block;
+    margin: 10px auto;
+    /* z-index: 3; */
+    position: absolute;
+    left: 55vw;
+  }
+
+  .circular-home-cover {
+    width: 36vw;
+    height: 19vh;
+    top: 21vh;
+    display: block;
+    margin: 10px auto;
+    /* z-index: 3; */
+    position: absolute;
+    left: 9vw;
+  }
+
+  .title-breakPointWon {
+    left: 36% !important;
+  }
+
+  .title-doubleFault {
+    display: block;
+    top: 55vh !important;
+    font-size: 3vw !important;
+    left: 38% !important;
+  }
+
 
   .small-stat-rectangle.distanceCovered {
     left: 5%;
@@ -476,17 +551,23 @@
 
   }
 
-
+  .title-Win1stServe {
+    display: block;
+    /* width: 100%; */
+    font-size: 3vw !important;
+    left: 40% !important;
+}
 
   .aceDataHome {
     top: 63%;
 
     left: 12%;
+    font-size: 6vw;
 
   }
 
   .point {
-    top: 7vh;
+    top: 8vh;
     position: relative;
   }
 
@@ -497,6 +578,7 @@
   .aceDataAway {
     top: 63%;
     left: 62%;
+    font-size: 6vw;
   }
 
   .carousel-indicators {

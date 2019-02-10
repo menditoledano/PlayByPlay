@@ -76,28 +76,26 @@
     left: 90%;
     opacity: 1;
   }
-
-  50% {
+  35% {
+    top: 40%;
+    left: 70%;
+    opacity: 1
+  }
+  55% {
     top: 30%;
-    left: 50%;
+    left: 60%;
     opacity: 1;
   }
 
-  65% {
+  80% {
     top: 30%;
     left: 45%;
-    opacity: 1;
-  }
-
-  90% {
-    top: 30%;
-    left: 38%;
-    opacity: 0;
+    opacity: .1;
   }
 
   to {
-    top: 28%;
-    left: 38%;
+    top: 30%;
+    left: 40%;
     opacity: 1;
   }
 }

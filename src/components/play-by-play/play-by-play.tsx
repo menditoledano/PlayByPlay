@@ -139,6 +139,19 @@ const scoreStructure = {
     Away: "0"
   }
 };
+const statisticsMock = {
+  Statistics: [
+    {
+      StatisticType: 1,
+
+      StatisticUnit: 1,
+
+      ParticipantStatsticMetadata: [],
+
+      FixtureId: 12345
+    }
+  ]
+};
 @Component({
   tag: "play-by-play-widget",
   styleUrl: "play-by-play.css"
@@ -336,7 +349,7 @@ export class PlayByPlay {
         this.showMessageBoard = false;
       }
     } else if (state.State === States.Fade) {
-      if(!this.showStatistics){
+      if (!this.showStatistics) {
         this.error = true;
       }
     } else if (state.State === States.FallBack) {
@@ -436,8 +449,8 @@ export class PlayByPlay {
     // console.log(this.statisticsData);
   };
   updateElements = elements => {
-    this.lVisionMode = true;
-    this.liveScoreMode = false;
+    // this.lVisionMode = true;
+    // this.liveScoreMode = false;
 
     this.elements && this.delayForElements
       ? ((this.showMessageBoard = false), (this.showStatistics = true))
@@ -488,7 +501,7 @@ export class PlayByPlay {
     var seconds =
       (currTime.getTime() - this.livenessServerTime.getTime()) / 1000;
     if (seconds > 5) {
-      this.error = true;
+      this.error = true;  
       this.message.text = "Server is down";
     }
   };
@@ -505,14 +518,90 @@ export class PlayByPlay {
     //update setsScore
     liveScoreData.Scoreboard.Results.map(currPoint => {
       currPoint.Position == lsPosition.homePlayer
-        ? (this.score.CurrentScore.Home = currPoint.Value)
-        : (this.score.CurrentScore.Away = currPoint.Value);
+        ? this.score.CurrentScore.Home
+          ? (this.score.CurrentScore.Home = currPoint.Value)
+          : ""
+        : this.score.CurrentScore.Away
+        ? (this.score.CurrentScore.Away = currPoint.Value)
+        : "";
     });
     this.lsPlayersPosition;
+    liveScoreData.LivescoreExtraData.map(curr => {
+      curr.Name == "Turn"
+        ? (this.lsBallMoovment = curr.Value == 1 ? "home" : "away")
+        : curr.Name == "ServiceSide"
+        ? (this.lsPlayersPosition = curr.Value == "Ad" ? 2 : 1)
+        : "";
+    });
+  };
 
-    liveScoreData.LivescoreExtraData[1].Name == "Turn" &&
-      (this.lsBallMoovment =
-        liveScoreData.LivescoreExtraData[1].Value == 1 ? "home" : "away");
+  updateLiveScoreStatistics = statistics => {
+    if (!this.statisticsData) {
+      this.statisticsData = statisticsMock;
+    }
+    statistics.map(currStat => {
+      this.statisticsData &&
+      typeof this.statisticsData.find(
+        lookForStat => lookForStat.StatisticType === currStat.Type
+      ) == "undefined"
+        ? this.statisticsData.push({
+            StatisticType: currStat.Type,
+
+            StatisticUnit: 0,
+
+            ParticipantStatsticMetadata: [
+              {
+                ParticipantStat: 1,
+
+                StatPerPeriod: [
+                  {
+                    PeriodType: 1,
+
+                    PeriodValue: null,
+
+                    StatValue: currStat.Results[0].Value
+                  }
+                ]
+              },
+              {
+                ParticipantStat: 3,
+
+                StatPerPeriod: [
+                  {
+                    PeriodType: 1,
+
+                    PeriodValue: null,
+
+                    StatValue: currStat.Results[1].Value
+                  }
+                ]
+              }
+            ]
+          })
+        : this.statisticsData.map(currStatData => {
+            if (currStatData.StatisticType === currStat.Type) {
+              currStatData.ParticipantStatisticMetadata.map(
+                currSnapMetadata => {
+                  currSnapMetadata.ParticipantStat == 1
+                    ? (currSnapMetadata.StatPerPeriod = {
+                        PeriodType: 1,
+
+                        PeriodValue: null,
+
+                        StatValue: currStat.Results[0].Value
+                      })
+                    : {
+                        PeriodType: 1,
+
+                        PeriodValue: null,
+
+                        StatValue: currStat.Results[1].Value
+                      };
+                }
+              );
+            }
+          });
+    });
   };
   render() {
     return (
