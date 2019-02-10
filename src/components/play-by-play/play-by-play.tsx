@@ -9,7 +9,7 @@ import {
   Incidents,
   States,
   Elements,
-  score,
+  // score,
   LiveScore,
   lsPosition,
   IncidentLabel
@@ -113,11 +113,31 @@ const livScoreMock: LiveScore = {
   ],
   // "LivescoreExtraData":null
   LivescoreExtraData: [
-    {
-      Name: "1",
-      Value: "2"
-    }
+    // { Name: "1", Value: "2"},
+    { Name: "CourtSurfaceType", Value: "Clay" },
+    { Name: "Turn", Value: "1" },
+    { Name: "TopPlayer", Value: "1" },
+    { Name: "Serve Number", Value: "1" },
+    { Name: "ServiceSide", Value: "Ad" },
+    { Name: "BottomPlayer", Value: "2" }
   ]
+};
+const scoreStructure = {
+  ScorePeriod: [
+    {
+      ScorePeriodValue: "0",
+
+      Home: "0",
+
+      Away: "0"
+    }
+  ],
+
+  CurrentScore: {
+    Home: "0",
+
+    Away: "0"
+  }
 };
 @Component({
   tag: "play-by-play-widget",
@@ -128,7 +148,7 @@ export class PlayByPlay {
   @Prop() onloaderror: () => void;
   @Prop() ondisconnected: () => void;
   @Prop() onconnected: () => void;
-  @State() score: score;
+  @State() score: any;
   @State() view: "bird" | "camera" | "side";
   @State() fieldView: "clay" | "hard" | "grass" = "hard";
   @State() connection;
@@ -139,7 +159,7 @@ export class PlayByPlay {
   @State() reconnectTimeout: number = 10;
   @State() jsonViewerOpen: boolean = false;
   @State() error: boolean = false;
-  @State() showStatistics: boolean = true;
+  @State() showStatistics: boolean = false;
   @State() statisticsData: any = [];
   @State() message: {
     date: Date;
@@ -149,8 +169,8 @@ export class PlayByPlay {
   @State() previousBalls: Element[];
   @State() playerTrack: Element[];
   @State() prevElement: Element[];
-  @State() lVisionMode: boolean = true;
-  @State() liveScoreMode: boolean = false;
+  @State() lVisionMode: boolean = false;
+  @State() liveScoreMode: boolean = true;
   @State() liveScoreData: LiveScore;
   @State() kf: any;
   @State() showMessageBoard: boolean = false;
@@ -160,12 +180,19 @@ export class PlayByPlay {
   @State() delayForElements: boolean = true;
   @State() freezeElements: boolean = false;
   @State() lsPlayersPosition: number = 1;
+  @State() lsBallMoovment: "home" | "away" = "home";
+  @State() livenessServerTime: any = new Date();
   componentWillLoad() {
     this.kf = new KalmanFilter({ R: 0.001, Q: 2 });
     this.liveScoreData = livScoreMock;
     this.view = "camera";
     this.previousBalls = [];
     this.playerTrack = [];
+    this.livenessServerTime = new Date();
+    setInterval(function() {
+      that.checkServerLiveness();
+    }, 5000);
+
     // this.updateLiveScoreData(this.liveScoreData);
     const url: string = "http://ICnat.lsports.eu:8100";
     this.connection = hubConnection(url);
@@ -183,6 +210,10 @@ export class PlayByPlay {
       fixtureData.Body.Events[0].Fixture.FixtureExtraData[1].Value.length
         ? (that.fieldView = fixtureData.Body.Events[0].Fixture.FixtureExtraData[1].Value.toLowerCase())
         : "hard";
+
+      fixtureData.Body.Events[0].Livescore
+        ? that.updateLiveScoreData(fixtureData.Body.Events[0].Livescore)
+        : "";
     });
 
     this.hubProxy.on("pbpFrameReceived", function(frame: any) {
@@ -203,7 +234,7 @@ export class PlayByPlay {
     this.hubProxy.on("livescoreReceived", function(liveScoreData: any) {
       console.log("liveScoreData");
       console.log(liveScoreData.Body.Events[0].Livescore);
-      that.updateLiveScoreData(liveScoreData);
+      that.updateLiveScoreData(liveScoreData.Body.Events[0].Livescore);
     });
     this.hubProxy.on("statisticsMessageReceived", function(statistics: any) {
       that.updateStatisticsData(statistics);
@@ -223,6 +254,11 @@ export class PlayByPlay {
     this.hubProxy.on("stateMessageReceived", function(frame: any) {
       that.updateStateMessage(frame);
       // console.log(frame);
+    });
+    this.hubProxy.on("heartbeatReceived", function(data: any) {
+      console.log("heartbeatReceived");
+      console.log(data);
+      that.updateServerLivenessStatus(data);
     });
 
     this.start();
@@ -296,11 +332,13 @@ export class PlayByPlay {
       if (this.delayForElements) {
         this.freezeElements = false;
         this.error = false;
-        this.showStatistics = true;
+        this.showStatistics = false;
         this.showMessageBoard = false;
       }
     } else if (state.State === States.Fade) {
-      this.error = true;
+      if(!this.showStatistics){
+        this.error = true;
+      }
     } else if (state.State === States.FallBack) {
       this.lVisionMode = false;
       this.liveScoreMode = true;
@@ -377,12 +415,11 @@ export class PlayByPlay {
   };
   updateStatisticsData = statistic => {
     this.statisticsData &&
-   typeof this.statisticsData.find(
+    typeof this.statisticsData.find(
       lookForStat => lookForStat.StatisticType === statistic.StatisticType
     ) == "undefined"
       ? this.statisticsData.push(statistic)
-      : 
-      this.statisticsData.map(currStat => {
+      : this.statisticsData.map(currStat => {
           if (currStat.StatisticType === statistic.StatisticType) {
             currStat.ParticipantStatisticMetadata.map(currSnapMetadata => {
               statistic.ParticipantStatisticMetadata.map(currMsgMetadata => {
@@ -391,7 +428,6 @@ export class PlayByPlay {
                   ? (currSnapMetadata.StatPerPeriod =
                       currMsgMetadata.StatPerPeriod)
                   : "";
-                  ;
               });
             });
           }
@@ -442,13 +478,41 @@ export class PlayByPlay {
     this.score = score;
   };
 
+  updateServerLivenessStatus = data => {
+    if (data.Header.Type && data.Header.Type == 32) {
+      this.livenessServerTime = new Date();
+    }
+  };
+  checkServerLiveness = () => {
+    var currTime = new Date();
+    var seconds =
+      (currTime.getTime() - this.livenessServerTime.getTime()) / 1000;
+    if (seconds > 5) {
+      this.error = true;
+      this.message.text = "Server is down";
+    }
+  };
+
   updateLiveScoreData = liveScoreData => {
+    // set court
+    liveScoreData.LivescoreExtraData[0].name == "CourtSurfaceType"
+      ? (this.fieldView = liveScoreData.LivescoreExtraData[0].Value)
+      : "";
+
+    if (!this.score) {
+      this.score = scoreStructure;
+    }
     //update setsScore
     liveScoreData.Scoreboard.Results.map(currPoint => {
       currPoint.Position == lsPosition.homePlayer
         ? (this.score.CurrentScore.Home = currPoint.Value)
         : (this.score.CurrentScore.Away = currPoint.Value);
     });
+    this.lsPlayersPosition;
+
+    liveScoreData.LivescoreExtraData[1].Name == "Turn" &&
+      (this.lsBallMoovment =
+        liveScoreData.LivescoreExtraData[1].Value == 1 ? "home" : "away");
   };
   render() {
     return (
@@ -589,12 +653,19 @@ export class PlayByPlay {
             <br />
             <br />
             <br />
+            {this.showMessageBoard && (
+              <pbp-message-animate
+                class="msgAnimate"
+                messageText={this.scoreToShow}
+              />
+            )}
             <pbp-field jsonOpen={this.jsonViewerOpen} view={this.view}>
               <div id="animation_container" class="animation_container">
                 <canvas id="canvas" width="393" height="323" class="canvas" />
                 <div id="dom_overlay_container" class="dom_overlay_container" />
               </div>
               <pbp-player
+                side="home"
                 view={this.view}
                 position={{
                   currTop: this.lsPlayersPosition == 1 ? 0.12 : 0.8,
@@ -602,6 +673,7 @@ export class PlayByPlay {
                 }}
               />
               <pbp-player
+                side="away"
                 view={this.view}
                 position={{
                   currTop: this.lsPlayersPosition == 1 ? 0.75 : 0.25,
@@ -610,13 +682,18 @@ export class PlayByPlay {
               />
 
               <pbp-ball
+                movmentSide={this.lsBallMoovment}
                 animationNumber={this.lsPlayersPosition}
                 position={{
                   top: 0.86,
                   left: -0.085
                 }}
               />
-              <div class={`ballLanding${this.lsPlayersPosition}`} />
+              <div
+                class={`ballLanding${this.lsPlayersPosition} ${
+                  this.lsBallMoovment
+                }`}
+              />
             </pbp-field>
 
             {this.showStatistics && (
@@ -625,7 +702,16 @@ export class PlayByPlay {
                 open={this.jsonViewerOpen}
               />
             )}
-            {this.error && <span class={`error-overlay`} />}
+            {this.error && (
+              <span class={`error-overlay ${this.jsonViewerOpen && "open"}`}>
+                <div class="errorMessage">
+                  <span class="errorText">
+                    {" "}
+                    {this.message && this.message.text}
+                  </span>
+                </div>
+              </span>
+            )}
           </div>
         ) : (
           ""

@@ -1,52 +1,41 @@
 @keyframes moveAnimation1 {
   from {
     top: 20%;
-    left: 10%
+    left: 10%;
+    opacity: 1;
   }
 
-  /* 34%{
-    opacity: 0;
-  } */
   35% {
     top: 40%;
-    left: 60%
+    left: 60%;
+    opacity: 0;
   }
 
-  /* 40%{
-    opacity: 0;
-  } */
   45% {
     top: 45%;
-    left: 65%
+    left: 65%;
+    opacity: 1;
   }
-
-  /* 50%{
-    opacity: 0;
-  } */
 
   65% {
     top: 55%;
-    left: 75%
-  }
-
-  /* 75% {
+    left: 75%;
     opacity: 0;
-  } */
+  }
 
   85% {
     top: 65%;
-    left: 75%
+    left: 75%;
+    opacity: 1;
   }
-
-  /* 90%{
-    opacity: 0;
-  } */
 
   to {
     top: 75%;
-    left: 75%
+    left: 75%;
+    opacity: 0;
   }
 }
+
 
 @keyframes moveAnimation2 {
   from {
@@ -81,6 +70,71 @@
     opacity: 1
   }
 }
+@keyframes moveAnimation3 {
+  from {
+    top: 75%;
+    left: 90%;
+    opacity: 1;
+  }
+
+  50% {
+    top: 30%;
+    left: 50%;
+    opacity: 1;
+  }
+
+  65% {
+    top: 30%;
+    left: 45%;
+    opacity: 1;
+  }
+
+  90% {
+    top: 30%;
+    left: 38%;
+    opacity: 0;
+  }
+
+  to {
+    top: 28%;
+    left: 38%;
+    opacity: 1;
+  }
+}
+@keyframes moveAnimation4 {
+  from {
+    top: 35%;
+    left: 90%;
+    opacity: 1
+
+  }
+
+  35% {
+    top: 70%;
+    left: 60%;
+    opacity: .1
+  }
+
+  65% {
+    top: 80%;
+    left: 50%;
+    opacity: 1
+  }
+
+
+  85% {
+    top: 80%;
+    left: 40%;
+    opacity: .1
+  }
+
+  to {
+    top: 80%;
+    left: 35%;
+    opacity: 1;
+  }
+}
+
 
 
 .ball {
@@ -96,23 +150,34 @@
   background-blend-mode: soft-light;
 }
 
-.ball.moveAnimation1 {
+.ball.moveAnimation1.home {
   animation-name: moveAnimation1;
-  animation-duration: 1.2s;
+  animation-duration: 1.4s;
   animation-timing-function: linear;
-  animation-delay: 0.2s;
+  animation-delay: 0.4s;
   animation-iteration-count: infinite;
-  /* animation-direction: alternate */
 }
 
-.ball.moveAnimation2 {
+.ball.moveAnimation2.home {
   animation-name: moveAnimation2;
-  animation-duration: 1.2s;
+  animation-duration: 1.4s;
   animation-timing-function: linear;
-  /* animation-delay: 2s; */
-  animation-delay: 0.2s;
+  animation-delay: 0.4s;
   animation-iteration-count: infinite;
-  /* animation-direction: alternate */
+}
+.ball.moveAnimation1.away {
+  animation-name: moveAnimation3;
+  animation-duration: 1.4s;
+  animation-timing-function: linear;
+  animation-delay: 0.4s;
+  animation-iteration-count: infinite;
+}
+.ball.moveAnimation2.away {
+  animation-name: moveAnimation4;
+  animation-duration: 1.4s;
+  animation-timing-function: linear;
+  animation-delay: 0.4s;
+  animation-iteration-count: infinite;
 }
 
 
