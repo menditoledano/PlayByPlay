@@ -234,7 +234,7 @@
   -o-object-fit: contain;
   object-fit: contain;
   font-family: Montserrat;
-  font-size: 3vw;
+  font-size: 2vw;
   font-weight: 300;
   font-style: normal;
   font-stretch: normal;
@@ -413,15 +413,54 @@
 
 
 @media only screen and (max-width: 420px) {
+  .playerName {
+    top: 81vh;
+    width: 113px;
+    height: 21px;
+    -o-object-fit: contain;
+    object-fit: contain;
+    font-family: Montserrat;
+    font-size: 3vw;
+    font-weight: 300;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: -0.7px;
+    text-align: center;
+    color: #e8dc49;
+    position: absolute;
+}
+
+  .playerName.first.away {
+    left: 60vw;
+    top: 85vh !important;
+  }
+
+  .playerName.first.home {
+    left: 9vw;
+    top: 85vh !important;
+  }
+
+  .playerName.second.home {
+    left: 9vw;
+    top: 42vh !important;
+  }
+
+  .playerName.second.away {
+    left: 60vw;
+    top: 42vh !important;
+  }
+
   .breakPointWon.points.home {
     left: 24vw;
-}
+  }
+
   .breakPointWon.points.away {
     left: 69vw;
-}
+  }
 
 
-.breakPointWon.points {
+  .breakPointWon.points {
     position: absolute;
     font-family: Montserrat;
     font-size: 5vw;
@@ -431,7 +470,8 @@
     color: #ffffff;
     left: 82vw;
     top: 30vh;
-}
+  }
+
   .circular-chart.away {
     left: 55vw;
   }
@@ -556,7 +596,7 @@
     /* width: 100%; */
     font-size: 3vw !important;
     left: 40% !important;
-}
+  }
 
   .aceDataHome {
     top: 63%;

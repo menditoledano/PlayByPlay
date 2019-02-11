@@ -8,7 +8,7 @@
   object-fit: contain;
   position: absolute;
   margin: -2.625em 0 0 -0.75em;
-  z-index: 3;
+  z-index: 1;
   /* animation-name: moovePlayerSmooth; */
   /* animation-duration: 1s; */
   /* animation: moovePlayerSmooth 8s steps(10) infinite alternate; */

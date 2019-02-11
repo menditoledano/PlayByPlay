@@ -182,8 +182,8 @@ export class PlayByPlay {
   @State() previousBalls: Element[];
   @State() playerTrack: Element[];
   @State() prevElement: Element[];
-  @State() lVisionMode: boolean = false;
-  @State() liveScoreMode: boolean = true;
+  @State() lVisionMode: boolean = true;
+  @State() liveScoreMode: boolean = false;
   @State() liveScoreData: LiveScore;
   @State() kf: any;
   @State() showMessageBoard: boolean = false;
@@ -216,8 +216,12 @@ export class PlayByPlay {
       console.log("fixtureData");
 
       console.log(fixtureData);
-      that.homePlayer = fixtureData.Body.Events[0].Fixture.Participants[0].Name;
-      that.awayPlayer = fixtureData.Body.Events[0].Fixture.Participants[1].Name;
+      that.homePlayer = fixtureData.Body.Events[0].Fixture.Participants[0].Name
+        ? fixtureData.Body.Events[0].Fixture.Participants[0].Name
+        : "Home";
+      that.awayPlayer = fixtureData.Body.Events[0].Fixture.Participants[1].Name
+        ? fixtureData.Body.Events[0].Fixture.Participants[1].Name
+        : "Away";
       console.log(that.homePlayer + that.awayPlayer);
 
       fixtureData.Body.Events[0].Fixture.FixtureExtraData[1].Value.length
@@ -353,12 +357,13 @@ export class PlayByPlay {
         this.error = true;
       }
     } else if (state.State === States.FallBack) {
-      this.lVisionMode = false;
-      this.liveScoreMode = true;
-      console.log("transfer to livescore mode");
+      this.lVisionMode = true; //TODO: change to false after fix livescore
+      this.liveScoreMode = false; //TODO: change to true after fix livescore
+      this.error = true;
+      this.message.text = "No Streaming Signal";
+      // console.log("transfer to livescore mode");
     } else if (state.State === States.Freeze) {
       this.freezeElements = true;
-      // this.error = true;
     }
 
     this.message = {
@@ -375,10 +380,11 @@ export class PlayByPlay {
         console.log("Match");
         console.log(currIncident.Label);
         this.delayForElements = false;
+        this.showStatistics = false;
         this.showMessageBoard = true;
         setTimeout(() => {
           this.showStatistics = true;
-        }, 1000);
+        }, 1300);
         setTimeout(() => {
           this.delayForElements = true;
         }, 7000);
@@ -387,10 +393,11 @@ export class PlayByPlay {
         console.log("set");
         console.log(currIncident.Label);
         this.delayForElements = false;
+        this.showStatistics = false;
         this.showMessageBoard = true;
         setTimeout(() => {
           this.showStatistics = true;
-        }, 1000);
+        }, 1300);
         setTimeout(() => {
           this.delayForElements = true;
         }, 7000);
@@ -399,10 +406,11 @@ export class PlayByPlay {
         console.log("game");
         console.log(currIncident.Label);
         this.delayForElements = false;
+        this.showStatistics = false;
         this.showMessageBoard = true;
         setTimeout(() => {
           this.showStatistics = true;
-        }, 1000);
+        }, 1300);
         setTimeout(() => {
           this.delayForElements = true;
         }, 7000);
@@ -411,6 +419,7 @@ export class PlayByPlay {
         console.log("TennisPointFinished");
         console.log(currIncident.Label);
         this.delayForElements = false;
+        this.showStatistics = false;
         this.showMessageBoard = true;
         setTimeout(() => {
           this.showStatistics = true;
@@ -476,12 +485,8 @@ export class PlayByPlay {
     }
     if (elements.length > 1) {
       this.prevElement = elements;
-      // console.log(this.prevElement);
     }
-    // if (this.freezeElements) {
-    //   this.elements = this.prevElement;
-    //   console.log(this.prevElement);
-    // } else
+
     !this.freezeElements
       ? (this.elements = elements)
       : (this.elements = this.prevElement);
@@ -501,7 +506,7 @@ export class PlayByPlay {
     var seconds =
       (currTime.getTime() - this.livenessServerTime.getTime()) / 1000;
     if (seconds > 5) {
-      this.error = true;  
+      this.error = true;
       this.message.text = "Server is down";
     }
   };
@@ -718,6 +723,7 @@ export class PlayByPlay {
                 </div>
               </span>
             )}
+
             {/* {!this.showStatistics && this.freezeElements && (
               <span class={`error-overlay ${this.jsonViewerOpen && "open"}`} />
             )} */}

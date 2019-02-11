@@ -81,6 +81,7 @@ export class statBoard {
           id="carouselStatBoardControl"
           class="carousel slide"
           data-ride="carousel"
+          data-interval="5000"
         >
           <ol class="carousel-indicators">
             <li
@@ -89,7 +90,7 @@ export class statBoard {
               class="active"
             />
             <li data-target="#carouselExampleIndicators" data-slide-to="1" />
-            {/* <li data-target="#carouselExampleIndicators" data-slide-to="2" /> */}
+            <li data-target="#carouselExampleIndicators" data-slide-to="2" />
           </ol>
 
           <div class="carousel-inner">
@@ -97,7 +98,7 @@ export class statBoard {
               <div class="ace">
                 <span class="stat-title title-ace text-center">{`Ace`}</span>
                 <span class="stat-title curr-points-ace text-center">
-                  {/* (Last Game) */}
+               
                 </span>
                 <img
                   src="https://res.cloudinary.com/dezalma3v/image/upload/v1548698782/small-rectangle-stat.png"
@@ -109,13 +110,13 @@ export class statBoard {
                     {" "}
                     {this.aceHome && +this.aceHome + "\n" + " "}
                   </span>
-                  {/* <span class="pointTitle">points</span> */}
+                  
                 </div>
                 <div class="aceDataAway">
                   <span class=" point">
                     {this.aceAway && +this.aceAway + "\n" + " "}
                   </span>
-                  {/* <span class="pointTitle">points</span> */}
+                 
                 </div>
                 <span class="playerName second home">
                   {this.homePlayerName}
@@ -130,7 +131,7 @@ export class statBoard {
                   {`Distance Covered` + ``}
                 </span>
                 <span class="stat-title  curr-points-distanceCovered text-center">
-                  {/* (Last Game) */}
+                  
                 </span>
                 <img
                   src="https://res.cloudinary.com/dezalma3v/image/upload/v1548698782/small-rectangle-stat.png"
@@ -216,16 +217,7 @@ export class statBoard {
                 <span class="breakPointWon points home">
                   {this.breakPointWonHome}%
                 </span>
-                {/* <span class="Attempts home">Attempts</span> */}
-                {/* <svg viewBox="0 0 36 36" class="circular-away-cover-border">
-                  <path
-                    class="circle-border"
-                    stroke-dasharray={`100, 100`}
-                    d="M18 2.0845
-      a 15.9155 15.9155 0 0 1 0 31.831
-      a 15.9155 15.9155 0 0 1 0 -31.831"
-                  />
-                </svg> */}
+           
                 <svg viewBox="0 0 36 36" class="circular-away-cover">
                   <path
                     class="circle-cover"
@@ -253,7 +245,7 @@ export class statBoard {
               </div>
             </div>
             <div class="carousel-item">
-            <img src="https://res.cloudinary.com/dezalma3v/image/upload/v1548698782/small-rectangle-stat.png" class="small-stat-rectangle ace"></img>
+            <img src="https://res.cloudinary.com/dezalma3v/image/upload/v1548698782/small-rectangle-stat.png" class="small-stat-rectangle distanceCovered"></img>
             <div class="Win1stServe">
                 <span class="stat-title title-Win1stServe text-center">
                   {`Win 1st Serve ` + ``}
