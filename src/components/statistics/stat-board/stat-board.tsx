@@ -78,10 +78,9 @@ export class statBoard {
 
         {/* carousel */}
         <div
-          id="carouselStatBoardControl"
+          id="carouselExampleIndicators"
           class="carousel slide"
           data-ride="carousel"
-          data-interval="5000"
         >
           <ol class="carousel-indicators">
             <li
@@ -97,9 +96,7 @@ export class statBoard {
             <div class="carousel-item active">
               <div class="ace">
                 <span class="stat-title title-ace text-center">{`Ace`}</span>
-                <span class="stat-title curr-points-ace text-center">
-               
-                </span>
+                <span class="stat-title curr-points-ace text-center" />
                 <img
                   src="https://res.cloudinary.com/dezalma3v/image/upload/v1548698782/small-rectangle-stat.png"
                   class="small-stat-rectangle ace"
@@ -110,13 +107,11 @@ export class statBoard {
                     {" "}
                     {this.aceHome && +this.aceHome + "\n" + " "}
                   </span>
-                  
                 </div>
                 <div class="aceDataAway">
                   <span class=" point">
                     {this.aceAway && +this.aceAway + "\n" + " "}
                   </span>
-                 
                 </div>
                 <span class="playerName second home">
                   {this.homePlayerName}
@@ -130,9 +125,7 @@ export class statBoard {
                 <span class="stat-title title-distanceCovered text-center">
                   {`Distance Covered` + ``}
                 </span>
-                <span class="stat-title  curr-points-distanceCovered text-center">
-                  
-                </span>
+                <span class="stat-title  curr-points-distanceCovered text-center" />
                 <img
                   src="https://res.cloudinary.com/dezalma3v/image/upload/v1548698782/small-rectangle-stat.png"
                   class="small-stat-rectangle distanceCovered"
@@ -217,7 +210,7 @@ export class statBoard {
                 <span class="breakPointWon points home">
                   {this.breakPointWonHome}%
                 </span>
-           
+
                 <svg viewBox="0 0 36 36" class="circular-away-cover">
                   <path
                     class="circle-cover"
@@ -245,15 +238,18 @@ export class statBoard {
               </div>
             </div>
             <div class="carousel-item">
-            <img src="https://res.cloudinary.com/dezalma3v/image/upload/v1548698782/small-rectangle-stat.png" class="small-stat-rectangle distanceCovered"></img>
-            <div class="Win1stServe">
+              <img
+                src="https://res.cloudinary.com/dezalma3v/image/upload/v1548698782/small-rectangle-stat.png"
+                class="small-stat-rectangle distanceCovered"
+              />
+              <div class="Win1stServe">
                 <span class="stat-title title-Win1stServe text-center">
                   {`Win 1st Serve ` + ``}
                 </span>
                 <span class="stat-title  curr-points-distanceCovered text-center">
                   {/* (Last Game) */}
                 </span>
-               
+
                 <svg viewBox="0 0 36 36" class="circular-home-cover">
                   <path
                     class="circle-cover"
@@ -315,7 +311,7 @@ export class statBoard {
           </div>
           <a
             class="carousel-control-prev"
-            href="#carouselStatBoardControl"
+            href="#carouselExampleIndicators"
             role="button"
             data-slide="prev"
           >
@@ -324,7 +320,7 @@ export class statBoard {
           </a>
           <a
             class="carousel-control-next"
-            href="#carouselStatBoardControl"
+            href="#carouselExampleIndicators"
             role="button"
             data-slide="next"
           >

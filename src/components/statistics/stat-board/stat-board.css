@@ -30,7 +30,7 @@
 .title-ace {
   display: block;
   /* width: 100%; */
-  font-size: 3vw !important;
+  font-size: 3.5vw !important;
   left: 25% !important;
 
 }
@@ -234,7 +234,7 @@
   -o-object-fit: contain;
   object-fit: contain;
   font-family: Montserrat;
-  font-size: 2vw;
+  font-size: 2.5vw;
   font-weight: 300;
   font-style: normal;
   font-stretch: normal;
@@ -420,7 +420,7 @@
     -o-object-fit: contain;
     object-fit: contain;
     font-family: Montserrat;
-    font-size: 3vw;
+    font-size: 3.5vw;
     font-weight: 300;
     font-style: normal;
     font-stretch: normal;
@@ -430,6 +430,7 @@
     color: #e8dc49;
     position: absolute;
 }
+
 
   .playerName.first.away {
     left: 60vw;
@@ -558,8 +559,8 @@
     top: 12vh;
     display: block;
     /* width: 100%; */
-    font-size: 3vw !important;
-    left: 39% !important;
+    font-size: 3.5vw !important;
+    left: 33% !important;
   }
 
   .distanceCoveredAway {
@@ -573,7 +574,7 @@
     width: 8vw;
     height: 20vh !important;
     top: 17%;
-    left: 47%;
+    left: 44%;
   }
 
   .distanceCoveredHome {

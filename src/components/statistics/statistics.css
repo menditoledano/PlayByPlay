@@ -96,3 +96,38 @@
 .carousel-indicators .active {
   background-color: #fff !important;
 }
+
+
+@media only screen and (max-width: 420px) {
+  .stat-title {
+    position: absolute;
+    top: 12vh;
+    left: 35vw;
+    letter-spacing: 0.8px !important;
+    font-size: 2vw;
+    font-stretch: normal !important;
+    font-family: Montserrat !important;
+    color: #ffffff;
+  }
+
+ 
+.playersName {
+  position: absolute;
+  top: 6%;
+  /* left: 3% !important; */
+  -o-object-fit: contain;
+  object-fit: contain;
+  font-family: Montserrat;
+  font-weight: bolder;
+  font-style: normal;
+  letter-spacing: 0.8px;
+  text-align: center;
+  font-size: 3vw;
+  font-stretch: normal;
+  line-height: normal;
+  color: #e8dc49;
+  display: block;
+  width: 100%;
+
+}
+}

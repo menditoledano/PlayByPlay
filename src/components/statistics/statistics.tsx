@@ -21,7 +21,7 @@ export class Statistics {
           src="https://res.cloudinary.com/dezalma3v/image/upload/v1547197062/board-bg.png"
           class=" stat-background"
         />
-        <span class="playersName text-center">
+        <span class="playersName title text-center">
         
           {this.homePlayerName + " -vs- " + this.awayPlayerName}{" "}
         </span>
