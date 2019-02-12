@@ -221,6 +221,9 @@
 .small-stat-rectangle.distanceCovered {
   right: 5.5%;
 }
+.small-stat-rectangle.Win1stServe {
+  right: 5.5%;
+}
 
 .small-stat-rectangle.breakPoint {
   left: 66%;
@@ -248,8 +251,15 @@
 .playerName.first.home {
   left: 51vw;
 }
+.playerName.Win1stServe.home {
+  left: 51vw;
+}
 
 .playerName.first.away {
+  left: 75vw;
+}
+
+.playerName.Win1stServe.away {
   left: 75vw;
 }
 
@@ -446,8 +456,16 @@
     left: 9vw;
     top: 42vh !important;
   }
-
+  
+  .playerName.Win1stServe.home {
+    left: 9vw;
+    top: 42vh !important;
+  }
   .playerName.second.away {
+    left: 60vw;
+    top: 42vh !important;
+  }
+  .playerName.Win1stServe.away {
     left: 60vw;
     top: 42vh !important;
   }
@@ -530,6 +548,12 @@
     left: 5%;
     top: 52%;
   }
+  .small-stat-rectangle.Win1stServe {
+    left: 6%;
+    top: 10%;
+  }
+  
+  
 
   .small-stat-rectangle.ace {
     left: 6%;
@@ -606,6 +630,7 @@
     font-size: 6vw;
 
   }
+  
 
   .point {
     top: 8vh;

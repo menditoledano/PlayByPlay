@@ -240,7 +240,7 @@ export class statBoard {
             <div class="carousel-item">
               <img
                 src="https://res.cloudinary.com/dezalma3v/image/upload/v1548698782/small-rectangle-stat.png"
-                class="small-stat-rectangle distanceCovered"
+                class="small-stat-rectangle Win1stServe"
               />
               <div class="Win1stServe">
                 <span class="stat-title title-Win1stServe text-center">
@@ -304,8 +304,8 @@ export class statBoard {
                   {this.Win1stServeAway}%
                 </span>
                 {/* <span class="Attempts away">Attempts</span> */}
-                <span class="playerName first home">{this.homePlayerName}</span>
-                <span class="playerName first away">{this.awayPlayerName}</span>
+                <span class="playerName Win1stServe home">{this.homePlayerName}</span>
+                <span class="playerName Win1stServe away">{this.awayPlayerName}</span>
               </div>
             </div>
           </div>
