@@ -648,6 +648,7 @@ export class PlayByPlay {
                 ? this.elements.map(element => {
                     return element.Type === Elements.Player ? (
                       <pbp-player
+                      side={element.Location.Y>0?"away":element.Location.Y<0?"home":"home"}
                         view={this.view}
                         opacity={1}
                         position={{
@@ -672,7 +673,7 @@ export class PlayByPlay {
                   this.prevElement.map(element => {
                     return element.Type === Elements.Player ? (
                       <pbp-player
-                        //  opacity={0.1}
+                      side={element.Location.Y>0?"away":element.Location.Y<0?"home":"home"}
                         opacity={0.5}
                         view={this.view}
                         position={{
