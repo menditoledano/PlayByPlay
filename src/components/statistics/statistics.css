@@ -10,6 +10,8 @@ pbp-statistics {
   width: 93vw;
   height: 95vh;
 }
+.playersName.title.home {}
+.playersName.title.away {}
 
 .playersName {
   position: absolute;
@@ -18,7 +20,7 @@ pbp-statistics {
   -o-object-fit: contain;
   object-fit: contain;
   font-family: Montserrat;
-  font-weight: bolder;
+  /* font-weight: bolder; */
   font-style: normal;
   letter-spacing: 0.8px;
   text-align: center;

@@ -353,9 +353,9 @@ export class PlayByPlay {
         this.showMessageBoard = false;
       }
     } else if (state.State === States.Fade) {
-      if (!this.showStatistics) {
+      
         this.error = true;
-      }
+      
     } else if (state.State === States.FallBack) {
       this.lVisionMode = true; //TODO: change to false after fix livescore
       this.liveScoreMode = false; //TODO: change to true after fix livescore

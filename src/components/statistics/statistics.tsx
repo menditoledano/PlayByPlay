@@ -23,7 +23,7 @@ export class Statistics {
         />
         <span class="playersName title text-center">
         
-          {this.homePlayerName + " -vs- " + this.awayPlayerName}{" "}
+          <b>{this.homePlayerName}</b>  <span   style={{"font-weight":"10"}}>-vs- </span> <b>{this.awayPlayerName}</b>
         </span>
         {/* <div
           id="carouselExampleIndicators"
