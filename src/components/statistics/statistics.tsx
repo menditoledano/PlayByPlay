@@ -15,7 +15,7 @@ export class Statistics {
 
   render() {
     return (
-      <div>
+      <div class="statistics">
 
         <img
           src="https://res.cloudinary.com/dezalma3v/image/upload/v1547197062/board-bg.png"

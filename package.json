@@ -1,6 +1,6 @@
 {
   "name": "play-by-play-dev",
-  "version": "0.3.1",
+  "version": "0.3.3",
   "description": "Play by Play component",
   "module": "dist/esm/index.js",
   "main": "dist/play-by-play.js",
