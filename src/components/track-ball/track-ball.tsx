@@ -1,6 +1,5 @@
 import { Component, Prop } from '@stencil/core';
 
-
 @Component({
   tag: 'pbp-track-ball',
   styleUrl: 'track-ball.css'

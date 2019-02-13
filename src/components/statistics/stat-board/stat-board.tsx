@@ -1,12 +1,12 @@
 import { Component, Prop, State } from "@stencil/core";
 import { ParticipantStat, StatisticType } from "../interfaces";
-// import { Statistics } from '../statistics';
-
 @Component({
   tag: "pbp-stat-board",
   styleUrl: "stat-board.css"
 })
 export class statBoard {
+  @Prop() homePlayerName: any;
+  @Prop() awayPlayerName: any;
   @Prop() statisticsData: any;
   @State() aceHome: any;
   @State() aceAway: any;
@@ -19,9 +19,6 @@ export class statBoard {
   @State() Win1stServeHome: any;
   @State() Win1stServeAway: any;
 
-  @Prop() homePlayerName: any;
-  @Prop() awayPlayerName: any;
-
   componentWillLoad() {
     {
       this.statisticsData.map(currStat => {
@@ -32,7 +29,6 @@ export class statBoard {
                 : data.ParticipantStat === ParticipantStat.AwayPlayer1
                 ? (this.aceAway = data.StatPerPeriod[0].StatValue)
                 : "";
-              console.log(data.StatPerPeriod[0].StatValue);
             })
           : currStat.StatisticType == StatisticType.DistanceCovered
           ? currStat.ParticipantStatisticMetadata.map(data => {
@@ -149,13 +145,11 @@ export class statBoard {
               <div class="doubleFault">
                 <span class="stat-title title-doubleFault text-center">{`Double Fault`}</span>
                 <span class="stat-title curr-points-ace text-center">
-                  {/* (Last Game) */}
                 </span>
                 <img
                   src="https://res.cloudinary.com/dezalma3v/image/upload/v1548698782/small-rectangle-stat.png"
                   class="small-stat-rectangle ace"
                 />
-
                 <div class="aceDataHome">
                   <span class=" point">
                     {" "}
@@ -167,7 +161,6 @@ export class statBoard {
                   <span class=" point">
                     {this.doublFaultAway && +this.doublFaultAway + "\n" + " "}
                   </span>
-                  {/* <span class="pointTitle">points</span> */}
                 </div>
                 <span class="playerName second home">
                   {this.homePlayerName}
@@ -182,7 +175,6 @@ export class statBoard {
                   {`Break Point Won %` + ``}
                 </span>
                 <span class="stat-title  curr-points-distanceCovered text-center">
-                  {/* (Last Game) */}
                 </span>
                 <img
                   src="https://res.cloudinary.com/dezalma3v/image/upload/v1548698782/small-rectangle-stat.png"
@@ -247,7 +239,6 @@ export class statBoard {
                   {`Win 1st Serve ` + ``}
                 </span>
                 <span class="stat-title  curr-points-distanceCovered text-center">
-                  {/* (Last Game) */}
                 </span>
 
                 <svg viewBox="0 0 36 36" class="circular-home-cover">
@@ -272,16 +263,6 @@ export class statBoard {
                 <span class="breakPointWon points home">
                   {this.Win1stServeHome}%
                 </span>
-                {/* <span class="Attempts home">Attempts</span> */}
-                {/* <svg viewBox="0 0 36 36" class="circular-away-cover-border">
-                  <path
-                    class="circle-border"
-                    stroke-dasharray={`100, 100`}
-                    d="M18 2.0845
-      a 15.9155 15.9155 0 0 1 0 31.831
-      a 15.9155 15.9155 0 0 1 0 -31.831"
-                  />
-                </svg> */}
                 <svg viewBox="0 0 36 36" class="circular-away-cover">
                   <path
                     class="circle-cover"
@@ -303,7 +284,6 @@ export class statBoard {
                 <span class="breakPointWon points away">
                   {this.Win1stServeAway}%
                 </span>
-                {/* <span class="Attempts away">Attempts</span> */}
                 <span class="playerName Win1stServe home">{this.homePlayerName}</span>
                 <span class="playerName Win1stServe away">{this.awayPlayerName}</span>
               </div>
@@ -329,12 +309,6 @@ export class statBoard {
           </a>
         </div>
         {/* end of carousel */}
-
-        {/* <img
-          src="https://res.cloudinary.com/dezalma3v/image/upload/v1548698782/small-rectangle-stat.png"
-          class=" d-none d-sm-block small-stat-rectangle breakPoint"
-        /> */}
-        {/* <img src="https://res.cloudinary.com/dezalma3v/image/upload/v1548698782/small-rectangle-stat.png"class=" small-stat-rectangle distanceCovered"></img> */}
       </div>
     );
   }

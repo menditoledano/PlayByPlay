@@ -29,8 +29,6 @@ export class Message {
   );
 
   render() {
-    // const { message = { date: new Date() } } = this;
-    // const { date = new Date() } = message;
     return (
       <div
         class={`message ${this.jsonOpen && "open"} ${this.message &&
@@ -42,7 +40,6 @@ export class Message {
             {this.message.text}
           </p>
         )}
-        {/* {this.message && <span class="message-date">{`${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}  ${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()}`}</span>} */}
       </div>
     );
   }

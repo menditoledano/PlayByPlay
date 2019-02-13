@@ -54,17 +54,6 @@ export namespace Components {
     'view'?: "bird" | "camera" | "side";
   }
 
-  interface PbpJsonViewer {
-    'items': any[];
-    'onToggle': any;
-    'open': boolean;
-  }
-  interface PbpJsonViewerAttributes extends StencilHTMLAttributes {
-    'items'?: any[];
-    'onToggle'?: any;
-    'open'?: boolean;
-  }
-
   interface PbpMessageAnimate {
     'messageText': string;
   }
@@ -88,9 +77,6 @@ export namespace Components {
       type?: "ERROR" | "INFO";
     };
   }
-
-  interface PbpNet {}
-  interface PbpNetAttributes extends StencilHTMLAttributes {}
 
   interface PlayByPlayWidget {
     'fixtureid': string;
@@ -157,32 +143,16 @@ export namespace Components {
 
   interface PbpLastPointsStat {
     'open': boolean;
-    'position': {
-      top: number
-      left: number
-    };
   }
   interface PbpLastPointsStatAttributes extends StencilHTMLAttributes {
     'open'?: boolean;
-    'position'?: {
-      top: number
-      left: number
-    };
   }
 
   interface PbpShotPlacementStat {
     'open': boolean;
-    'position': {
-      top: number
-      left: number
-    };
   }
   interface PbpShotPlacementStatAttributes extends StencilHTMLAttributes {
     'open'?: boolean;
-    'position'?: {
-      top: number
-      left: number
-    };
   }
 
   interface PbpStatBoard {
@@ -247,10 +217,8 @@ declare global {
     'PbpAngleControl': Components.PbpAngleControl;
     'PbpBall': Components.PbpBall;
     'PbpField': Components.PbpField;
-    'PbpJsonViewer': Components.PbpJsonViewer;
     'PbpMessageAnimate': Components.PbpMessageAnimate;
     'PbpMessage': Components.PbpMessage;
-    'PbpNet': Components.PbpNet;
     'PlayByPlayWidget': Components.PlayByPlayWidget;
     'PbpPlayer': Components.PbpPlayer;
     'PbpScoreBoard': Components.PbpScoreBoard;
@@ -266,10 +234,8 @@ declare global {
     'pbp-angle-control': Components.PbpAngleControlAttributes;
     'pbp-ball': Components.PbpBallAttributes;
     'pbp-field': Components.PbpFieldAttributes;
-    'pbp-json-viewer': Components.PbpJsonViewerAttributes;
     'pbp-message-animate': Components.PbpMessageAnimateAttributes;
     'pbp-message': Components.PbpMessageAttributes;
-    'pbp-net': Components.PbpNetAttributes;
     'play-by-play-widget': Components.PlayByPlayWidgetAttributes;
     'pbp-player': Components.PbpPlayerAttributes;
     'pbp-score-board': Components.PbpScoreBoardAttributes;
@@ -300,12 +266,6 @@ declare global {
     new (): HTMLPbpFieldElement;
   };
 
-  interface HTMLPbpJsonViewerElement extends Components.PbpJsonViewer, HTMLStencilElement {}
-  var HTMLPbpJsonViewerElement: {
-    prototype: HTMLPbpJsonViewerElement;
-    new (): HTMLPbpJsonViewerElement;
-  };
-
   interface HTMLPbpMessageAnimateElement extends Components.PbpMessageAnimate, HTMLStencilElement {}
   var HTMLPbpMessageAnimateElement: {
     prototype: HTMLPbpMessageAnimateElement;
@@ -316,12 +276,6 @@ declare global {
   var HTMLPbpMessageElement: {
     prototype: HTMLPbpMessageElement;
     new (): HTMLPbpMessageElement;
-  };
-
-  interface HTMLPbpNetElement extends Components.PbpNet, HTMLStencilElement {}
-  var HTMLPbpNetElement: {
-    prototype: HTMLPbpNetElement;
-    new (): HTMLPbpNetElement;
   };
 
   interface HTMLPlayByPlayWidgetElement extends Components.PlayByPlayWidget, HTMLStencilElement {}
@@ -382,10 +336,8 @@ declare global {
     'pbp-angle-control': HTMLPbpAngleControlElement
     'pbp-ball': HTMLPbpBallElement
     'pbp-field': HTMLPbpFieldElement
-    'pbp-json-viewer': HTMLPbpJsonViewerElement
     'pbp-message-animate': HTMLPbpMessageAnimateElement
     'pbp-message': HTMLPbpMessageElement
-    'pbp-net': HTMLPbpNetElement
     'play-by-play-widget': HTMLPlayByPlayWidgetElement
     'pbp-player': HTMLPbpPlayerElement
     'pbp-score-board': HTMLPbpScoreBoardElement
@@ -401,10 +353,8 @@ declare global {
     'pbp-angle-control': HTMLPbpAngleControlElement;
     'pbp-ball': HTMLPbpBallElement;
     'pbp-field': HTMLPbpFieldElement;
-    'pbp-json-viewer': HTMLPbpJsonViewerElement;
     'pbp-message-animate': HTMLPbpMessageAnimateElement;
     'pbp-message': HTMLPbpMessageElement;
-    'pbp-net': HTMLPbpNetElement;
     'play-by-play-widget': HTMLPlayByPlayWidgetElement;
     'pbp-player': HTMLPbpPlayerElement;
     'pbp-score-board': HTMLPbpScoreBoardElement;

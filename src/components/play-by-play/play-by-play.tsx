@@ -1,127 +1,16 @@
 import { Component, Prop, State } from "@stencil/core";
-import KalmanFilter from "kalmanjs";
-
 import { hubConnection } from "signalr-no-jquery";
 import {
   Incident,
   Element,
-  // Frame,
   Incidents,
   States,
   Elements,
-  // score,
   LiveScore,
   lsPosition,
   IncidentLabel
 } from "./interfaces";
-const livScoreMock: LiveScore = {
-  Scoreboard: {
-    Status: 2,
-    CurrentPeriod: 2,
-    Time: "-1",
-    Results: [
-      {
-        Position: "1",
-        Value: "1"
-      },
-      {
-        Position: "2",
-        Value: "0"
-      }
-    ]
-  },
-  Periods: [
-    {
-      Type: 1,
-      IsFinished: true,
-      IsConfirmed: true,
-      Results: [
-        {
-          Position: "1",
-          Value: "6"
-        },
-        {
-          Position: "2",
-          Value: "1"
-        }
-      ],
 
-      Incidents: null
-    },
-    {
-      Type: 2,
-      IsFinished: false,
-      IsConfirmed: false,
-      Results: [
-        {
-          Position: "1",
-          Value: "4"
-        },
-        {
-          Position: "2",
-          Value: "4"
-        }
-      ],
-      Incidents: null
-    },
-    {
-      Type: 60,
-      IsFinished: false,
-      IsConfirmed: false,
-      Results: [
-        {
-          Position: "1",
-          Value: "0"
-        },
-        {
-          Position: "2",
-          Value: "0"
-        }
-      ],
-      Incidents: null
-    }
-  ],
-  Statistics: [
-    {
-      Type: 20,
-      Results: [
-        {
-          Position: "1",
-          Value: "2"
-        },
-        {
-          Position: "2",
-          Value: "2"
-        }
-      ],
-      Incidents: null
-    },
-    {
-      Type: 21,
-      Results: [
-        {
-          Position: "1",
-          Value: "2"
-        },
-        {
-          Position: "2",
-          Value: "1"
-        }
-      ],
-      Incidents: null
-    }
-  ],
-  // "LivescoreExtraData":null
-  LivescoreExtraData: [
-    // { Name: "1", Value: "2"},
-    { Name: "CourtSurfaceType", Value: "Clay" },
-    { Name: "Turn", Value: "1" },
-    { Name: "TopPlayer", Value: "1" },
-    { Name: "Serve Number", Value: "1" },
-    { Name: "ServiceSide", Value: "Ad" },
-    { Name: "BottomPlayer", Value: "2" }
-  ]
-};
 const scoreStructure = {
   ScorePeriod: [
     {
@@ -139,7 +28,7 @@ const scoreStructure = {
     Away: "0"
   }
 };
-const statisticsMock = {
+const statisticsStructure = {
   Statistics: [
     {
       StatisticType: 1,
@@ -180,12 +69,10 @@ export class PlayByPlay {
     type?: "ERROR" | "INFO";
   };
   @State() previousBalls: Element[];
-  @State() playerTrack: Element[];
   @State() prevElement: Element[];
   @State() lVisionMode: boolean = true;
   @State() liveScoreMode: boolean = false;
   @State() liveScoreData: LiveScore;
-  @State() kf: any;
   @State() showMessageBoard: boolean = false;
   @State() scoreToShow: string;
   @State() homePlayer: string;
@@ -195,18 +82,15 @@ export class PlayByPlay {
   @State() lsPlayersPosition: number = 1;
   @State() lsBallMoovment: "home" | "away" = "home";
   @State() livenessServerTime: any = new Date();
+
   componentWillLoad() {
-    this.kf = new KalmanFilter({ R: 0.001, Q: 2 });
-    this.liveScoreData = livScoreMock;
     this.view = "camera";
     this.previousBalls = [];
-    this.playerTrack = [];
     this.livenessServerTime = new Date();
     setInterval(function() {
       that.checkServerLiveness();
     }, 5000);
 
-    // this.updateLiveScoreData(this.liveScoreData);
     const url: string = "http://ICnat.lsports.eu:8100";
     this.connection = hubConnection(url);
     this.hubProxy = this.connection.createHubProxy("PlayByPlayHub");
@@ -235,16 +119,11 @@ export class PlayByPlay {
 
     this.hubProxy.on("pbpFrameReceived", function(frame: any) {
       that.updateElements(frame.Elements);
-      // console.log(frame);
-
       that.updateScore(frame.Score);
-
       frame.Incidents.length &&
         that.updateIncident(frame.Incidents[0], frame.Timestamp);
-
       frame.Incidents.length && console.log("frame.Incidents");
       frame.Incidents.length && console.log(frame.Incidents);
-
       that.updateStatisticsStatus(frame.Incidents);
     });
 
@@ -253,11 +132,9 @@ export class PlayByPlay {
       console.log(liveScoreData.Body.Events[0].Livescore);
       that.updateLiveScoreData(liveScoreData.Body.Events[0].Livescore);
     });
+
     this.hubProxy.on("statisticsMessageReceived", function(statistics: any) {
       that.updateStatisticsData(statistics);
-      // console.log("statisticsMessageReceived");
-
-      // console.log(statistics);
     });
 
     // snapshot
@@ -270,11 +147,9 @@ export class PlayByPlay {
 
     this.hubProxy.on("stateMessageReceived", function(frame: any) {
       that.updateStateMessage(frame);
-      // console.log(frame);
     });
+
     this.hubProxy.on("heartbeatReceived", function(data: any) {
-      console.log("heartbeatReceived");
-      console.log(data);
       that.updateServerLivenessStatus(data);
     });
 
@@ -288,12 +163,10 @@ export class PlayByPlay {
       .done(() => {
         this.message = { date: new Date(), text: "Connected", type: "INFO" };
         this.error = false;
-        // this.onconnected();
         return this.hubProxy.invoke("Subscribe", this.fixtureid);
       })
       .fail(() => {
         this.error = true;
-
         if (this.reconnectAttemp < 3) {
           this.reconnectAttemp++;
           this.updateErrorMessage();
@@ -339,10 +212,6 @@ export class PlayByPlay {
   };
 
   updateStateMessage = state => {
-    console.log("state");
-
-    console.log(state);
-
     if (state.State === States.StreamStopped) {
       this.error = false;
     } else if (state.State === States.StreamStarted) {
@@ -353,15 +222,12 @@ export class PlayByPlay {
         this.showMessageBoard = false;
       }
     } else if (state.State === States.Fade) {
-      
-        this.error = true;
-      
+      this.error = true;
     } else if (state.State === States.FallBack) {
       this.lVisionMode = true; //TODO: change to false after fix livescore
       this.liveScoreMode = false; //TODO: change to true after fix livescore
       this.error = true;
       this.message.text = "No Streaming Signal";
-      // console.log("transfer to livescore mode");
     } else if (state.State === States.Freeze) {
       this.freezeElements = true;
     }
@@ -430,11 +296,11 @@ export class PlayByPlay {
       }
     });
   };
+
   updateStatisticsSnapShotData = statistics => {
-    // this.statisticsData.push(statistics);
     this.statisticsData = statistics;
-    // console.log(this.statisticsData);
   };
+
   updateStatisticsData = statistic => {
     this.statisticsData &&
     typeof this.statisticsData.find(
@@ -454,22 +320,16 @@ export class PlayByPlay {
             });
           }
         });
-    // this.statisticsData = statistic;
-    // console.log(this.statisticsData);
   };
   updateElements = elements => {
-    // this.lVisionMode = true;
-    // this.liveScoreMode = false;
+    // this.lVisionMode = true; // TODO: return that to code after fix livescore
+    // this.liveScoreMode = false; // TODO: return that to code after fix livescore
 
     this.elements && this.delayForElements
       ? ((this.showMessageBoard = false), (this.showStatistics = false))
       : "";
     const previousBall =
       this.elements && this.elements.find(el => el.Type === Elements.Ball);
-    const playerSingelTrack =
-      this.elements && this.elements.find(el => el.Type === Elements.Player);
-    // const singleElement = this.elements && this.elements;
-
     if (!!previousBall) {
       this.previousBalls.push(previousBall);
       if (this.previousBalls.length > 2) {
@@ -477,12 +337,6 @@ export class PlayByPlay {
       }
     }
 
-    if (!!playerSingelTrack) {
-      this.playerTrack.push(playerSingelTrack);
-      if (this.playerTrack.length > 2) {
-        this.playerTrack.shift();
-      }
-    }
     if (elements.length > 1) {
       this.prevElement = elements;
     }
@@ -501,6 +355,7 @@ export class PlayByPlay {
       this.livenessServerTime = new Date();
     }
   };
+
   checkServerLiveness = () => {
     var currTime = new Date();
     var seconds =
@@ -542,7 +397,7 @@ export class PlayByPlay {
 
   updateLiveScoreStatistics = statistics => {
     if (!this.statisticsData) {
-      this.statisticsData = statisticsMock;
+      this.statisticsData = statisticsStructure;
     }
     statistics.map(currStat => {
       this.statisticsData &&
@@ -551,32 +406,24 @@ export class PlayByPlay {
       ) == "undefined"
         ? this.statisticsData.push({
             StatisticType: currStat.Type,
-
             StatisticUnit: 0,
-
             ParticipantStatsticMetadata: [
               {
                 ParticipantStat: 1,
-
                 StatPerPeriod: [
                   {
                     PeriodType: 1,
-
                     PeriodValue: null,
-
                     StatValue: currStat.Results[0].Value
                   }
                 ]
               },
               {
                 ParticipantStat: 3,
-
                 StatPerPeriod: [
                   {
                     PeriodType: 1,
-
                     PeriodValue: null,
-
                     StatValue: currStat.Results[1].Value
                   }
                 ]
@@ -590,16 +437,12 @@ export class PlayByPlay {
                   currSnapMetadata.ParticipantStat == 1
                     ? (currSnapMetadata.StatPerPeriod = {
                         PeriodType: 1,
-
                         PeriodValue: null,
-
                         StatValue: currStat.Results[0].Value
                       })
                     : {
                         PeriodType: 1,
-
                         PeriodValue: null,
-
                         StatValue: currStat.Results[1].Value
                       };
                 }
@@ -611,19 +454,30 @@ export class PlayByPlay {
   render() {
     return (
       <div class="">
-        
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
-    crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
-    crossorigin="anonymous"></script>
+        <script
+          src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+          integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+          integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+          integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+          crossorigin="anonymous"
+        />
         {this.lVisionMode ? (
           <div class={`wrapper ${this.fieldView}`}>
             <img
               class="betaIcon"
               src="https://res.cloudinary.com/dezalma3v/image/upload/v1549369560/Beta_icon-18.png"
             />
+
+            {/* !!! next commented code is to show scoreboard !!! */}
+
             {/* {this.score && (
               <pbp-score-board
                 score={this.score}
@@ -648,7 +502,13 @@ export class PlayByPlay {
                 ? this.elements.map(element => {
                     return element.Type === Elements.Player ? (
                       <pbp-player
-                      side={element.Location.Y>0?"away":element.Location.Y<0?"home":"home"}
+                        side={
+                          element.Location.Y > 0
+                            ? "away"
+                            : element.Location.Y < 0
+                            ? "home"
+                            : "home"
+                        }
                         view={this.view}
                         opacity={1}
                         position={{
@@ -673,14 +533,19 @@ export class PlayByPlay {
                   this.prevElement.map(element => {
                     return element.Type === Elements.Player ? (
                       <pbp-player
-                      side={element.Location.Y>0?"away":element.Location.Y<0?"home":"home"}
+                        side={
+                          element.Location.Y > 0
+                            ? "away"
+                            : element.Location.Y < 0
+                            ? "home"
+                            : "home"
+                        }
                         opacity={0.5}
                         view={this.view}
                         position={{
                           currTop: element.Location.X,
                           currLeft: element.Location.Y
                         }}
-                        // opacity={1}
                       />
                     ) : element.Type === Elements.Ball ? (
                       <pbp-ball
@@ -707,12 +572,6 @@ export class PlayByPlay {
                     }}
                   />
                 ))}
-              {/* {
-                              this.elements &&
-                              !!this.elements.filter(el => el.Type === Elements.Player).length &&
-                              this.playerTrack &&
-                              this.playerTrack.map((player,i) => <pbp-track-player view={this.view} opacity={i === 0 ? .1 : .3 } position={{ top: player.Location.X, left: player.Location.Y }} />)
-                            } */}
             </pbp-field>
             {this.showStatistics && (
               <pbp-statistics
@@ -731,10 +590,6 @@ export class PlayByPlay {
                 </div>
               </span>
             )}
-
-            {/* {!this.showStatistics && this.freezeElements && (
-              <span class={`error-overlay ${this.jsonViewerOpen && "open"}`} />
-            )} */}
           </div>
         ) : //show in livscoreMode
         this.liveScoreMode ? (
